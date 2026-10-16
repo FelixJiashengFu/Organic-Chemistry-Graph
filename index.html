@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="description" content="有机化学图解：反应机理与合成路线的单文件交互页。结构式与弯箭头手绘成 SVG，分子式、元素与电荷守恒由脚本从画出的结构核验，离线可开。">
+<title>Organic Chemistry Graph｜有机化学图解</title>
+<style>
+:root{
+  --paper:#f6f5f1; --surface:#ffffff; --surface-2:#efede7;
+  --ink:#1c1e22; --ink-soft:#5c6068; --rule:#dbd7cc;
+  --accent:#c23b28; --wash:#f6e3de; --link:#2a66ad; --arrow:#e24b4a;
+  --p-fill:#eeedfe; --p-line:#534ab7; --t-fill:#e1f5ee; --t-line:#0f6e56;
+  --display:"Songti SC","Noto Serif CJK SC","Source Han Serif SC",Georgia,"Times New Roman","STSong","SimSun",serif;
+  --body:"PingFang SC","Microsoft YaHei","Noto Sans CJK SC","Hiragino Sans GB",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:ui-monospace,SFMono-Regular,"Cascadia Mono",Consolas,"Liberation Mono",Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root{
+  --paper:#111316; --surface:#181b20; --surface-2:#1f2329; --ink:#e9e7e2; --ink-soft:#9ca1a9; --rule:#2c3138;
+  --accent:#ff7b62; --wash:#2f1a16; --link:#6ea8ff; --arrow:#ff6b66;
+  --p-fill:#3c3489; --p-line:#afa9ec; --t-fill:#085041; --t-line:#5dcaa5; color-scheme:dark;
+}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.75;-webkit-font-smoothing:antialiased}
+.wrap{max-width:900px;margin:0 auto;padding-inline:20px}
+i{font-style:italic}
+header{padding-block:56px 40px;border-bottom:1px solid var(--rule)}
+.brand{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;color:var(--accent);margin:0 0 30px}
+h1{font-family:var(--display);font-weight:600;font-size:clamp(30px,6.5vw,52px);line-height:1.15;letter-spacing:-.01em;margin:0 0 18px;text-wrap:balance}
+header p{color:var(--ink-soft);max-width:62ch;margin:0;font-size:16px}
+.legend{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 0;padding:0;list-style:none}
+.legend li{font-size:12.5px;background:var(--surface);border:1px solid var(--rule);border-radius:999px;padding:4px 13px 4px 10px;display:inline-flex;align-items:center;gap:8px}
+.sw{display:inline-block;width:13px;height:13px;border-radius:50%}
+.sw-p{background:var(--p-fill);border:1px solid var(--p-line)}
+.sw-t{background:var(--t-fill);border:1px solid var(--t-line)}
+.sw-a{width:22px;height:0;border-radius:0;border-top:2px solid var(--arrow)}
+main{padding-block:40px 20px}
+.group{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;color:var(--ink-soft);margin:0 0 14px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px}
+a.card{display:block;background:var(--surface);border:1px solid var(--rule);border-left:3px solid var(--accent);border-radius:7px;padding:22px 24px;text-decoration:none;color:inherit;min-width:0}
+a.card:hover{background:var(--surface-2)}
+a.card:focus-visible{outline:2px solid var(--link);outline-offset:3px}
+.tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;color:var(--accent);background:var(--wash);padding:3px 8px;border-radius:4px;display:inline-block}
+a.card h2{font-family:var(--display);font-weight:600;font-size:21px;line-height:1.4;margin:14px 0 8px}
+a.card p{color:var(--ink-soft);font-size:13.5px;margin:0 0 14px}
+.open{color:var(--accent);font-size:13px;font-weight:600}
+.count{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);margin:34px 0 0}
+.note{background:var(--surface-2);border-left:3px solid var(--rule);padding:14px 18px;margin:20px 0 0;font-size:13px;color:var(--ink-soft)}
+footer{border-top:1px solid var(--rule);margin-top:40px;padding-block:22px 48px;font-size:12px;color:var(--ink-soft)}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <p class="brand">ORGANIC CHEMISTRY GRAPH</p>
+  <h1>每一根弯箭头，<br>都要对得上原子账。</h1>
+  <p>有机化学的反应机理与合成路线图解。结构式、电荷、单电子和弯箭头都手绘成 SVG；页面画出的每个结构都由脚本重新读取，检查价键、算分子式、核对每一步的元素与电荷守恒。单文件，可离线打开。</p>
+  <ul class="legend">
+    <li><span class="sw sw-a"></span>弯箭头：一对电子的流向</li>
+    <li><span class="sw sw-p"></span><span class="sw sw-t"></span>紫 / 青圈：被追踪的原子</li>
+  </ul>
+</div></header>
+
+<main class="wrap">
+  <p class="group">01 / 合成路线与机理：Birch 还原–烷基化</p>
+  <div class="cards">
+    <a class="card" href="./topics/birch-anisic-acid-steps/index.html">
+      <span class="tag">分步机理 · 11 帧 · 原子记账</span>
+      <h2>羧基领路，甲氧基伪装成酮：邻甲氧基苯甲酸 → 2-丁基环己-2-烯酮</h2>
+      <p>串联 Birch 还原–烷基化、烯醇醚水解、β-酮酸脱羧与双键异构化。11 帧画全 19 根弯箭头，紫、青两圈追踪原 C1 与 C2；三个阶段的配平总式、原子去向与常见错误。</p>
+      <span class="open">打开专题 →</span>
+    </a>
+    <a class="card" href="./topics/birch-anisic-acid-animation/index.html">
+      <span class="tag">2D 动画 · 13 幕 · 逐帧守恒</span>
+      <h2>同一条路线，让分子自己动</h2>
+      <p>试剂进场、弯箭头逐笔画出、键断开与生成、副产物离场。每个原子全程是同一个对象：看蓝色的水氧怎样变成羰基氧，看 CO₂ 怎样拉直飞走。可暂停、单步、拖动进度条。</p>
+      <span class="open">打开专题 →</span>
+    </a>
+  </div>
+  <p class="count">当前收录 2 个专题</p>
+  <div class="note">本库页面不依赖在线资源：无 CDN、无在线字体、无第三方库，结构式和动画都由页内脚本现画成 SVG。参考文献外链除外。</div>
+</main>
+
+<footer><div class="wrap">Organic Chemistry Graph · 持续添加独立专题</div></footer>
+</body>
+</html>

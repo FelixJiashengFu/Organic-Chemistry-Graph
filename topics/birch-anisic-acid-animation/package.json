@@ -1,0 +1,14 @@
+{
+  "name": "birch-anisic-acid-animation",
+  "private": true,
+  "type": "module",
+  "description": "Build, keyframe-verify and browser-QA scripts for the 2D mechanism animation (o-anisic acid to 2-butylcyclohex-2-enone).",
+  "scripts": {
+    "build": "node source/build.mjs",
+    "verify": "node source/verify.mjs",
+    "qa": "node source/qa-browser.mjs"
+  },
+  "devDependencies": {
+    "playwright-core": "1.49.1"
+  }
+}

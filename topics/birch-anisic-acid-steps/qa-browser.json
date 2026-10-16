@@ -1,0 +1,149 @@
+{
+  "topic": "birch-anisic-acid-steps",
+  "engine": "chrome-headless-shell.exe",
+  "generated": "2026-10-16",
+  "passed": 28,
+  "total": 28,
+  "checks": [
+    {
+      "name": "阶段标签 5 个、进度点 11 个",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "第 1 帧：标题、弯箭头 0 根、计数",
+      "ok": true,
+      "detail": "路线总览：三步把芳环变成环己烯酮｜箭头 0｜1 / 11｜图元 116"
+    },
+    {
+      "name": "第 2 帧：标题、弯箭头 0 根、计数",
+      "ok": true,
+      "detail": "① 去质子化与第一次单电子转移｜箭头 0｜2 / 11｜图元 91"
+    },
+    {
+      "name": "第 3 帧：标题、弯箭头 2 根、计数",
+      "ok": true,
+      "detail": "① C4 质子化｜箭头 2｜3 / 11｜图元 74"
+    },
+    {
+      "name": "第 4 帧：标题、弯箭头 0 根、计数",
+      "ok": true,
+      "detail": "① 第二次电子转移：烯二醇双负离子｜箭头 0｜4 / 11｜图元 92"
+    },
+    {
+      "name": "第 5 帧：标题、弯箭头 3 根、计数",
+      "ok": true,
+      "detail": "① C1 烷基化：构建季碳｜箭头 3｜5 / 11｜图元 74"
+    },
+    {
+      "name": "第 6 帧：标题、弯箭头 3 根、计数",
+      "ok": true,
+      "detail": "② 烯醇醚在 C3 质子化｜箭头 3｜6 / 11｜图元 80"
+    },
+    {
+      "name": "第 7 帧：标题、弯箭头 2 根、计数",
+      "ok": true,
+      "detail": "② 水进攻，生成半缩酮｜箭头 2｜7 / 11｜图元 72"
+    },
+    {
+      "name": "第 8 帧：标题、弯箭头 2 根、计数",
+      "ok": true,
+      "detail": "② 失去 MeOH，得到 β-酮酸｜箭头 2｜8 / 11｜图元 70"
+    },
+    {
+      "name": "第 9 帧：标题、弯箭头 3 根、计数",
+      "ok": true,
+      "detail": "③ β-酮酸脱羧：六元环过渡态｜箭头 3｜9 / 11｜图元 58"
+    },
+    {
+      "name": "第 10 帧：标题、弯箭头 4 根、计数",
+      "ok": true,
+      "detail": "③ 互变异构：双键移入共轭位置｜箭头 4｜10 / 11｜图元 64"
+    },
+    {
+      "name": "第 11 帧：标题、弯箭头 0 根、计数",
+      "ok": true,
+      "detail": "回顾：原子记账｜箭头 0｜11 / 11｜图元 69"
+    },
+    {
+      "name": "最后一帧之后回到第 1 帧",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "第 1 帧按“上一步”跳到最后一帧",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "点“② 烯醇醚水解”跳到第 6 帧，该标签高亮",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "键盘 → 翻到第 7 帧",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "键盘 ← 回到第 6 帧",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "点第 9 个进度点跳到脱羧帧",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "图例小弯箭头已画出",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "目录锚点全部存在",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "术语表 ≥ 35 条",
+      "ok": true,
+      "detail": "37"
+    },
+    {
+      "name": "1440px 页面无横向溢出",
+      "ok": true,
+      "detail": "scrollWidth − innerWidth = 0"
+    },
+    {
+      "name": "768px 页面无横向溢出",
+      "ok": true,
+      "detail": "scrollWidth − innerWidth = 0"
+    },
+    {
+      "name": "390px 页面无横向溢出",
+      "ok": true,
+      "detail": "scrollWidth − innerWidth = 0"
+    },
+    {
+      "name": "390px 时结构图保持 ≥ 560px 宽（在框内横向滚动，字不会缩到看不清）",
+      "ok": true,
+      "detail": "560"
+    },
+    {
+      "name": "深色模式下原子标签为浅色",
+      "ok": true,
+      "detail": "rgb(233, 231, 226)"
+    },
+    {
+      "name": "无脚本报错",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "零网络请求（页面完全离线）",
+      "ok": true,
+      "detail": ""
+    }
+  ]
+}

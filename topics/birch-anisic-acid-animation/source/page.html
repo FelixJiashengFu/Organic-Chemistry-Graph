@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="description" content="邻甲氧基苯甲酸 → 2-丁基环己-2-烯酮的 2D 机理动画：13 幕，试剂进场、弯箭头逐笔画出、键断开与生成、副产物离场；每个原子全程是同一个对象，可看清 H 和 O 的去向。每一幕的元素与电荷守恒由脚本核验。离线单文件。">
+<title>邻甲氧基苯甲酸 → 2-丁基环己-2-烯酮：2D 机理动画｜Organic Chemistry Graph</title>
+<style>
+:root{
+  --paper:#f6f5f1; --surface:#ffffff; --surface-2:#efede7;
+  --ink:#1c1e22; --ink-soft:#5c6068; --ink-faint:#8b8f96; --rule:#dbd7cc;
+  --accent:#c23b28; --wash:#f6e3de; --link:#2a66ad; --arrow:#e24b4a; --water:#2f7fd0;
+  --p-fill:#eeedfe; --p-line:#534ab7; --p-text:#534ab7; --t-fill:#e1f5ee; --t-line:#0f6e56; --t-text:#0f6e56;
+  --display:"Songti SC","Noto Serif CJK SC","Source Han Serif SC",Georgia,"Times New Roman","STSong","SimSun",serif;
+  --body:"PingFang SC","Microsoft YaHei","Noto Sans CJK SC","Hiragino Sans GB",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:ui-monospace,SFMono-Regular,"Cascadia Mono",Consolas,"Liberation Mono",Menlo,monospace;
+  --math:"Cambria Math","STIX Two Math","STIX Two Text",Cambria,"Times New Roman",serif;
+}
+@media (prefers-color-scheme:dark){:root{
+  --paper:#111316; --surface:#181b20; --surface-2:#1f2329;
+  --ink:#e9e7e2; --ink-soft:#9ca1a9; --ink-faint:#6f747c; --rule:#2c3138;
+  --accent:#ff7b62; --wash:#2f1a16; --link:#6ea8ff; --arrow:#ff6b66; --water:#6ea8ff;
+  --p-fill:#3c3489; --p-line:#afa9ec; --p-text:#cecbf6; --t-fill:#085041; --t-line:#5dcaa5; --t-text:#9fe1cb;
+  color-scheme:dark;
+}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.78;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1000px;margin:0 auto;padding-inline:20px}
+.read{max-width:780px}
+a{color:var(--link);text-underline-offset:3px}
+i{font-family:var(--math);font-style:italic}
+sub,sup{line-height:0}
+b,strong{font-weight:650}
+code{font-family:var(--mono);font-size:.9em;background:var(--surface-2);padding:1px 5px;border-radius:4px}
+button,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--link);outline-offset:2px}
+.hero{border-bottom:1px solid var(--rule);padding-block:52px 34px}
+.brand{font-family:var(--mono);font-size:11.5px;letter-spacing:.15em;color:var(--accent);margin:0 0 26px}
+.brand a{color:inherit;text-decoration:none}
+h1{font-family:var(--display);font-weight:600;font-size:clamp(28px,5.2vw,48px);line-height:1.18;letter-spacing:-.01em;margin:0 0 18px;text-wrap:balance}
+.lede{color:var(--ink-soft);max-width:70ch;font-size:16px;margin:0}
+.toc{display:flex;flex-wrap:wrap;gap:8px 18px;margin:26px 0 0;padding:0;list-style:none;font-size:13.5px}
+.toc a{color:var(--ink-soft);text-decoration:none;border-bottom:1px solid var(--rule)}
+.toc a:hover{color:var(--ink)}
+section{padding-block:46px 10px}
+.kicker{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;color:var(--accent);margin:0 0 8px}
+h2{font-family:var(--display);font-weight:600;font-size:clamp(22px,3.6vw,30px);line-height:1.3;margin:0 0 12px}
+h3{font-size:16px;margin:26px 0 8px}
+.sec-lede{color:var(--ink-soft);max-width:72ch;margin:0 0 20px}
+.stage{background:var(--surface);border:1px solid var(--rule);border-radius:12px;padding:18px 18px 16px;max-width:820px}
+.pills{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px}
+.pill{font-size:12px;padding:4px 11px;border-radius:999px;border:1px solid var(--rule);background:transparent;color:var(--ink-soft);cursor:pointer}
+.pill.on{background:var(--wash);color:var(--accent);border-color:color-mix(in srgb,var(--accent) 45%,transparent)}
+.st-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin:0 0 4px}
+.st-t{font-size:16px;font-weight:600;margin:0}
+.st-cond{font-size:12px;color:var(--ink-soft);background:var(--surface-2);border-radius:6px;padding:2px 8px}
+.st-c{font-size:14px;line-height:1.65;color:var(--ink-soft);margin:0 0 4px;min-height:48px}
+.svgwrap{overflow-x:auto;margin:0 -6px}
+.svgwrap svg{display:block;width:100%;min-width:560px;height:auto}
+.t{font-size:14px;fill:var(--ink)}
+.ts{font-size:12px;fill:var(--ink-soft)}
+.c-purple{fill:var(--p-fill);stroke:var(--p-line)}
+.c-teal{fill:var(--t-fill);stroke:var(--t-line)}
+.c-purple>.ts{fill:var(--p-text);stroke:none}
+.c-teal>.ts{fill:var(--t-text);stroke:none}
+input[type=range]{width:100%;accent-color:var(--accent);margin:6px 0 2px}
+.ctl{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:6px 0 10px}
+.ctl .sp{flex:1}
+.btn{background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:6px 14px;font-size:14px;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.btn:hover{background:var(--surface-2)}
+.btn svg{width:15px;height:15px}
+select{background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:5px 8px;font-size:13px}
+.cnt{font-family:var(--mono);font-size:12px;color:var(--ink-soft);min-width:82px;text-align:right}
+.leg{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12px;color:var(--ink-soft)}
+.leg span{display:inline-flex;align-items:center;gap:6px}
+.sw{width:13px;height:13px;border-radius:50%;display:inline-block}
+.sw-p{background:var(--p-fill);border:1px solid var(--p-line)}
+.sw-t{background:var(--t-fill);border:1px solid var(--t-line)}
+.sw-e{background:var(--arrow)}
+.cards3{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:14px}
+.card{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:16px 18px;font-size:14px}
+.card h3{margin:0 0 6px;font-size:15.5px}
+.card p{margin:0}
+.note{background:var(--surface-2);border-left:3px solid var(--rule);padding:12px 16px;margin:16px 0 0;font-size:13.5px;color:var(--ink-soft)}
+.tbl-wrap{overflow-x:auto;border:1px solid var(--rule);border-radius:8px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th,td{text-align:left;padding:8px 12px;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-weight:600;background:var(--surface-2);white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td.f{font-family:var(--math)}
+.layers{list-style:none;padding:0;margin:0}
+.layers li{display:grid;grid-template-columns:92px minmax(0,1fr);gap:12px;padding:10px 0;border-bottom:1px solid var(--rule);font-size:14px}
+.lk{font-size:12px;font-weight:600;border-radius:4px;padding:2px 8px;height:fit-content;text-align:center}
+.lk-orig{background:var(--surface-2);color:var(--ink)}
+.lk-exact{background:color-mix(in srgb,var(--t-line) 18%,transparent);color:var(--t-line)}
+.lk-lit{background:color-mix(in srgb,var(--link) 16%,transparent);color:var(--link)}
+.lk-schem{background:var(--wash);color:var(--accent)}
+.refs{padding-left:20px;font-size:14px}
+.refs li{margin:6px 0}
+footer{border-top:1px solid var(--rule);margin-top:50px;padding-block:22px 48px;font-size:12.5px;color:var(--ink-soft)}
+</style>
+</head>
+<body>
+<header class="hero"><div class="wrap">
+  <p class="brand"><a href="../../index.html">ORGANIC CHEMISTRY GRAPH</a> · 有机化学图解 · 机理动画</p>
+  <h1>同一条路线，让分子自己动：<br>13 幕 2D 机理动画</h1>
+  <p class="lede">邻甲氧基苯甲酸 → 2-丁基环己-2-烯酮（Birch 还原–烷基化 → 烯醇醚水解 → β-酮酸脱羧与双键异构化）。<a href="../birch-anisic-acid-steps/index.html">分步机理页</a>把它拆成 11 张静态图；这一页把同样的机理连成动画：试剂从场外进来，弯箭头一笔一笔画出，键在眼前断开、生成，副产物飘走。每个原子从头到尾是同一个对象，所以能看清“哪个 H 去了哪里”“羰基氧是从哪来的”。</p>
+  <nav aria-label="本页目录"><ul class="toc">
+    <li><a href="#stage-sec">01 动画</a></li>
+    <li><a href="#howto">02 怎么看</a></li>
+    <li><a href="#ledger">03 每一幕都守恒</a></li>
+    <li><a href="#glossary">04 术语表</a></li>
+    <li><a href="#sources">05 来源与核验</a></li>
+  </ul></nav>
+</div></header>
+
+<main>
+<section id="stage-sec"><div class="wrap">
+  <p class="kicker">01 / 动画</p>
+  <h2>一边放，一边看电子往哪走</h2>
+  <p class="sec-lede">第一次滚到这里会自动播放一遍（约 1 分钟）。“下一步”只播一幕就停；“重播本步”把刚才那一幕再放一次；拖动进度条可以停在任意中间形态。键盘：空格播放 / 暂停，→ 下一步，← 重播。</p>
+  <div class="stage" id="stage">
+    <div class="pills" id="maPills" role="group" aria-label="跳到阶段"></div>
+    <div class="st-head"><p class="st-t" id="maT" aria-live="polite">机理动画</p><span class="st-cond" id="maCond"></span></div>
+    <p class="st-c" id="maC"></p>
+    <div class="svgwrap"><svg viewBox="0 0 680 240" role="img" aria-labelledby="maST"><title id="maST">分子结构随反应进程连续变化，红色弯箭头表示电子对流向</title><g id="maG"></g></svg></div>
+    <input type="range" id="maR" min="0" max="13" step="0.001" value="0" aria-label="动画进度">
+    <div class="ctl">
+      <button class="btn" id="maPlay" type="button">播放</button>
+      <button class="btn" id="maRe" type="button"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.2 8a4.8 4.8 0 1 0 1.4-3.4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M3 2.4v3h3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>重播本步</button>
+      <button class="btn" id="maNext" type="button">下一步<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <span class="sp"></span>
+      <select id="maSp" aria-label="播放速度"><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="2">2×</option></select>
+      <span class="cnt" id="maN"></span>
+    </div>
+    <div class="leg">
+      <span><i class="sw sw-p"></i>原 C1</span>
+      <span><i class="sw sw-t"></i>原 C2</span>
+      <span><b style="color:var(--water);font-weight:600">O</b>来自水</span>
+      <span><b style="color:var(--ink-soft);font-weight:400">H</b>新加上的 H</span>
+      <span><i class="sw sw-e"></i>单个电子 e⁻</span>
+      <span><svg width="28" height="16" aria-hidden="true" id="maLeg"></svg>弯箭头：电子对流向</span>
+    </div>
+  </div>
+</div></section>
+
+<section id="howto"><div class="wrap">
+  <p class="kicker">02 / 怎么看</p>
+  <h2>每一幕都是三拍</h2>
+  <div class="cards3">
+    <article class="card"><h3>1　试剂进场</h3><p><i>t</i>-BuOH、H₃O⁺、H₂O、<i>n</i>-BuBr 从场外滑到要反应的位置。去质子化和两次单电子转移这三幕没有试剂，而是一个红色的 e⁻ 小球从 Li 飞进来。</p></article>
+    <article class="card"><h3>2　弯箭头逐笔画出</h3><p>红色弯箭头从电子对出发，画到它要去的位置；箭身上有两个小红点代表这对电子在走。一幕里有好几根箭头时依次画出，次序大致就是电子“推”过去的顺序。</p></article>
+    <article class="card"><h3>3　键重排</h3><p>要断的键先淡出，新键随后出现；双键的第二条线像拉链一样分开或合上。原子移到新位置，副产物（½ H₂、<i>t</i>-BuO⁻、Br⁻、MeOH、CO₂、H⁺）飘走并淡出。</p></article>
+  </div>
+  <div class="note">要盯的三件事：<b>蓝色的 O</b> 从水分子进来、加到 C2 上，最后成为产物的羰基氧，而 OMe 上的氧随 MeOH 离开；<b>脱羧</b>那一幕，COOH 的 H 先转向酮氧闭成六元环，CO₂ 飞走时拉直成线形，丁基随之从 sp³ 位摆到 sp² 位；<b>灰色的三个 H</b> 分别在 ①（C4）、②（C3）、③（C5）加上，一直留到产物上。</div>
+  <div class="note">动画里原子的移动路径是两个关键帧之间的直线插值，只表示“谁去了哪里”，不是真实的反应坐标、过渡态几何或时间尺度；每幕时长相同，也不代表各步快慢。</div>
+</div></section>
+
+<section id="ledger"><div class="wrap">
+  <p class="kicker">03 / 每一幕都守恒</p>
+  <h2>动画的每个关键帧都过了一遍“记账”</h2>
+  <p class="sec-lede"><code>source/verify.mjs</code> 读取动画实际使用的关键帧数据：每一幕“试剂就位”和“重排完成”两帧里的全部原子（包括正在离场的副产物），逐个检查价键与形式电荷，补齐隐含氢，再核对两帧的元素与电荷是否相等（加入的电子、只写在标签里的 H⁺ 单独计入）。</p>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>幕</th><th>发生了什么</th><th>守恒（左 → 右）</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>去质子化</td><td class="f">C₈H₈O₃ + e⁻ → C₈H₇O₃⁻ + H（½ H₂）</td></tr>
+      <tr><td>2</td><td>第一次单电子转移</td><td class="f">C₈H₇O₃⁻ + e⁻ → C₈H₇O₃²⁻（自由基）</td></tr>
+      <tr><td>3</td><td>C4 质子化</td><td class="f">C₈H₇O₃²⁻ + C₄H₁₀O → C₈H₈O₃⁻（自由基）+ C₄H₉O⁻</td></tr>
+      <tr><td>4</td><td>第二次单电子转移</td><td class="f">C₈H₈O₃⁻ + e⁻ → C₈H₈O₃²⁻</td></tr>
+      <tr><td>5</td><td>共振（不是反应）</td><td class="f">C₈H₈O₃²⁻ ↔ C₈H₈O₃²⁻（σ 骨架不变）</td></tr>
+      <tr><td>6</td><td>C1 烷基化</td><td class="f">C₈H₈O₃²⁻ + C₄H₉Br → C₁₂H₁₇O₃⁻ + Br⁻</td></tr>
+      <tr><td>7</td><td>酸化后处理</td><td class="f">C₁₂H₁₇O₃⁻ + H⁺ → C₁₂H₁₈O₃</td></tr>
+      <tr><td>8</td><td>烯醇醚 C3 质子化</td><td class="f">C₁₂H₁₈O₃ + H₃O⁺ → C₁₂H₁₉O₃⁺ + H₂O</td></tr>
+      <tr><td>9</td><td>水进攻 C2</td><td class="f">C₁₂H₁₉O₃⁺ + H₂O → C₁₂H₂₀O₄ + H⁺</td></tr>
+      <tr><td>10</td><td>失去 MeOH</td><td class="f">C₁₂H₂₀O₄ + H⁺ → C₁₁H₁₆O₃ + CH₃OH + H⁺</td></tr>
+      <tr><td>11</td><td>β-酮酸脱羧</td><td class="f">C₁₁H₁₆O₃ → C₁₀H₁₆O + CO₂</td></tr>
+      <tr><td>12</td><td>互变异构</td><td class="f">C₁₀H₁₆O（二烯醇）+ H₃O⁺ → C₁₀H₁₆O（烯酮）+ H₂O + H⁺</td></tr>
+      <tr><td>13</td><td>改画成键线式</td><td class="f">C₁₀H₁₆O（同一个分子）</td></tr>
+    </tbody>
+  </table></div>
+</div></section>
+
+<section id="glossary"><div class="wrap read">
+  <p class="kicker">04 / 术语表</p>
+  <h2>中英对照</h2>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>中文</th><th>English</th><th>在本题中</th></tr></thead>
+    <tbody>
+      <tr><td>邻甲氧基苯甲酸（邻茴香酸）</td><td>2-methoxybenzoic acid (<i>o</i>-anisic acid)</td><td>原料</td></tr>
+      <tr><td>2-丁基环己-2-烯-1-酮</td><td>2-butylcyclohex-2-en-1-one</td><td>目标产物</td></tr>
+      <tr><td>Birch 还原</td><td>Birch reduction</td><td>碱金属 / 液氨把芳环还原成 1,4-二烯</td></tr>
+      <tr><td>还原烷基化</td><td>reductive alkylation</td><td>用卤代烷截获还原产生的碳负离子</td></tr>
+      <tr><td>溶剂化电子</td><td>solvated electron</td><td>动画里的红色 e⁻ 小球</td></tr>
+      <tr><td>单电子转移</td><td>single-electron transfer (SET)</td><td>第 1、2、4 幕</td></tr>
+      <tr><td>自由基负离子</td><td>radical anion</td><td>第 2 幕之后</td></tr>
+      <tr><td>环己二烯基自由基</td><td>cyclohexadienyl radical</td><td>第 3 幕之后</td></tr>
+      <tr><td>烯二醇盐（双负离子）</td><td>enediolate (dianion)</td><td>第 5 幕</td></tr>
+      <tr><td>共振（极限式）</td><td>resonance (resonance structure)</td><td>第 5 幕：同一物种的两种写法</td></tr>
+      <tr><td>本位 / 对位</td><td>ipso / para position</td><td>C1 / C4</td></tr>
+      <tr><td>亲电试剂</td><td>electrophile</td><td><i>n</i>-BuBr</td></tr>
+      <tr><td>季碳</td><td>quaternary carbon</td><td>烷基化后的 C1</td></tr>
+      <tr><td>烯醇醚</td><td>enol ether</td><td>C2=C3–OMe</td></tr>
+      <tr><td>氧鎓离子</td><td>oxocarbenium ion</td><td>第 8 幕之后</td></tr>
+      <tr><td>半缩酮</td><td>hemiketal</td><td>第 9 幕之后</td></tr>
+      <tr><td>β-酮酸</td><td>β-keto acid</td><td>第 10 幕之后</td></tr>
+      <tr><td>脱羧</td><td>decarboxylation</td><td>第 11 幕</td></tr>
+      <tr><td>六元环过渡态</td><td>six-membered cyclic transition state</td><td>H 转向酮氧后闭合的环</td></tr>
+      <tr><td>烯醇 / 二烯醇</td><td>enol / dienol</td><td>脱羧的直接产物</td></tr>
+      <tr><td>互变异构</td><td>tautomerization</td><td>第 12 幕</td></tr>
+      <tr><td>α,β-不饱和酮（烯酮）</td><td>α,β-unsaturated ketone (enone)</td><td>最终产物</td></tr>
+      <tr><td>热力学产物</td><td>thermodynamic product</td><td>共轭烯酮</td></tr>
+      <tr><td>弯箭头</td><td>curved arrow (electron-pushing arrow)</td><td>每根代表一对电子</td></tr>
+      <tr><td>形式电荷</td><td>formal charge</td><td>⊕ ⊖</td></tr>
+      <tr><td>副产物</td><td>by-product</td><td>½ H₂、<i>t</i>-BuO⁻、Br⁻、MeOH、CO₂</td></tr>
+      <tr><td>还原</td><td>to reduce</td><td>动词：加电子</td></tr>
+      <tr><td>质子化 / 去质子化</td><td>to protonate / to deprotonate</td><td>动词</td></tr>
+      <tr><td>烷基化</td><td>to alkylate</td><td>动词</td></tr>
+      <tr><td>截获</td><td>to trap</td><td>动词：让亲电试剂与中间体反应</td></tr>
+      <tr><td>进攻</td><td>to attack</td><td>动词</td></tr>
+      <tr><td>离去</td><td>to leave (leaving group)</td><td>动词：Br⁻、MeOH 离开</td></tr>
+      <tr><td>水解</td><td>to hydrolyze</td><td>动词</td></tr>
+      <tr><td>异构化</td><td>to isomerize</td><td>动词：双键移位</td></tr>
+    </tbody>
+  </table></div>
+</div></section>
+
+<section id="sources"><div class="wrap read">
+  <p class="kicker">05 / 来源与核验</p>
+  <h2>哪些是精确的，哪些是示意</h2>
+  <ul class="layers">
+    <li><span class="lk lk-orig">用户原图</span><span>题目截图保存在本专题的 <code>source/problem.png</code>。</span></li>
+    <li><span class="lk lk-exact">精确</span><span><code>source/verify.mjs</code> 读取 <code>source/anim.js</code> 的全部关键帧：逐原子检查价键与形式电荷、按电子数奇偶核对自由基、补齐隐含氢算分子式；核对每一幕进场前后、重排前后的元素与电荷守恒（上表）；核对每一幕之后主物种的分子式、弯箭头根数、单电子转移的幕数；核对“羰基氧来自水、OMe 的氧随 MeOH 离开、三个新 H 分别在 C4 / C3 / C5、侧链为正丁基、产物为共轭烯酮”等原子去向；并在 0 到 13 之间每隔 0.01 渲染一次，确认每一帧都能画出。结果在 <code>verification.json</code>。</span></li>
+    <li><span class="lk lk-lit">文献</span><span>反应条件与路线：Birch &amp; Slobbe（1977）；帝国理工本科实验 A2（1-溴庚烷 → 2-庚基环己-2-烯酮，② ③ 同一锅）。</span></li>
+    <li><span class="lk lk-schem">教学示意</span><span>原子的移动路径（关键帧之间直线插值）、每幕时长、键淡入淡出的节奏、副产物飘走的方向；自由基负离子只画一个共振式；C4 的质子源写成 <i>t</i>-BuOH；去质子化画成金属直接还原 O–H（文献实验先用 <i>t</i>-BuOK 成盐）。</span></li>
+  </ul>
+  <h3>参考文献</h3>
+  <ol class="refs">
+    <li>A. J. Birch, J. Slobbe, “Reduction by dissolving metals. XXII. Reduction and reductive alkylation of some methoxy- and dimethylamino-benzoic acids”, <i>Aust. J. Chem.</i> <b>30</b>, 1045–1049 (1977). <a href="https://doi.org/10.1071/CH9771045">doi:10.1071/CH9771045</a></li>
+    <li>Imperial College London 本科有机实验 A2：“Reactions in liquid ammonia. The preparation of 2-heptyl-2-cyclohexenone via the Birch reduction of <i>o</i>-anisic acid”：<a href="https://www.ch.ic.ac.uk/local/organic/6.html">ch.ic.ac.uk/local/organic/6.html</a></li>
+  </ol>
+  <h3>技术</h3>
+  <p style="font-size:14px">单文件 HTML：每一帧由页内脚本按时间 τ 现算现画成 SVG（关键帧插值），不用视频、不用第三方动画库、不引用 CDN 或在线字体，下载后可离线打开。浅色 / 深色随系统切换；系统设置“减少动态效果”时不自动播放，按钮直接跳到每一幕的结果。</p>
+</div></section>
+</main>
+
+<footer><div class="wrap">Organic Chemistry Graph · <a href="../../index.html">返回目录</a> · 邻甲氧基苯甲酸 → 2-丁基环己-2-烯酮（2D 机理动画）</div></footer>
+
+<script type="module">
+/*@@ANIM@@*/
+/*@@APP@@*/
+</script>
+</body>
+</html>

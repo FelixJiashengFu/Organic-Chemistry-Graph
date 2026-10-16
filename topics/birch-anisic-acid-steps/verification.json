@@ -1,0 +1,468 @@
+{
+  "topic": "birch-anisic-acid-steps",
+  "generated": "2026-10-16",
+  "passed": 92,
+  "total": 92,
+  "checks": [
+    {
+      "name": "共 11 帧",
+      "ok": true,
+      "detail": "11"
+    },
+    {
+      "name": "第 1 帧弯箭头数 = 0",
+      "ok": true,
+      "detail": "0"
+    },
+    {
+      "name": "第 2 帧弯箭头数 = 0",
+      "ok": true,
+      "detail": "0"
+    },
+    {
+      "name": "第 3 帧弯箭头数 = 2",
+      "ok": true,
+      "detail": "2"
+    },
+    {
+      "name": "第 4 帧弯箭头数 = 0",
+      "ok": true,
+      "detail": "0"
+    },
+    {
+      "name": "第 5 帧弯箭头数 = 3",
+      "ok": true,
+      "detail": "3"
+    },
+    {
+      "name": "第 6 帧弯箭头数 = 3",
+      "ok": true,
+      "detail": "3"
+    },
+    {
+      "name": "第 7 帧弯箭头数 = 2",
+      "ok": true,
+      "detail": "2"
+    },
+    {
+      "name": "第 8 帧弯箭头数 = 2",
+      "ok": true,
+      "detail": "2"
+    },
+    {
+      "name": "第 9 帧弯箭头数 = 3",
+      "ok": true,
+      "detail": "3"
+    },
+    {
+      "name": "第 10 帧弯箭头数 = 4",
+      "ok": true,
+      "detail": "4"
+    },
+    {
+      "name": "第 11 帧弯箭头数 = 0",
+      "ok": true,
+      "detail": "0"
+    },
+    {
+      "name": "全部 309 个画出的原子价键与形式电荷合理；闭壳层物种电子数为偶数、自由基为奇数",
+      "ok": true,
+      "detail": "无问题"
+    },
+    {
+      "name": "第 1 帧画了 5 个主物种",
+      "ok": true,
+      "detail": "5"
+    },
+    {
+      "name": "第 1 帧物种 1 = C8H8O3",
+      "ok": true,
+      "detail": "C8H8O3"
+    },
+    {
+      "name": "第 1 帧物种 2 = C12H18O3",
+      "ok": true,
+      "detail": "C12H18O3"
+    },
+    {
+      "name": "第 1 帧物种 3 = C11H16O3",
+      "ok": true,
+      "detail": "C11H16O3"
+    },
+    {
+      "name": "第 1 帧物种 4 = C10H16O",
+      "ok": true,
+      "detail": "C10H16O"
+    },
+    {
+      "name": "第 1 帧物种 5 = C10H16O",
+      "ok": true,
+      "detail": "C10H16O"
+    },
+    {
+      "name": "第 2 帧画了 3 个主物种",
+      "ok": true,
+      "detail": "3"
+    },
+    {
+      "name": "第 2 帧物种 1 = C8H8O3",
+      "ok": true,
+      "detail": "C8H8O3"
+    },
+    {
+      "name": "第 2 帧物种 2 = C8H7O3⁻",
+      "ok": true,
+      "detail": "C8H7O3⁻"
+    },
+    {
+      "name": "第 2 帧物种 3 = C8H7O3²⁻（自由基）",
+      "ok": true,
+      "detail": "C8H7O3²⁻（自由基）"
+    },
+    {
+      "name": "第 3 帧画了 2 个主物种",
+      "ok": true,
+      "detail": "2"
+    },
+    {
+      "name": "第 3 帧物种 1 = C8H7O3²⁻（自由基）",
+      "ok": true,
+      "detail": "C8H7O3²⁻（自由基）"
+    },
+    {
+      "name": "第 3 帧物种 2 = C8H8O3⁻（自由基）",
+      "ok": true,
+      "detail": "C8H8O3⁻（自由基）"
+    },
+    {
+      "name": "第 4 帧画了 3 个主物种",
+      "ok": true,
+      "detail": "3"
+    },
+    {
+      "name": "第 4 帧物种 1 = C8H8O3⁻（自由基）",
+      "ok": true,
+      "detail": "C8H8O3⁻（自由基）"
+    },
+    {
+      "name": "第 4 帧物种 2 = C8H8O3²⁻",
+      "ok": true,
+      "detail": "C8H8O3²⁻"
+    },
+    {
+      "name": "第 4 帧物种 3 = C8H8O3²⁻",
+      "ok": true,
+      "detail": "C8H8O3²⁻"
+    },
+    {
+      "name": "第 5 帧画了 2 个主物种",
+      "ok": true,
+      "detail": "2"
+    },
+    {
+      "name": "第 5 帧物种 1 = C8H8O3²⁻",
+      "ok": true,
+      "detail": "C8H8O3²⁻"
+    },
+    {
+      "name": "第 5 帧物种 2 = C12H18O3",
+      "ok": true,
+      "detail": "C12H18O3"
+    },
+    {
+      "name": "第 6 帧画了 2 个主物种",
+      "ok": true,
+      "detail": "2"
+    },
+    {
+      "name": "第 6 帧物种 1 = C12H18O3",
+      "ok": true,
+      "detail": "C12H18O3"
+    },
+    {
+      "name": "第 6 帧物种 2 = C12H19O3⁺",
+      "ok": true,
+      "detail": "C12H19O3⁺"
+    },
+    {
+      "name": "第 7 帧画了 2 个主物种",
+      "ok": true,
+      "detail": "2"
+    },
+    {
+      "name": "第 7 帧物种 1 = C12H19O3⁺",
+      "ok": true,
+      "detail": "C12H19O3⁺"
+    },
+    {
+      "name": "第 7 帧物种 2 = C12H20O4",
+      "ok": true,
+      "detail": "C12H20O4"
+    },
+    {
+      "name": "第 8 帧画了 2 个主物种",
+      "ok": true,
+      "detail": "2"
+    },
+    {
+      "name": "第 8 帧物种 1 = C12H21O4⁺",
+      "ok": true,
+      "detail": "C12H21O4⁺"
+    },
+    {
+      "name": "第 8 帧物种 2 = C11H16O3",
+      "ok": true,
+      "detail": "C11H16O3"
+    },
+    {
+      "name": "第 9 帧画了 2 个主物种",
+      "ok": true,
+      "detail": "2"
+    },
+    {
+      "name": "第 9 帧物种 1 = C11H16O3",
+      "ok": true,
+      "detail": "C11H16O3"
+    },
+    {
+      "name": "第 9 帧物种 2 = C10H16O",
+      "ok": true,
+      "detail": "C10H16O"
+    },
+    {
+      "name": "第 10 帧画了 2 个主物种",
+      "ok": true,
+      "detail": "2"
+    },
+    {
+      "name": "第 10 帧物种 1 = C10H16O",
+      "ok": true,
+      "detail": "C10H16O"
+    },
+    {
+      "name": "第 10 帧物种 2 = C10H16O",
+      "ok": true,
+      "detail": "C10H16O"
+    },
+    {
+      "name": "第 11 帧画了 2 个主物种",
+      "ok": true,
+      "detail": "2"
+    },
+    {
+      "name": "第 11 帧物种 1 = C8H8O3",
+      "ok": true,
+      "detail": "C8H8O3"
+    },
+    {
+      "name": "第 11 帧物种 2 = C10H16O",
+      "ok": true,
+      "detail": "C10H16O"
+    },
+    {
+      "name": "第 3 帧试剂 = t-BuOH（C4H10O）",
+      "ok": true,
+      "detail": "C4H10O"
+    },
+    {
+      "name": "第 5 帧试剂 = n-BuBr（C4H9Br）",
+      "ok": true,
+      "detail": "C4H9Br"
+    },
+    {
+      "name": "第 6 帧试剂 = H₃O⁺",
+      "ok": true,
+      "detail": "H3O⁺"
+    },
+    {
+      "name": "第 7 帧试剂 = H₂O",
+      "ok": true,
+      "detail": "H2O"
+    },
+    {
+      "name": "第 10 帧试剂 = H₃O⁺",
+      "ok": true,
+      "detail": "H3O⁺"
+    },
+    {
+      "name": "第 2 帧 a：ArCOOH + e⁻ → ArCOO⁻ + ½ H₂",
+      "ok": true,
+      "detail": "左 C8H8O3 电荷 -1　右 C8H8O3 电荷 -1"
+    },
+    {
+      "name": "第 2 帧 b：ArCOO⁻ + e⁻ → 自由基负离子",
+      "ok": true,
+      "detail": "左 C8H7O3 电荷 -2　右 C8H7O3 电荷 -2"
+    },
+    {
+      "name": "第 3 帧：自由基负离子 + t-BuOH → 自由基 + t-BuO⁻",
+      "ok": true,
+      "detail": "左 C12H17O4 电荷 -2　右 C12H17O4 电荷 -2"
+    },
+    {
+      "name": "第 4 帧 a：自由基 + e⁻ → C1 碳负离子",
+      "ok": true,
+      "detail": "左 C8H8O3 电荷 -2　右 C8H8O3 电荷 -2"
+    },
+    {
+      "name": "第 5 帧：烯二醇盐 + n-BuBr + H⁺（后处理）→ 酸 + Br⁻",
+      "ok": true,
+      "detail": "左 C12H18BrO3 电荷 -1　右 C12H18BrO3 电荷 -1"
+    },
+    {
+      "name": "第 6 帧：烯醇醚 + H₃O⁺ → 氧鎓离子 + H₂O",
+      "ok": true,
+      "detail": "左 C12H21O4 电荷 1　右 C12H21O4 电荷 1"
+    },
+    {
+      "name": "第 7 帧：氧鎓离子 + H₂O → 半缩酮 + H⁺",
+      "ok": true,
+      "detail": "左 C12H21O4 电荷 1　右 C12H21O4 电荷 1"
+    },
+    {
+      "name": "第 8 帧：质子化半缩酮 → β-酮酸 + MeOH + H⁺",
+      "ok": true,
+      "detail": "左 C12H21O4 电荷 1　右 C12H21O4 电荷 1"
+    },
+    {
+      "name": "第 9 帧：β-酮酸 → 二烯醇 + CO₂",
+      "ok": true,
+      "detail": "左 C11H16O3 电荷 0　右 C11H16O3 电荷 0"
+    },
+    {
+      "name": "第 10 帧：二烯醇 + H₃O⁺ → 烯酮 + H₃O⁺",
+      "ok": true,
+      "detail": "左 C10H19O2 电荷 1　右 C10H19O2 电荷 1"
+    },
+    {
+      "name": "① C₈H₈O₃ + 3 Li + t-BuOH + n-BuBr + H₃O⁺ → C₁₂H₁₈O₃ + 3 Li⁺ + t-BuO⁻ + Br⁻ + ½ H₂ + H₂O",
+      "ok": true,
+      "detail": "左 C16H30BrLi3O5 电荷 1　右 C16H30BrLi3O5 电荷 1"
+    },
+    {
+      "name": "② C₁₂H₁₈O₃ + H₂O → C₁₁H₁₆O₃ + CH₃OH",
+      "ok": true,
+      "detail": "左 C12H20O4 电荷 0　右 C12H20O4 电荷 0"
+    },
+    {
+      "name": "③ C₁₁H₁₆O₃ → C₁₀H₁₆O + CO₂",
+      "ok": true,
+      "detail": "左 C11H16O3 电荷 0　右 C11H16O3 电荷 0"
+    },
+    {
+      "name": "二烯醇与烯酮分子式相同（互变异构体）",
+      "ok": true,
+      "detail": "C10H16O / C10H16O"
+    },
+    {
+      "name": "Birch 产物：环上两个 C=C 是 C2=C3 与 C5=C6",
+      "ok": true,
+      "detail": "c2=c3, c5=c6"
+    },
+    {
+      "name": "Birch 产物：两个 C=C 不共轭（1,4-二烯）",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Birch 产物：OMe 连在 C=C 的碳 C2 上（烯醇醚）",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Birch 产物：C1 是季碳（4 个非氢取代基）",
+      "ok": true,
+      "detail": "c2,c6,cc,bu"
+    },
+    {
+      "name": "Birch 产物：C4 是 CH₂（sp³，两个 H 来自原环 H + 质子化）",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "β-酮酸：羧基碳连在 C1 上，C1 的邻位 C2 是酮羰基（β 关系）",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "β-酮酸：剩下的 C=C 是孤立的 C5=C6",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "二烯醇：C1=C2 与 C5=C6 通过 C1–C6 共轭",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "二烯醇：OH 在 C2 上（烯醇）",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "烯酮：C=O 在 C2，C=C 在 C1=C6，二者共轭（α,β-不饱和酮）",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "烯酮：C1 连的是正丁基（CH₂CH₂CH₂CH₃ 直链）",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "烯酮：C3、C4、C5 都是 CH₂，C6 是 =CH–",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "原子去向：原料 C1 连 COOH，产物 C1 连丁基链",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "原子去向：原料 C2 连 OMe，产物 C2 是羰基碳",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "自由基负离子：单电子在 C1、负电荷在 C4，二者互为对位",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "C4 质子化后 C4 有两个 H（一个画出、一个隐含）",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "碳负离子 ↔ 烯二醇盐：σ 骨架完全相同，只差 π 键与电荷（共振式）",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "烯二醇盐：C1=C(O⁻)₂",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "脱羧过渡态：H–O–C(=O)–C1–C2=O 与 H···O 闭合成六元环",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "氧鎓离子：C2=O⁺–Me，H 加在 C3",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "半缩酮：C2 同时连 OH 与 OMe，且为 sp³",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "最后一步：H 加在 C5，C5 变成 CH₂",
+      "ok": true,
+      "detail": ""
+    }
+  ]
+}
