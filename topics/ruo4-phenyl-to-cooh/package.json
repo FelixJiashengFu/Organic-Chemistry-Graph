@@ -1,0 +1,14 @@
+{
+  "name": "ruo4-phenyl-to-cooh",
+  "private": true,
+  "type": "module",
+  "description": "Build, verify (2D + 3D) and browser-QA scripts for the RuO4 phenyl-to-COOH page (cyclohexylbenzene to cyclohexanecarboxylic acid).",
+  "scripts": {
+    "build": "node source/build.mjs",
+    "verify": "node source/verify.mjs && node source/verify3d.mjs",
+    "qa": "node source/qa-browser.mjs"
+  },
+  "devDependencies": {
+    "playwright-core": "1.49.1"
+  }
+}

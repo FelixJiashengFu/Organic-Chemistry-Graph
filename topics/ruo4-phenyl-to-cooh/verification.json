@@ -1,0 +1,388 @@
+{
+  "topic": "ruo4-phenyl-to-cooh",
+  "generated": "2026-10-17",
+  "passed": 76,
+  "total": 76,
+  "checks": [
+    {
+      "name": "共 11 帧",
+      "ok": true,
+      "detail": "11"
+    },
+    {
+      "name": "第 1 帧弯箭头数 = 0",
+      "ok": true,
+      "detail": "0"
+    },
+    {
+      "name": "第 2 帧弯箭头数 = 0",
+      "ok": true,
+      "detail": "0"
+    },
+    {
+      "name": "第 3 帧弯箭头数 = 3",
+      "ok": true,
+      "detail": "3"
+    },
+    {
+      "name": "第 4 帧弯箭头数 = 3",
+      "ok": true,
+      "detail": "3"
+    },
+    {
+      "name": "第 5 帧弯箭头数 = 0",
+      "ok": true,
+      "detail": "0"
+    },
+    {
+      "name": "第 6 帧弯箭头数 = 3",
+      "ok": true,
+      "detail": "3"
+    },
+    {
+      "name": "第 7 帧弯箭头数 = 3",
+      "ok": true,
+      "detail": "3"
+    },
+    {
+      "name": "第 8 帧弯箭头数 = 3",
+      "ok": true,
+      "detail": "3"
+    },
+    {
+      "name": "第 9 帧弯箭头数 = 3",
+      "ok": true,
+      "detail": "3"
+    },
+    {
+      "name": "第 10 帧弯箭头数 = 0",
+      "ok": true,
+      "detail": "0"
+    },
+    {
+      "name": "第 11 帧弯箭头数 = 0",
+      "ok": true,
+      "detail": "0"
+    },
+    {
+      "name": "全部 264 个画出的原子价键与形式电荷合理，Ru 氧化态与页面标注一致，所有物种电子数为偶数（无自由基）",
+      "ok": true,
+      "detail": "无问题"
+    },
+    {
+      "name": "第 1 帧物种：C12H16 │ C7H12O2",
+      "ok": true,
+      "detail": "C12H16 │ C7H12O2"
+    },
+    {
+      "name": "第 2 帧物种：O4Ru",
+      "ok": true,
+      "detail": "O4Ru"
+    },
+    {
+      "name": "第 3 帧物种：C12H16 + O4Ru │ C12H16O4Ru",
+      "ok": true,
+      "detail": "C12H16 + O4Ru │ C12H16O4Ru"
+    },
+    {
+      "name": "第 4 帧物种：C12H16O4Ru │ C12H16O2 │ O2Ru",
+      "ok": true,
+      "detail": "C12H16O4Ru │ C12H16O2 │ O2Ru"
+    },
+    {
+      "name": "第 5 帧物种：（无结构）",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "第 6 帧物种：C12H16O6Ru │ C10H14O2 │ C2H2O2",
+      "ok": true,
+      "detail": "C12H16O6Ru │ C10H14O2 │ C2H2O2"
+    },
+    {
+      "name": "第 7 帧物种：C10H14O6Ru │ C8H12O2 │ C2H2O2",
+      "ok": true,
+      "detail": "C10H14O6Ru │ C8H12O2 │ C2H2O2"
+    },
+    {
+      "name": "第 8 帧物种：C8H14O7Ru │ C8H12O3 │ H2O4Ru",
+      "ok": true,
+      "detail": "C8H14O7Ru │ C8H12O3 │ H2O4Ru"
+    },
+    {
+      "name": "第 9 帧物种：C8H13O8Ru- │ C7H12O2 │ CO2 │ HO4Ru-",
+      "ok": true,
+      "detail": "C8H13O8Ru- │ C7H12O2 │ CO2 │ HO4Ru-"
+    },
+    {
+      "name": "第 10 帧物种：C2H2O2 │ C2H2O4 │ CO2 │ CO2",
+      "ok": true,
+      "detail": "C2H2O2 │ C2H2O4 │ CO2 │ CO2"
+    },
+    {
+      "name": "第 11 帧物种：C12H16 │ C7H12O2",
+      "ok": true,
+      "detail": "C12H16 │ C7H12O2"
+    },
+    {
+      "name": "第 3 帧：C₁₂H₁₆ + RuO₄ → 环状钌(VI)酸酯",
+      "ok": true,
+      "detail": "左 C12H16O4Ru 电荷 0　右 C12H16O4Ru 电荷 0"
+    },
+    {
+      "name": "第 4 帧：钌酸酯 → 二烯二醛 + RuO₂",
+      "ok": true,
+      "detail": "左 C12H16O4Ru 电荷 0　右 C12H16O4Ru 电荷 0"
+    },
+    {
+      "name": "第 6 帧（成酯）：二烯二醛 + RuO₄ → C1–C2 钌酸酯",
+      "ok": true,
+      "detail": "左 C12H16O6Ru 电荷 0　右 C12H16O6Ru 电荷 0"
+    },
+    {
+      "name": "第 6 帧（碎裂）：钌酸酯 → 酮烯醛 + 乙二醛 + RuO₂",
+      "ok": true,
+      "detail": "左 C12H16O6Ru 电荷 0　右 C12H16O6Ru 电荷 0"
+    },
+    {
+      "name": "第 7 帧（成酯）：酮烯醛 + RuO₄ → C5–C6 钌酸酯",
+      "ok": true,
+      "detail": "左 C10H14O6Ru 电荷 0　右 C10H14O6Ru 电荷 0"
+    },
+    {
+      "name": "第 7 帧（碎裂）：钌酸酯 → α-酮醛 + 乙二醛 + RuO₂",
+      "ok": true,
+      "detail": "左 C10H14O6Ru 电荷 0　右 C10H14O6Ru 电荷 0"
+    },
+    {
+      "name": "第 8 帧（成酯）：α-酮醛 + H₂O + RuO₄ → 水合物钌(VIII)酸酯",
+      "ok": true,
+      "detail": "左 C8H14O7Ru 电荷 0　右 C8H14O7Ru 电荷 0"
+    },
+    {
+      "name": "第 8 帧（消除）：→ α-酮酸 + H₂RuO₄",
+      "ok": true,
+      "detail": "左 C8H14O7Ru 电荷 0　右 C8H14O7Ru 电荷 0"
+    },
+    {
+      "name": "第 9 帧（成酯）：α-酮酸 + H₂O + RuO₄ − H⁺ → 酮水合物钌(VIII)酸酯（羧酸根）",
+      "ok": true,
+      "detail": "左 C8H14O8Ru 电荷 0　右 C8H14O8Ru 电荷 0"
+    },
+    {
+      "name": "第 9 帧（碎裂）：→ 环己甲酸 + CO₂ + HRuO₄⁻",
+      "ok": true,
+      "detail": "左 C8H13O8Ru 电荷 -1　右 C8H13O8Ru 电荷 -1"
+    },
+    {
+      "name": "第 10 帧：OHC–CHO + 2 RuO₄ + 2 H₂O → HOOC–COOH + 2 H₂RuO₄",
+      "ok": true,
+      "detail": "左 C2H6O12Ru2 电荷 0　右 C2H6O12Ru2 电荷 0"
+    },
+    {
+      "name": "第 10 帧：HOOC–COOH + RuO₄ → 2 CO₂ + H₂RuO₄",
+      "ok": true,
+      "detail": "左 C2H2O8Ru 电荷 0　右 C2H2O8Ru 电荷 0"
+    },
+    {
+      "name": "总式：C₁₂H₁₆ + 14 NaIO₄ → C₇H₁₂O₂ + 5 CO₂ + 2 H₂O + 14 NaIO₃",
+      "ok": true,
+      "detail": "左 C12H16I14Na14O56 电荷 0　右 C12H16I14Na14O56 电荷 0"
+    },
+    {
+      "name": "催化剂活化：2 RuCl₃ + 5 NaIO₄ + 3 H₂O → 2 RuO₄ + 5 NaIO₃ + 6 HCl",
+      "ok": true,
+      "detail": "左 Cl6H6I5Na5O23Ru2 电荷 0　右 Cl6H6I5Na5O23Ru2 电荷 0"
+    },
+    {
+      "name": "再生：RuO₂ + 2 NaIO₄ → RuO₄ + 2 NaIO₃",
+      "ok": true,
+      "detail": "左 I2Na2O10Ru 电荷 0　右 I2Na2O10Ru 电荷 0"
+    },
+    {
+      "name": "再生：H₂RuO₄ + NaIO₄ → RuO₄ + NaIO₃ + H₂O",
+      "ok": true,
+      "detail": "左 H2INaO8Ru 电荷 0　右 H2INaO8Ru 电荷 0"
+    },
+    {
+      "name": "① 环加成：酯的碳氧化态 − 苯的碳氧化态 = 2 e⁻",
+      "ok": true,
+      "detail": "2"
+    },
+    {
+      "name": "① 环加成：Ru VIII → VI（得 2 e⁻）",
+      "ok": true,
+      "detail": "8 → 6"
+    },
+    {
+      "name": "① 碎裂：二烯二醛 − 酯 = 2 e⁻",
+      "ok": true,
+      "detail": "2"
+    },
+    {
+      "name": "① 碎裂：Ru VI → IV",
+      "ok": true,
+      "detail": "6 → 4"
+    },
+    {
+      "name": "② C1=C2 断裂（成酯 + 碎裂）：产物 − 二烯二醛 = 4 e⁻",
+      "ok": true,
+      "detail": "4"
+    },
+    {
+      "name": "② 其中碎裂一步：产物 − 酯 = 2 e⁻",
+      "ok": true,
+      "detail": "2"
+    },
+    {
+      "name": "③ C5=C6 断裂（成酯 + 碎裂）：产物 − 酮烯醛 = 4 e⁻",
+      "ok": true,
+      "detail": "4"
+    },
+    {
+      "name": "④ 醛 → 酸：α-酮酸 − α-酮醛 = 2 e⁻",
+      "ok": true,
+      "detail": "2"
+    },
+    {
+      "name": "④ Ru VIII → VI",
+      "ok": true,
+      "detail": "8 → 6"
+    },
+    {
+      "name": "⑤ 氧化脱羧：（环己甲酸 + CO₂）− α-酮酸 = 2 e⁻",
+      "ok": true,
+      "detail": "2"
+    },
+    {
+      "name": "⑤ Ru VIII → VI",
+      "ok": true,
+      "detail": "8 → 6"
+    },
+    {
+      "name": "⑥ 乙二醛 → 草酸（每分子） = 4 e⁻",
+      "ok": true,
+      "detail": "4"
+    },
+    {
+      "name": "⑥ 草酸 → 2 CO₂（每分子） = 2 e⁻",
+      "ok": true,
+      "detail": "2"
+    },
+    {
+      "name": "全程：（环己甲酸 + 5 CO₂）− 环己基苯 = 28 e⁻",
+      "ok": true,
+      "detail": "28"
+    },
+    {
+      "name": "分步之和：3 × 4 + 2 + 2 + 2 × (4 + 2) = 28 e⁻",
+      "ok": true,
+      "detail": "28"
+    },
+    {
+      "name": "28 e⁻ ÷ 2 e⁻（IO₄⁻ → IO₃⁻）= 14 当量 NaIO₄",
+      "ok": true,
+      "detail": "14"
+    },
+    {
+      "name": "C1 在每一帧都连着环己基（C1–y1 键从不断开）",
+      "ok": true,
+      "detail": "16 个结构"
+    },
+    {
+      "name": "C1 在每一帧都不带 H（从 ipso 碳到羧基碳，从未被质子化或还原）",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "原料：苯环 Kekulé 式三根 C=C（C1=C2、C3=C4、C5=C6），C1 连环己基",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "① 酯：C3、C4 各连一个 O，O–Ru–O 与 C3–C4 闭合成五元环",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "① 酯：C3、C4 变成 sp³，各剩一个 H；环上还剩 C1=C2、C5=C6",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "① 开环：C3–C4 键不再存在，C3、C4 各成为醛基（C=O，带一个 H）",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "① 开环：二烯二醛保留 C1=C2、C5=C6，且 C2–C3、C4–C5 共轭",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "① 原子去向：酯里 C3、C4 上的 O（oa、ob）就是醛基的 O",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "② C1 成为酮羰基（连环己基、C6 和 =O）",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "② C2、C3 以乙二醛离开（两个醛基碳直接相连）",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "③ 剩下的是 α-酮醛：C1(=O)–C6H=O",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "③ C4、C5 以乙二醛离开",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "④ 酯：C6 同时连 H、OH 和 O–Ru（醛水合物的钌酸酯）",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "④ 被夺走的 H 与接受它的 Ru=O 之间画了虚线（五元环过渡态 H–C–O–Ru=O）",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "④ 产物 α-酮酸：C6 是 COOH，C1 仍是酮",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "⑤ 酯：C1 连 OH 与 O–Ru，C6 是羧酸根（C1–C6 断开时 CO₂ 从 C6 离开）",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "最终产物：C1 是羧基碳（C1=O 与 C1–OH），只连环己基一个碳",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "最终产物与总览、回顾两帧画的是同一个结构（C₇H₁₂O₂）",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "C6 最后在 CO₂ 里（青色圈画在 CO₂ 的碳上）",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "环己基六个碳在每一帧都是 C6H11（不被氧化）",
+      "ok": true,
+      "detail": ""
+    }
+  ]
+}

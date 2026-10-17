@@ -1,0 +1,1493 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="description" content="RuCl₃/NaIO₄（Sharpless 条件）把环己基苯的苯环拆成羧基，得到环己甲酸（94%）。11 帧 2D 分步机理把每根弯箭头画全，9 幕 3D 球棍动画演示 RuO₄ 从环面上下方进攻；结构、守恒、Ru 价态与电子数由脚本核验。离线单文件。">
+<title>RuO₄ 把苯环拆成羧基：环己基苯 → 环己甲酸｜Organic Chemistry Graph</title>
+<style>
+:root{
+  --paper:#f6f5f1; --surface:#ffffff; --surface-2:#efede7;
+  --ink:#1c1e22; --ink-soft:#5c6068; --ink-faint:#8b8f96; --rule:#dbd7cc;
+  --accent:#c23b28; --wash:#f6e3de; --link:#2a66ad; --arrow:#e24b4a;
+  --p-fill:#eeedfe; --p-line:#534ab7; --p-text:#534ab7; --t-fill:#e1f5ee; --t-line:#0f6e56; --t-text:#0f6e56;
+  --display:"Songti SC","Noto Serif CJK SC","Source Han Serif SC",Georgia,"Times New Roman","STSong","SimSun",serif;
+  --body:"PingFang SC","Microsoft YaHei","Noto Sans CJK SC","Hiragino Sans GB",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:ui-monospace,SFMono-Regular,"Cascadia Mono",Consolas,"Liberation Mono",Menlo,monospace;
+  --math:"Cambria Math","STIX Two Math","STIX Two Text",Cambria,"Times New Roman",serif;
+}
+@media (prefers-color-scheme:dark){:root{
+  --paper:#111316; --surface:#181b20; --surface-2:#1f2329;
+  --ink:#e9e7e2; --ink-soft:#9ca1a9; --ink-faint:#6f747c; --rule:#2c3138;
+  --accent:#ff7b62; --wash:#2f1a16; --link:#6ea8ff; --arrow:#ff6b66;
+  --p-fill:#3c3489; --p-line:#afa9ec; --p-text:#cecbf6; --t-fill:#085041; --t-line:#5dcaa5; --t-text:#9fe1cb;
+  color-scheme:dark;
+}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.78;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1000px;margin:0 auto;padding-inline:20px}
+.read{max-width:780px}
+a{color:var(--link);text-underline-offset:3px}
+i{font-family:var(--math);font-style:italic}
+sub,sup{line-height:0}
+b,strong{font-weight:650}
+code{font-family:var(--mono);font-size:.9em;background:var(--surface-2);padding:1px 5px;border-radius:4px}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--link);outline-offset:2px}
+.hero{border-bottom:1px solid var(--rule);padding-block:52px 34px}
+.brand{font-family:var(--mono);font-size:11.5px;letter-spacing:.15em;color:var(--accent);margin:0 0 26px}
+.brand a{color:inherit;text-decoration:none}
+h1{font-family:var(--display);font-weight:600;font-size:clamp(28px,5.2vw,48px);line-height:1.18;letter-spacing:-.01em;margin:0 0 18px;text-wrap:balance}
+.lede{color:var(--ink-soft);max-width:70ch;font-size:16px;margin:0}
+.route{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:12px;margin:28px 0 0;padding:0;list-style:none}
+.route li{background:var(--surface);border:1px solid var(--rule);border-top:3px solid var(--accent);border-radius:8px;padding:14px 16px;font-size:13.5px;color:var(--ink-soft)}
+.route b{display:block;color:var(--ink);font-size:15px;margin-bottom:4px}
+.toc{display:flex;flex-wrap:wrap;gap:8px 18px;margin:26px 0 0;padding:0;list-style:none;font-size:13.5px}
+.toc a{color:var(--ink-soft);text-decoration:none;border-bottom:1px solid var(--rule)}
+.toc a:hover{color:var(--ink)}
+section{padding-block:46px 10px}
+.kicker{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;color:var(--accent);margin:0 0 8px}
+h2{font-family:var(--display);font-weight:600;font-size:clamp(22px,3.6vw,30px);line-height:1.3;margin:0 0 12px}
+h3{font-size:16px;margin:26px 0 8px}
+.sec-lede{color:var(--ink-soft);max-width:72ch;margin:0 0 20px}
+.lab{background:var(--surface);border:1px solid var(--rule);border-radius:12px;padding:18px 18px 16px;max-width:820px}
+.pills{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 14px}
+.pill{font-size:12px;padding:4px 11px;border-radius:999px;border:1px solid var(--rule);background:transparent;color:var(--ink-soft);cursor:pointer}
+.pill.on{background:var(--wash);color:var(--accent);border-color:color-mix(in srgb,var(--accent) 45%,transparent)}
+.lab-t{font-size:16px;font-weight:600;margin:0 0 4px}
+.lab-c{font-size:14px;line-height:1.65;color:var(--ink-soft);margin:0 0 6px;min-height:92px}
+.svgwrap{overflow-x:auto;margin:0 -6px}
+.svgwrap svg{display:block;width:100%;min-width:560px;height:auto}
+.t{font-size:14px;fill:var(--ink)}
+.ts{font-size:12px;fill:var(--ink-soft)}
+.th{font-size:13px;font-weight:600;fill:var(--ink)}
+.teq{font-size:13.5px;fill:var(--ink);font-family:var(--math)}
+.tox{font-size:11px;fill:var(--ink-soft)}
+.c-purple{fill:var(--p-fill);stroke:var(--p-line)}
+.c-teal{fill:var(--t-fill);stroke:var(--t-line)}
+.c-purple>.ts{fill:var(--p-text);stroke:none}
+.c-teal>.ts{fill:var(--t-text);stroke:none}
+.leg{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:12px;color:var(--ink-soft);margin:6px 0 14px}
+.leg span{display:inline-flex;align-items:center;gap:6px}
+.sw{width:13px;height:13px;border-radius:50%;display:inline-block}
+.sw-p{background:var(--p-fill);border:1px solid var(--p-line)}
+.sw-t{background:var(--t-fill);border:1px solid var(--t-line)}
+.ring-p{border:2px solid #7f77dd}
+.ring-t{border:2px solid #1d9e75}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.btn{background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:6px 14px;font-size:14px;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.btn:hover{background:var(--surface-2)}
+.btn svg{width:15px;height:15px}
+.btn.sm{padding:4px 10px;font-size:12.5px}
+.btn.on{background:var(--wash);color:var(--accent);border-color:color-mix(in srgb,var(--accent) 45%,transparent)}
+.dots{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;flex:1;align-items:center}
+.dot{width:8px;height:8px;border-radius:4px;background:var(--rule);border:0;padding:0;cursor:pointer;transition:width .2s}
+.dot.on{width:22px;background:var(--accent)}
+@media (prefers-reduced-motion:reduce){.dot{transition:none}}
+.count{font-family:var(--mono);font-size:12px;color:var(--ink-soft);min-width:44px;text-align:center}
+.stage3{display:block;width:100%;height:auto;touch-action:none;cursor:grab;user-select:none;-webkit-user-select:none;border-radius:8px;background:var(--surface)}
+.stage3:focus-visible{outline:2px solid var(--link);outline-offset:2px}
+.ctl{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:8px}
+.ctl input[type=range]{flex:1;min-width:150px;accent-color:var(--accent)}
+.cards3{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:14px}
+.card{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:16px 18px}
+.card h3{margin:0 0 6px;font-size:15.5px}
+.card .cond{font-family:var(--mono);font-size:12px;color:var(--accent);margin:0 0 8px}
+.card ul{margin:0;padding-left:18px;font-size:14px}
+.card li{margin:3px 0}
+.note{background:var(--surface-2);border-left:3px solid var(--rule);padding:12px 16px;margin:16px 0 0;font-size:13.5px;color:var(--ink-soft)}
+.tbl-wrap{overflow-x:auto;border:1px solid var(--rule);border-radius:8px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th,td{text-align:left;padding:8px 12px;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-weight:600;background:var(--surface-2);white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td.f{font-family:var(--math);white-space:nowrap}
+td.n{font-family:var(--mono);white-space:nowrap;text-align:right}
+.eq{font-family:var(--math);font-size:15px;background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:10px 14px;margin:8px 0;overflow-x:auto;white-space:nowrap}
+.eq small{font-family:var(--body);color:var(--ink-soft);font-size:12.5px;margin-left:10px}
+.pit{padding-left:20px}
+.pit li{margin:8px 0}
+.layers{list-style:none;padding:0;margin:0}
+.layers li{display:grid;grid-template-columns:92px minmax(0,1fr);gap:12px;padding:10px 0;border-bottom:1px solid var(--rule);font-size:14px}
+.lk{font-size:12px;font-weight:600;border-radius:4px;padding:2px 8px;height:fit-content;text-align:center}
+.lk-orig{background:var(--surface-2);color:var(--ink)}
+.lk-exact{background:color-mix(in srgb,var(--t-line) 18%,transparent);color:var(--t-line)}
+.lk-lit{background:color-mix(in srgb,var(--link) 16%,transparent);color:var(--link)}
+.lk-schem{background:var(--wash);color:var(--accent)}
+.refs{padding-left:20px;font-size:14px}
+.refs li{margin:6px 0}
+.orig{max-width:100%;height:auto;border:1px solid var(--rule);border-radius:6px;background:#fff;margin:4px 0 0}
+footer{border-top:1px solid var(--rule);margin-top:50px;padding-block:22px 48px;font-size:12.5px;color:var(--ink-soft)}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+</style>
+</head>
+<body>
+<header class="hero"><div class="wrap">
+  <p class="brand"><a href="../../index.html">ORGANIC CHEMISTRY GRAPH</a> · 有机化学图解 · 氧化反应</p>
+  <h1>把苯环拆成羧基：<br>RuO₄ 氧化环己基苯</h1>
+  <p class="lede">题目：环己基苯（cyclohexylbenzene）在 RuCl₃、NaIO₄、MeCN/CCl₄ 中反应 24 h，得到环己甲酸（cyclohexanecarboxylic acid），收率 94%。这就是 Sharpless 等 1981 年改进的四氧化钌催化氧化（RuO₄-catalyzed oxidation）。苯环的 6 个碳里，连着环己基的那个碳留下来成为羧基碳，其余 5 个全部变成 CO₂。下面先用 11 帧 2D 结构式把每一根弯箭头画全，再用 3D 球棍模型把同一过程演一遍：RuO₄ 从苯环平面的上方、下方落到 C=C 上。</p>
+  <ol class="route">
+    <li><b>① 生成 RuO₄</b>RuCl₃（催化量）被 NaIO₄ 氧化成 Ru(VIII) 的 RuO₄。RuO₄ 每被还原一次，就由水相里的 NaIO₄ 重新氧化。</li>
+    <li><b>② 一根一根切断 C=C</b>[3+2] 环加成生成环状钌酸酯，碎裂成两个 C=O。切三次后，苯环变成一个 α-酮醛和两分子乙二醛。</li>
+    <li><b>③ 收尾成 COOH</b>醛氧化成羧酸，α-酮酸氧化脱羧放出 CO₂，C1 成为羧基碳。乙二醛经草酸也变成 CO₂。</li>
+  </ol>
+  <nav aria-label="本页目录"><ul class="toc">
+    <li><a href="#lab-sec">01 分步机理</a></li>
+    <li><a href="#anim-sec">02 3D 动画</a></li>
+    <li><a href="#stages">03 各步做了什么</a></li>
+    <li><a href="#ledger">04 原子与电子记账</a></li>
+    <li><a href="#pitfalls">05 常见错误</a></li>
+    <li><a href="#glossary">06 术语表</a></li>
+    <li><a href="#sources">07 来源与核验</a></li>
+  </ul></nav>
+</div></header>
+
+<main>
+<section id="lab-sec"><div class="wrap">
+  <p class="kicker">01 / 分步机理</p>
+  <h2>11 帧，把每一根弯箭头画全</h2>
+  <p class="sec-lede">用 ← → 键或下方按钮翻页，标签可以直接跳到某一阶段。环内的小数字是原苯环的编号：C1 连环己基（紫），C6 在它旁边（青）。罗马数字是 Ru 的氧化态。</p>
+  <div class="lab" id="lab">
+    <h3 class="sr-only">分步机理图</h3>
+    <div class="pills" id="mxPills" role="group" aria-label="跳到阶段"></div>
+    <p class="lab-t" id="mxT" aria-live="polite">总览</p>
+    <p class="lab-c" id="mxC"></p>
+    <div class="svgwrap"><svg viewBox="0 0 680 240" role="img" aria-labelledby="mxST"><title id="mxST">当前步骤的结构式、试剂与电子流向弯箭头</title><g id="mxG"></g></svg></div>
+    <div class="leg">
+      <span><i class="sw sw-p"></i>原 C1（ipso，最后成为 COOH 碳）</span>
+      <span><i class="sw sw-t"></i>原 C6（最后变成 CO₂）</span>
+      <span><svg width="28" height="16" aria-hidden="true" id="mxLeg"></svg>弯箭头：一对电子的流向</span>
+      <span>⊖：形式电荷　VIII / VI / IV：Ru 氧化态</span>
+    </div>
+    <div class="nav">
+      <button class="btn" id="mxPrev" type="button"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>上一步</button>
+      <div class="dots" id="mxDots"></div>
+      <span class="count" id="mxCount">1 / 11</span>
+      <button class="btn" id="mxNext" type="button">下一步<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </div>
+  </div>
+</div></section>
+
+<section id="anim-sec"><div class="wrap">
+  <p class="kicker">02 / 3D 动画</p>
+  <h2>同一个过程，放进三维空间</h2>
+  <p class="sec-lede">球棍模型，H 原子全部画出。每一幕先让试剂就位，再逐笔画出弯箭头，然后原子移动、键断开或生成。原子编号全程不变：你可以盯着紫圈的 C1，看它怎样从苯环上的一个碳变成羧基碳。拖动画面可以旋转；聚焦画面后，空格键播放或暂停，← → 键切换幕。坐标由页内的小型几何松弛算出（键长、键角、sp² 平面、椅式），属于示意几何，不是量子化学结构。</p>
+  <div class="lab" id="anim">
+    <h3 class="sr-only">3D 机理动画</h3>
+    <p class="lab-t" id="s3T" aria-live="polite">3D 动画</p>
+    <p class="lab-c" id="s3C"></p>
+    <svg class="stage3" id="s3S" viewBox="0 0 680 360" role="img" tabindex="0" aria-labelledby="s3ST"><title id="s3ST">球棍模型 3D 动画：灰色碳、白色氢、红色氧、青色钌；红色弯箭头表示一对电子的流向；可拖动旋转</title><g id="s3G"></g></svg>
+    <div class="leg">
+      <span><i class="sw" style="background:#8d9197"></i>C</span><span><i class="sw" style="background:#f3f3f0;border:1px solid #9b9b96"></i>H</span><span><i class="sw" style="background:#e5484d"></i>O</span><span><i class="sw" style="background:#248f8f"></i>Ru（旁注罗马数字 = 氧化态）</span>
+      <span><i class="sw ring-p"></i>C1 → COOH 碳</span><span><i class="sw ring-t"></i>C6 → CO₂</span>
+    </div>
+    <div class="ctl">
+      <button class="btn sm" id="s3B" type="button" aria-label="上一幕"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 3v10M12 3 6 8l6 5z" fill="currentColor" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg></button>
+      <button class="btn sm" id="s3P" type="button"></button>
+      <button class="btn sm" id="s3F" type="button" aria-label="下一幕"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M12 3v10M4 3l6 5-6 5z" fill="currentColor" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg></button>
+      <input type="range" id="s3R" min="0" step="0.01" value="0" aria-label="时间轴">
+      <span class="count" id="s3N">1 / 9</span>
+    </div>
+    <div class="ctl">
+      <div class="dots" id="s3D" style="justify-content:flex-start"></div>
+      <button class="btn sm" type="button" data-sp="0.5">0.5×</button><button class="btn sm on" type="button" data-sp="1">1×</button><button class="btn sm" type="button" data-sp="2">2×</button>
+      <button class="btn sm" type="button" id="s3V">复位视角</button>
+    </div>
+  </div>
+</div></section>
+
+<section id="stages"><div class="wrap">
+  <p class="kicker">03 / 各步做了什么</p>
+  <h2>两种“招式”反复使用</h2>
+  <p class="sec-lede">整个反应只用到 RuO₄ 的两类本领。第一类是切断 C=C：先 [3+2] 环加成，再让环状钌酸酯碎裂。第二类是把与 Ru 成酯的 C–O 再氧化一级：醛氧化成酸，α-酮酸脱羧也属于这一类。每用一次，Ru 就被还原；NaIO₄ 负责把它氧化回去。</p>
+  <div class="cards3">
+    <article class="card">
+      <h3>催化剂与溶剂</h3>
+      <p class="cond">RuCl₃（催化量），NaIO₄（≥ 14 当量），CCl₄ / MeCN / H₂O</p>
+      <ul>
+        <li>RuCl₃ 只是前体（precatalyst）。NaIO₄ 先把它氧化成 RuO₄（Ru VIII），真正的氧化剂是 RuO₄。</li>
+        <li>NaIO₄ 是按化学计量消耗的终端氧化剂（terminal oxidant）。按电子数算，每转化 1 分子底物至少要 14 个 IO₄⁻。</li>
+        <li>体系是两相：NaIO₄ 在水里，RuO₄ 和底物在 CCl₄ 里，Ru 在两相之间往返。题图只写了 MeCN、CCl₄，但 Sharpless 条件里还有水。</li>
+        <li>Sharpless 等发现加入 MeCN 后效果大为改善。通常的解释是：MeCN 与低价钌配位，防止它被反应中生成的羧酸络合、沉淀而失活。</li>
+      </ul>
+    </article>
+    <article class="card">
+      <h3>切断 C=C：[3+2] + 碎裂</h3>
+      <p class="cond">每根 C=C：RuO₄ → 环状 Ru(VI) 酸酯 → RuO₂，共 4 e⁻</p>
+      <ul>
+        <li>第一次进攻最难，它要破坏芳香性（去芳构化，dearomatization）。RuO₄ 是强亲电试剂，能做到这一步；OsO₄ 一般只能加到多环芳烃（如菲的 9,10 位）上。</li>
+        <li>两个新 C–O 键在同一面形成（顺式），这和 OsO₄ 双羟基化相同。</li>
+        <li>碎裂时的三根箭头与环加成同形，只是这次流动的是 C–C σ 键。两端各得一个 C=O，Ru 再降两价。</li>
+        <li>三根 C=C 依次切断后，苯环变成两分子乙二醛（C2–C3、C4–C5）和一个仍连在环己基上的 α-酮醛（C1–C6）。</li>
+      </ul>
+    </article>
+    <article class="card">
+      <h3>收尾：醛 → 酸，α-酮酸脱羧</h3>
+      <p class="cond">每步 2 e⁻：Ru(VIII) → Ru(VI)</p>
+      <ul>
+        <li>醛先水合成偕二醇。其中一个 OH 与 RuO₄ 成酯，然后经五元环夺氢，醛氧化成羧酸。这一步和铬酸酯氧化醇的思路相同。</li>
+        <li>α-酮酸的酮羰基同样先水合、成酯。接着羧酸根推电子放出 CO₂，C1 得到第二个 C=O。C1 就这样从芳香碳变成了羧基碳。</li>
+        <li>乙二醛的两个醛基按同样方式氧化成草酸，草酸再被氧化成 2 个 CO₂。</li>
+        <li>RuO₄ 也能氧化饱和 C–H，叔 C–H 尤其容易，但苯环的 π 电子反应快得多。COOH 生成以后，相邻的 C–H 又被吸电子基钝化。94% 的收率说明环己基基本没被碰到。</li>
+      </ul>
+    </article>
+  </div>
+  <div class="note"><b>文献做法</b>（Carlsen, Katsuki, Martín, Sharpless 1981）：在 CCl₄–H₂O 两相 RuO₄ 催化体系中加入 MeCN，烯烃切断、醇氧化、醚氧化和芳环降解都大为改善。原文摘要提到这一体系也适用于芳环的氧化；题图的条件正是这一改进体系（94% 取自题图）。合成上常把苯基当作“隐藏的羧基”：先用苯基参与构建骨架，最后用 RuO₄ 把它拆成 COOH（例如 Núñez & Martín 1990）。</div>
+</div></section>
+
+<section id="ledger"><div class="wrap read">
+  <p class="kicker">04 / 原子与电子记账</p>
+  <h2>每一步的分子式和电子数都对得上</h2>
+  <p class="sec-lede">下表的分子式不是手抄的。<code>source/verify.mjs</code> 直接读取页面上画出的每个结构（每个原子、每根键、每个电荷），补齐隐含氢后算出分子式；3D 动画的每个关键帧由 <code>source/verify3d.mjs</code> 用显式氢再算一遍，两边逐一对照。</p>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>物种</th><th>分子式</th><th>名称 / 说明</th></tr></thead>
+    <tbody>
+      <tr><td>原料</td><td class="f">C₁₂H₁₆</td><td>环己基苯 cyclohexylbenzene</td></tr>
+      <tr><td>① 环加成产物</td><td class="f">C₁₂H₁₆O₄Ru</td><td>环状钌(VI)酸酯 cyclic ruthenate(VI) ester（C3、C4 上）</td></tr>
+      <tr><td>① 开环产物</td><td class="f">C₁₂H₁₆O₂</td><td>3-环己基己-2,4-二烯二醛 3-cyclohexylhexa-2,4-dienedial（两根 C=C 保持环内的顺式几何）</td></tr>
+      <tr><td>② 产物</td><td class="f">C₁₀H₁₄O₂</td><td>4-环己基-4-氧代丁-2-烯醛 4-cyclohexyl-4-oxobut-2-enal ＋ 乙二醛 glyoxal（C₂H₂O₂）</td></tr>
+      <tr><td>③ 产物</td><td class="f">C₈H₁₂O₂</td><td>2-环己基-2-氧代乙醛（α-酮醛）2-cyclohexyl-2-oxoacetaldehyde ＋ 乙二醛</td></tr>
+      <tr><td>④ 产物</td><td class="f">C₈H₁₂O₃</td><td>2-环己基-2-氧代乙酸（α-酮酸）2-cyclohexyl-2-oxoacetic acid</td></tr>
+      <tr><td>⑤ 产物</td><td class="f">C₇H₁₂O₂</td><td>环己甲酸 cyclohexanecarboxylic acid ＋ CO₂</td></tr>
+      <tr><td>⑥ 小分子</td><td class="f">C₂H₂O₂ → C₂H₂O₄ → CO₂</td><td>乙二醛 → 草酸 oxalic acid → 二氧化碳</td></tr>
+    </tbody>
+  </table></div>
+  <h3>配平的方程式</h3>
+  <p class="eq">C₁₂H₁₆ + 14 NaIO₄ → C₇H₁₂O₂ + 5 CO₂ + 2 H₂O + 14 NaIO₃<small>总式</small></p>
+  <p class="eq">2 RuCl₃ + 5 NaIO₄ + 3 H₂O → 2 RuO₄ + 5 NaIO₃ + 6 HCl<small>生成催化剂：Ru(III) → Ru(VIII)</small></p>
+  <p class="eq">RuO₂ + 2 NaIO₄ → RuO₄ + 2 NaIO₃　　H₂RuO₄ + NaIO₄ → RuO₄ + NaIO₃ + H₂O<small>再生</small></p>
+  <h3>28 个电子从哪里来</h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>步骤</th><th>碳氧化态的变化</th><th>电子数</th></tr></thead>
+    <tbody>
+      <tr><td>①②③ 三次 C=C 断裂（每次 [3+2] 2 e⁻ + 碎裂 2 e⁻）</td><td>每次两个碳各多两根 C–O 键</td><td class="n">3 × 4 = 12</td></tr>
+      <tr><td>④ α-酮醛 → α-酮酸</td><td>C6：+1 → +3</td><td class="n">2</td></tr>
+      <tr><td>⑤ 氧化脱羧</td><td>C1：+2 → +3；C6：+3 → +4（CO₂）</td><td class="n">2</td></tr>
+      <tr><td>⑥ 2 乙二醛 → 2 草酸 → 4 CO₂</td><td>每个碳 +1 → +3 → +4</td><td class="n">8 + 4</td></tr>
+      <tr><td><b>合计</b></td><td>环上 6 个碳：C1 0 → +3，C2–C6 各 −1 → +4</td><td class="n"><b>28 = 14 × 2</b></td></tr>
+    </tbody>
+  </table></div>
+  <h3>原子去哪了</h3>
+  <ul class="pit">
+    <li>C1（紫）自始至终连着环己基，从不带 H：芳香碳（0）→ 酮羰基碳 → 羧基碳（+3）。</li>
+    <li>C6（青）先成为 α-酮醛的醛基碳，再成为 α-酮酸的羧基碳，最后以 CO₂ 离开。</li>
+    <li>C2–C3、C4–C5 各以一分子乙二醛离开，再经草酸变成 CO₂。</li>
+    <li>产物 COOH 上的两个氧，一个来自 RuO₄（C1=O 生成时），一个来自水（酮水合）；至于成酯后哪个成为 C=O，两种可能等价。氧最终都来自 IO₄⁻ 和水。</li>
+  </ul>
+</div></section>
+
+<section id="pitfalls"><div class="wrap read">
+  <p class="kicker">05 / 常见错误</p>
+  <h2>这道题容易错在哪</h2>
+  <ul class="pit">
+    <li><b>和 KMnO₄ 侧链氧化混为一谈。</b>热 KMnO₄ 氧化烷基苯时，苯环留下、带苄位 H 的侧链被氧化，得到苯甲酸。RuO₄ 正好相反：苯环被拆掉，侧链留下，得到环己甲酸。</li>
+    <li><b>以为羧基碳是新引入的。</b>COOH 的碳就是原苯环上连环己基的 C1（ipso 碳），碳链没有增长；环己基加上这一个碳，正好是 C₇。</li>
+    <li><b>把 RuCl₃ 当作化学计量氧化剂。</b>Ru 只需催化量。真正按计量消耗的是 NaIO₄，按电子数算至少 14 当量。</li>
+    <li><b>以为一个 RuO₄ 切一根 C=C 只给出 2 个电子。</b>环加成（VIII → VI）和碎裂（VI → IV）各 2 e⁻，一共 4 e⁻；所以 RuO₂ 要 2 个 IO₄⁻ 才能复原。</li>
+    <li><b>把 [3+2] 写成分步。</b>三对电子是同时流动的，两个新 C–O 键在同一面形成，所以是顺式加成。</li>
+    <li><b>以为饱和环一定不会被碰。</b>RuO₄ 能氧化饱和 C–H。这里环己基没被氧化，是因为苯环反应快得多，后来生成的 COOH 又钝化了相邻 C–H；这是竞争的结果，不是不可能。</li>
+    <li><b>把示意的进攻顺序当成定论。</b>先切哪根 C=C、中间体是否真以 α-酮醛形式存在，文献没有逐步确证。无论顺序如何，原子去向和 28 个电子的总账都一样。</li>
+  </ul>
+</div></section>
+
+<section id="glossary"><div class="wrap read">
+  <p class="kicker">06 / 术语表</p>
+  <h2>中英对照</h2>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>中文</th><th>English</th><th>在本题中</th></tr></thead>
+    <tbody>
+      <tr><td>环己基苯</td><td>cyclohexylbenzene (phenylcyclohexane)</td><td>原料</td></tr>
+      <tr><td>环己甲酸</td><td>cyclohexanecarboxylic acid</td><td>产物</td></tr>
+      <tr><td>四氧化钌</td><td>ruthenium tetroxide (RuO₄)</td><td>真正的氧化剂，Ru(VIII)</td></tr>
+      <tr><td>三氯化钌</td><td>ruthenium(III) chloride (RuCl₃)</td><td>催化剂前体</td></tr>
+      <tr><td>高碘酸钠 / 碘酸钠</td><td>sodium periodate (NaIO₄) / sodium iodate (NaIO₃)</td><td>终端氧化剂及其还原产物</td></tr>
+      <tr><td>催化剂前体</td><td>precatalyst</td><td>RuCl₃</td></tr>
+      <tr><td>终端氧化剂</td><td>terminal oxidant</td><td>NaIO₄，按化学计量消耗</td></tr>
+      <tr><td>催化循环</td><td>catalytic cycle</td><td>Ru(VIII) → Ru(VI) / Ru(IV) → Ru(VIII)</td></tr>
+      <tr><td>氧化态</td><td>oxidation state</td><td>Ru 的 VIII、VI、IV；碳的 −1 到 +4</td></tr>
+      <tr><td>两相体系</td><td>biphasic system</td><td>CCl₄ / H₂O（加 MeCN）</td></tr>
+      <tr><td>乙腈</td><td>acetonitrile (MeCN)</td><td>与低价钌配位，防止失活</td></tr>
+      <tr><td>[3+2] 环加成</td><td>[3+2] cycloaddition</td><td>RuO₄ 加到 C=C 上</td></tr>
+      <tr><td>环状钌酸酯</td><td>cyclic ruthenate ester</td><td>五元环 C–O–Ru–O–C</td></tr>
+      <tr><td>去芳构化</td><td>dearomatization</td><td>第一次进攻苯环</td></tr>
+      <tr><td>顺式加成</td><td>syn (cis) addition</td><td>两个 C–O 键在同一面</td></tr>
+      <tr><td>碎裂（环逆转）</td><td>fragmentation (cycloreversion)</td><td>C–C σ 键断开成两个 C=O</td></tr>
+      <tr><td>氧化断裂</td><td>oxidative cleavage</td><td>C=C → 2 C=O</td></tr>
+      <tr><td>芳环降解</td><td>aromatic ring degradation</td><td>苯基 → COOH</td></tr>
+      <tr><td>本位碳</td><td>ipso carbon</td><td>C1，连环己基</td></tr>
+      <tr><td>乙二醛</td><td>glyoxal</td><td>OHC–CHO</td></tr>
+      <tr><td>草酸</td><td>oxalic acid</td><td>HOOC–COOH</td></tr>
+      <tr><td>α-酮醛 / α-酮酸</td><td>α-keto aldehyde / α-keto acid</td><td>C1–C6 片段</td></tr>
+      <tr><td>水合物（偕二醇）</td><td>hydrate (gem-diol)</td><td>醛、酮加水</td></tr>
+      <tr><td>氧化脱羧</td><td>oxidative decarboxylation</td><td>α-酮酸 → 羧酸 + CO₂</td></tr>
+      <tr><td>羧酸根</td><td>carboxylate</td><td>推电子放出 CO₂</td></tr>
+      <tr><td>氧代（金属氧双键）</td><td>oxo ligand (M=O)</td><td>Ru=O</td></tr>
+      <tr><td>椅式构象</td><td>chair conformation</td><td>环己基全程保持</td></tr>
+      <tr><td>球棍模型</td><td>ball-and-stick model</td><td>3D 动画</td></tr>
+      <tr><td>弯箭头</td><td>curved arrow (electron-pushing arrow)</td><td>每根代表一对电子的流向</td></tr>
+      <tr><td>形式电荷</td><td>formal charge</td><td>⊖</td></tr>
+      <tr><td>氧化</td><td>to oxidize</td><td>动词：失去电子</td></tr>
+      <tr><td>再氧化（再生）</td><td>to reoxidize (to regenerate)</td><td>动词：NaIO₄ 把低价 Ru 变回 RuO₄</td></tr>
+      <tr><td>切断</td><td>to cleave</td><td>动词：断开 C=C 或 C–C</td></tr>
+      <tr><td>进攻</td><td>to attack</td><td>动词：RuO₄ 进攻 C=C</td></tr>
+      <tr><td>水合</td><td>to hydrate</td><td>动词：羰基加水</td></tr>
+      <tr><td>成酯</td><td>to esterify</td><td>动词：O–H 与 RuO₄ 成钌酸酯</td></tr>
+      <tr><td>脱羧</td><td>to decarboxylate</td><td>动词：放出 CO₂</td></tr>
+      <tr><td>夺取（氢）</td><td>to abstract (a hydrogen)</td><td>动词：Ru=O 拿走 C–H 上的氢</td></tr>
+      <tr><td>离去</td><td>to leave (leaving group)</td><td>乙二醛、CO₂、Ru 物种离场</td></tr>
+    </tbody>
+  </table></div>
+</div></section>
+
+<section id="sources"><div class="wrap read">
+  <p class="kicker">07 / 来源与核验</p>
+  <h2>哪些是精确的，哪些是示意</h2>
+  <ul class="layers">
+    <li><span class="lk lk-orig">用户原图</span><span>题目截图：环己基苯 → 环己甲酸（RuCl₃, NaIO₄；MeCN, CCl₄, 24 h；94%），保存为 <code>source/problem.png</code>。（<a href="./source/problem.png">查看原图</a>）</span></li>
+    <li><span class="lk lk-exact">精确</span><span>2D：页面画出的每个结构都由 <code>source/verify.mjs</code> 重新读取，逐原子检查价键与形式电荷，核对 Ru 氧化态与图上的罗马数字是否一致，算分子式，核对每一步的元素与电荷守恒、页面上的配平式，并逐步验证碳氧化态的变化等于标注的电子数（全程 28 e⁻）。3D：<code>source/verify3d.mjs</code> 在显式氢下检查每个关键帧，与 2D 的分子式逐一对照；还检查进出场原子的组成、弯箭头引用的键，以及几何质量（键长、非键碰撞、苯环平面、椅式、顺式加成）。</span></li>
+    <li><span class="lk lk-lit">文献</span><span>改进的 RuO₄ 催化体系（加 MeCN）：Carlsen 等 1981（文献 1；本页只核对了题目、作者与摘要，94% 取自题图）。苯基作为羧基等价物：Núñez & Martín 1990（文献 2）及综述（文献 3）。烯烃被 RuO₄ 切断而不像 OsO₄ 停在二醇，有量子化学研究讨论（文献 4）。</span></li>
+    <li><span class="lk lk-schem">教学示意</span><span>先切哪根 C=C（这里依次是 C3=C4、C1=C2、C5=C6）是教学上的选择；苯环降解的逐步顺序文献没有确证。“环状 Ru(VI) 酸酯直接碎裂成 2 C=O + RuO₂”是最简画法，实际也可能先被 IO₄⁻ 氧化成 Ru(VIII) 酯再碎裂，或先水解成二醇再由高碘酸切断。醛 → 酸、氧化脱羧的成酯–消除机理借用了铬酸酯与 H₂O₂ / 高碘酸氧化的常见写法。2D 结构式是理想几何；3D 坐标由页内的简单松弛算出，不是计算化学结构；RuO₂ 画成分子，实际是固体。动画的时长和路径也只是示意。</span></li>
+  </ul>
+  <h3>参考文献</h3>
+  <ol class="refs">
+    <li>P. H. J. Carlsen, T. Katsuki, V. S. Martin, K. B. Sharpless, “A greatly improved procedure for ruthenium tetroxide catalyzed oxidations of organic compounds”, <i>J. Org. Chem.</i> <b>46</b>, 3936–3938 (1981). <a href="https://doi.org/10.1021/jo00332a045">doi:10.1021/jo00332a045</a></li>
+    <li>M. T. Núñez, V. S. Martín, “Efficient oxidation of phenyl groups to carboxylic acids with ruthenium tetraoxide. A simple synthesis of (<i>R</i>)-γ-caprolactone, the pheromone of <i>Trogoderma granarium</i>”, <i>J. Org. Chem.</i> <b>55</b>, 1928–1932 (1990). <a href="https://doi.org/10.1021/jo00293a044">doi:10.1021/jo00293a044</a></li>
+    <li>V. Piccialli, “Ruthenium tetroxide and perruthenate chemistry. Recent advances and related transformations mediated by other transition metal oxo-species”, <i>Molecules</i> <b>19</b>, 6534 (2014). <a href="https://doi.org/10.3390/molecules19056534">doi:10.3390/molecules19056534</a></li>
+    <li>J. Frunzke, C. Loschen, G. Frenking, “Why are olefins oxidized by RuO₄ under cleavage of the carbon–carbon bond whereas oxidation by OsO₄ yields <i>cis</i>-diols?”, <i>J. Am. Chem. Soc.</i> <b>126</b>, 3642–3652 (2004). <a href="https://doi.org/10.1021/ja039921a">doi:10.1021/ja039921a</a></li>
+  </ol>
+  <h3>技术</h3>
+  <p style="font-size:14px">单文件 HTML。2D 结构式、3D 球棍模型和弯箭头都由页内脚本现画成 SVG，不用位图、不引用 CDN 或在线字体，下载后可离线打开。浅色 / 深色随系统切换。页面与核验脚本读的是同一份数据（<code>source/mech.js</code>、<code>source/mech3d.js</code>）。</p>
+</div></section>
+</main>
+
+<footer><div class="wrap">Organic Chemistry Graph · <a href="../../index.html">返回目录</a> · 环己基苯 → 环己甲酸（RuO₄ 芳环降解）</div></footer>
+
+<script type="module">
+{
+// RuO₄ 把环己基苯的苯环“拆”成 COOH：手写的 2D 结构式绘制引擎 + 11 帧数据。
+// 页面（app.js）和核验脚本（verify.mjs）共用同一份数据；纯函数，不碰 DOM。
+// build.mjs 内联进页面时会去掉行首的 export。
+
+const REG = { on: false, list: [] }; // verify.mjs 打开后，每次 draw(m) 都把分子记下来
+
+const INK = 'var(--ink)', MUT = 'var(--ink-faint)', RED = 'var(--arrow)';
+let L = 30;
+const R = v => Math.round(v * 10) / 10;
+const P = (x, y) => ({ x: x, y: y });
+const rad = g => g * Math.PI / 180;
+const ang = (a, b) => Math.atan2(b.y - a.y, b.x - a.x) * 180 / Math.PI;
+const pol = (p, g, d) => P(p.x + d * Math.cos(rad(g)), p.y + d * Math.sin(rad(g)));
+const mid = (a, b) => P((a.x + b.x) / 2, (a.y + b.y) / 2);
+const tow = (a, b, d) => { const dx = b.x - a.x, dy = b.y - a.y, n = Math.hypot(dx, dy) || 1; return P(a.x + dx / n * d, a.y + dy / n * d); };
+const HW = { O: 5.4, H: 5.2, Ru: 9.4 };
+const ROMAN = { 4: 'IV', 6: 'VI', 8: 'VIII' };
+
+function ln(a, b, col, w, dash) {
+  return `<line x1="${R(a.x)}" y1="${R(a.y)}" x2="${R(b.x)}" y2="${R(b.y)}" style="stroke:${col || INK};stroke-width:${w || 1.5}" stroke-linecap="round"${dash ? ` stroke-dasharray="${dash}"` : ''}/>`;
+}
+function tx(x, y, s, cls, anc) {
+  return `<text class="${cls || 't'}" x="${R(x)}" y="${R(y)}" text-anchor="${anc || 'middle'}" dominant-baseline="central">${s}</text>`;
+}
+function head(t, g, col, hl, hw) {
+  const ux = Math.cos(rad(g)), uy = Math.sin(rad(g));
+  const b = P(t.x - ux * hl * 0.7, t.y - uy * hl * 0.7), l = P(t.x - ux * hl - uy * hw, t.y - uy * hl + ux * hw), r = P(t.x - ux * hl + uy * hw, t.y - uy * hl - ux * hw);
+  return `<polygon points="${R(t.x)},${R(t.y)} ${R(l.x)},${R(l.y)} ${R(b.x)},${R(b.y)} ${R(r.x)},${R(r.y)}" style="fill:${col}"/>`;
+}
+// 弯箭头：二次贝塞尔，bend > 0 时向前进方向的左侧鼓出
+function arr(p0, p2, bend) {
+  const dx = p2.x - p0.x, dy = p2.y - p0.y, d = Math.hypot(dx, dy) || 1;
+  const c = P((p0.x + p2.x) / 2 + dy / d * bend, (p0.y + p2.y) / 2 - dx / d * bend);
+  const g = ang(c, p2);
+  const e = P(p2.x - Math.cos(rad(g)) * 5, p2.y - Math.sin(rad(g)) * 5);
+  return `<path class="arrow" d="M${R(p0.x)} ${R(p0.y)} Q${R(c.x)} ${R(c.y)} ${R(e.x)} ${R(e.y)}" style="fill:none;stroke:${RED};stroke-width:1.4" stroke-linecap="round"/>` + head(p2, g, RED, 7.5, 3.4);
+}
+
+// ───────── 分子对象：A = 原子（坐标、标签、电荷……），B = 键 ─────────
+function mol() { return { A: {}, B: [], nums: [] }; }
+function at(m, id, p, o) { m.A[id] = Object.assign({ x: p.x, y: p.y }, o || {}); return m.A[id]; }
+function bd(m, a, b, o, c) { m.B.push({ a: a, b: b, o: o || 1, c: c }); }
+const clipOf = a => a.clip || (a.lab === 'Ru' ? 11.5 : a.lab ? 8.5 : 0);
+function ends(m, b) {
+  const A = m.A[b.a], B = m.A[b.b];
+  let p = P(A.x, A.y), q = P(B.x, B.y);
+  if (A.lab) p = tow(P(A.x, A.y), B, clipOf(A));
+  if (B.lab) q = tow(P(B.x, B.y), A, clipOf(B));
+  return [p, q];
+}
+// 键的中点；k ≠ 0 时向键的左侧（前进方向）平移 k
+function bm(m, a, b, k) {
+  const e = ends(m, { a: a, b: b }), M = mid(e[0], e[1]);
+  if (!k) return M;
+  const dx = e[1].x - e[0].x, dy = e[1].y - e[0].y, n = Math.hypot(dx, dy);
+  return P(M.x + dy / n * k, M.y - dx / n * k);
+}
+function bondSVG(m, b) {
+  const e = ends(m, b), p = e[0], q = e[1];
+  if (b.o === 'h') return ln(p, q, MUT, 1.3, '2 3');
+  if (b.o !== 2) return ln(p, q);
+  const dx = q.x - p.x, dy = q.y - p.y, n = Math.hypot(dx, dy), ux = dx / n, uy = dy / n;
+  let nx = -uy, ny = ux;
+  if (b.c) { // 环键：第二条线画在环内侧
+    const M = mid(p, q);
+    if ((b.c.x - M.x) * nx + (b.c.y - M.y) * ny < 0) { nx = -nx; ny = -ny; }
+    return ln(p, q) + ln(P(p.x + nx * 5 + ux * 5.5, p.y + ny * 5 + uy * 5.5), P(q.x + nx * 5 - ux * 5.5, q.y + ny * 5 - uy * 5.5));
+  }
+  const o = 2.6;
+  return ln(P(p.x + nx * o, p.y + ny * o), P(q.x + nx * o, q.y + ny * o)) + ln(P(p.x - nx * o, p.y - ny * o), P(q.x - nx * o, q.y - ny * o));
+}
+function chg(p, s) {
+  let o = `<circle cx="${R(p.x)}" cy="${R(p.y)}" r="5.2" style="fill:none;stroke:${INK};stroke-width:1"/>` + ln(P(p.x - 2.7, p.y), P(p.x + 2.7, p.y), INK, 1.1);
+  if (s === '+') o += ln(P(p.x, p.y - 2.7), P(p.x, p.y + 2.7), INK, 1.1);
+  return o;
+}
+function dot(p, r) { return `<circle cx="${R(p.x)}" cy="${R(p.y)}" r="${r}" style="fill:${INK}"/>`; }
+const cpos = (m, id) => { const a = m.A[id]; return pol(a, a.ca != null ? a.ca : -45, a.cd || 12); };
+function atomSVG(m, id) {
+  const a = m.A[id];
+  let s = '';
+  if (a.lab) {
+    const hw = HW[a.lab] || 5.2;
+    s += tx(a.x, a.y, a.lab);
+    if (a.suf) s += tx(a.x + hw, a.y, a.suf, 't', 'start');
+    if (a.pre) s += tx(a.x - hw, a.y, a.pre, 't', 'end');
+  }
+  (a.lp || []).forEach(g => {
+    const c = pol(a, g, a.lab ? 11 : 8), px = -Math.sin(rad(g)) * 2.6, py = Math.cos(rad(g)) * 2.6;
+    s += dot(P(c.x + px, c.y + py), 1.4) + dot(P(c.x - px, c.y - py), 1.4);
+  });
+  if (a.chg) s += chg(cpos(m, id), a.chg);
+  if (a.ox && a.oxs !== false) { const q = pol(a, a.oxa != null ? a.oxa : -40, a.oxd || 16); s += tx(q.x, q.y, ROMAN[a.ox], 'tox'); }
+  return s;
+}
+function draw(m) {
+  if (REG.on) REG.list.push(m);
+  let s = '';
+  const hr = Math.max(8, L * 0.31);
+  for (const id in m.A) { const a = m.A[id]; if (a.halo) s += `<circle class="c-${a.halo}" cx="${R(a.x)}" cy="${R(a.y)}" r="${R(hr)}" stroke-width="0.5"/>`; }
+  m.nums.forEach(([id, n, c]) => {
+    const a = m.A[id];
+    if (!a) return;
+    const p = P(c.x + (a.x - c.x) * 0.52, c.y + (a.y - c.y) * 0.52), t = tx(p.x, p.y, n, 'ts');
+    s += n === 1 ? `<g class="c-purple">${t}</g>` : n === 6 ? `<g class="c-teal">${t}</g>` : t;
+  });
+  m.B.forEach(b => { s += bondSVG(m, b); });
+  for (const id in m.A) s += atomSVG(m, id);
+  return s;
+}
+function rx(x1, x2, y, top, bot) {
+  let s = ln(P(x1, y), P(x2 - 5, y), INK, 1.3) + head(P(x2, y), 0, INK, 9, 4);
+  const xm = (x1 + x2) / 2;
+  (top || []).forEach((t, i, A) => { s += tx(xm, y - 12 - (A.length - 1 - i) * 16, t, 'ts'); });
+  (bot || []).forEach((t, i) => { s += tx(xm, y + 13 + i * 16, t, 'ts'); });
+  return s;
+}
+// 弯箭头：O–Ru 键的电子回到 Ru 上（s = ±1 选键的哪一侧）
+function ruArr(m, o, s) {
+  const A = m.A, r = A.ru;
+  return arr(bm(m, o, 'ru', s * 3.5), pol(r, ang(r, A[o]) + s * 62, 14), s * 10);
+}
+function box(x, y, w, h, dash) { return `<rect x="${R(x)}" y="${R(y)}" width="${R(w)}" height="${R(h)}" rx="6" style="fill:none;stroke:${MUT};stroke-width:0.8"${dash === false ? '' : ' stroke-dasharray="3 3"'}/>`; }
+function tag(x, y, s) { return tx(x, y, s, 'tag'); }
+
+// ───────── 片段构建 ─────────
+// 六边形：ids[k] 放在 a0 + 60k 方向；dbl / skip 用键的序号 k（ids[k]–ids[k+1]）
+function hexa(m, ids, c, a0, dbl, skip) {
+  ids.forEach((id, k) => { if (id && !m.A[id]) at(m, id, pol(c, a0 + 60 * k, L)); });
+  for (let k = 0; k < 6; k++) {
+    if ((skip || []).includes(k)) continue;
+    const a = ids[k], b = ids[(k + 1) % 6];
+    if (a && b) bd(m, a, b, (dbl || []).includes(k) ? 2 : 1, c);
+  }
+}
+const ARO = ['c1', 'c2', 'c3', 'c4', 'c5', 'c6'];
+// 原苯环的碳：c1（ipso，紫）在 180°，顺时针编号；c6（青）在 120°
+function arene(m, c, dbl, skip, ids, nums, a0) {
+  hexa(m, ids || ARO, c, a0 == null ? 180 : a0, dbl, skip);
+  if (m.A.c1) m.A.c1.halo = 'purple';
+  if (m.A.c6) m.A.c6.halo = 'teal';
+  if (nums !== false) (ids || ARO).forEach((id, k) => { if (id) m.nums.push([id, k + 1, c]); });
+}
+// 环己基：y1 连在 from 上，方向 g
+function cyhex(m, from, g) {
+  const y1 = pol(m.A[from], g, L), c = pol(y1, g, L);
+  hexa(m, ['y1', 'y2', 'y3', 'y4', 'y5', 'y6'], c, g + 180, [], []);
+  bd(m, from, 'y1');
+}
+// 在 A–B 边外侧并一个正五边形，返回 [与 B 相邻, 顶点, 与 A 相邻]
+function pent(A, B, away) {
+  const d0 = ang(A, B), len = Math.hypot(B.x - A.x, B.y - A.y);
+  const mk = s => { const p1 = pol(B, d0 + s * 72, len), p2 = pol(p1, d0 + s * 144, len), p3 = pol(p2, d0 + s * 216, len); return [p1, p2, p3]; };
+  const a = mk(1), b = mk(-1), far = q => Math.hypot(q[1].x - away.x, q[1].y - away.y);
+  return far(a) > far(b) ? a : b;
+}
+// [3+2] 环状钌酸酯（ox = 6）或正在靠近的 RuO₄（ox = 8，整体沿外法线平移 gap）
+// ids = [ca 上的 O, cb 上的 O, Ru, 氧代, 氧代]
+const RL = () => 1.12 * L; // Ru–O 键画长一些，Ru 标签才不挤
+function ruCycle(m, ca, cb, away, ids, ox, gap, oxa) {
+  const A = m.A[ca], B = m.A[cb], M = mid(A, B), g = ang(away, M);
+  let pa, pb, pr;
+  if (ox === 8) { // 正在靠近的 RuO₄：两个 O 分别对准两个碳
+    const sp = p => P(M.x + (p.x - M.x) * 1.25, M.y + (p.y - M.y) * 1.25);
+    pa = pol(sp(A), g, gap); pb = pol(sp(B), g, gap); pr = pol(mid(pa, pb), g, 0.95 * L);
+  } else {
+    const q = pent(A, B, away).map(p => P(M.x + (p.x - M.x) * 1.2, M.y + (p.y - M.y) * 1.2));
+    pb = q[0]; pr = q[1]; pa = q[2];
+  }
+  at(m, ids[0], pa, { lab: 'O' });
+  at(m, ids[1], pb, { lab: 'O' });
+  at(m, ids[2], pr, { lab: 'Ru', ox: ox, oxa: oxa != null ? oxa : g, oxd: 18 });
+  const sp = ox === 8 ? 62 : 50;
+  at(m, ids[3], pol(pr, g - sp, RL()), { lab: 'O' });
+  at(m, ids[4], pol(pr, g + sp, RL()), { lab: 'O' });
+  const o = ox === 8 ? 2 : 1;
+  bd(m, ids[2], ids[0], o); bd(m, ids[2], ids[1], o); bd(m, ids[2], ids[3], 2); bd(m, ids[2], ids[4], 2);
+  if (ox !== 8) { bd(m, ca, ids[0]); bd(m, cb, ids[1]); }
+}
+function ruO4(m, c, rot, oxa) {
+  at(m, 'ru', c, { lab: 'Ru', ox: 8, oxa: oxa != null ? oxa : rot, oxd: 17 });
+  [45, 135, 225, 315].forEach((g, k) => { at(m, 'r' + k, pol(c, rot + g, RL()), { lab: 'O' }); bd(m, 'ru', 'r' + k, 2); });
+}
+function ruO2(m, c) {
+  at(m, 'ru', c, { lab: 'Ru', ox: 4, oxa: -90, oxd: 15 });
+  at(m, 'r0', pol(c, 180, RL()), { lab: 'O' }); at(m, 'r1', pol(c, 0, RL()), { lab: 'O' });
+  bd(m, 'ru', 'r0', 2); bd(m, 'ru', 'r1', 2);
+}
+// Ru(VI)：H₂RuO₄ = Ru(=O)₂(OH)₂；anion = true 时一个 OH 换成 O⁻（HRuO₄⁻）
+function ruVI(m, c, anion) {
+  at(m, 'ru', c, { lab: 'Ru', ox: 6, oxa: 180, oxd: 18 });
+  at(m, 'r0', pol(c, -55, RL()), { lab: 'O' }); at(m, 'r1', pol(c, -125, RL()), { lab: 'O' });
+  at(m, 'r2', pol(c, 55, RL()), { lab: 'O', suf: 'H' });
+  at(m, 'r3', pol(c, 125, RL()), anion ? { lab: 'O', chg: '-', ca: 180, cd: 12 } : { lab: 'O', pre: 'H' });
+  bd(m, 'ru', 'r0', 2); bd(m, 'ru', 'r1', 2); bd(m, 'ru', 'r2'); bd(m, 'ru', 'r3');
+}
+function co2(m, c, ids) {
+  ids = ids || ['k', 'ka', 'kb'];
+  at(m, ids[0], c); at(m, ids[1], pol(c, 180, 0.95 * L), { lab: 'O' }); at(m, ids[2], pol(c, 0, 0.95 * L), { lab: 'O' });
+  bd(m, ids[0], ids[1], 2); bd(m, ids[0], ids[2], 2);
+}
+// 乙二醛 / 草酸：ids = [ca, cb, ca 上的 O, cb 上的 O]，acid = true 时再各加一个 OH
+function c2(m, p, ids, acid) {
+  at(m, ids[0], p); at(m, ids[1], pol(p, -30, L));
+  at(m, ids[2], pol(p, 90, L), { lab: 'O' }); at(m, ids[3], pol(m.A[ids[1]], -90, L), { lab: 'O' });
+  bd(m, ids[0], ids[1]); bd(m, ids[0], ids[2], 2); bd(m, ids[1], ids[3], 2);
+  if (acid) {
+    at(m, ids[0] + 'h', pol(p, 210, L), { lab: 'O', pre: 'H' }); bd(m, ids[0], ids[0] + 'h');
+    at(m, ids[1] + 'h', pol(m.A[ids[1]], 30, L), { lab: 'O', suf: 'H' }); bd(m, ids[1], ids[1] + 'h');
+  }
+}
+// 环己甲酸（最终产物）：C1 = 羧基碳
+function acid(m, p, ids) {
+  ids = ids || ['ow', 'o1'];
+  at(m, 'c1', p, { halo: 'purple' }); cyhex(m, 'c1', 180);
+  at(m, ids[0], pol(p, -60, L), { lab: 'O' }); at(m, ids[1], pol(p, 60, L), { lab: 'O', suf: 'H' });
+  bd(m, 'c1', ids[0], 2); bd(m, 'c1', ids[1]);
+}
+
+const STAGES = [['总览', 0], ['催化剂', 1], ['① 去芳构化与开环', 2], ['②③ 再断两根 C=C', 5], ['④⑤ 变成 COOH', 7], ['小分子与记账', 9]];
+const DY = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+const FRAMES = [];
+
+FRAMES.push({ st: 0, t: '总览：苯环被拆光，只留下连环己基的那个碳',
+  c: '紫色圈 = 原苯环的 C1（ipso，连着环己基），青色圈 = C6。RuO₄ 把苯环一根一根 C=C 切断：C1 最后成为 COOH 的碳，其余 5 个环碳全部变成 CO₂；环己基始终不动。',
+  d: () => {
+    L = 24; let s = '', m;
+    m = mol(); arene(m, P(136, 84), [0, 2, 4], [], null, false); cyhex(m, 'c1', 180); s += draw(m);
+    s += rx(178, 330, 84, ['RuCl₃（催化量）, NaIO₄'], ['MeCN, CCl₄（+ H₂O）, 24 h']);
+    m = mol(); acid(m, P(422, 84)); s += draw(m);
+    s += tx(458, 84, '+ 5 CO₂', 't', 'start') + tx(528, 84, '94%', 't', 'start');
+    s += tx(340, 160, 'C₁₂H₁₆ + 14 NaIO₄ → C₇H₁₂O₂ + 5 CO₂ + 2 H₂O + 14 NaIO₃', 'teq');
+    s += tx(340, 186, '6 个环碳：C1 0 → +3（羧基），C2–C6 各 −1 → +4（CO₂），合计失去 28 个电子', 'ts');
+    s += tx(340, 208, '每个 IO₄⁻ → IO₃⁻ 接受 2 个电子，所以至少要 14 当量 NaIO₄；Ru 只需催化量', 'ts');
+    return s;
+  } });
+
+FRAMES.push({ st: 1, t: '催化剂：RuCl₃ 只是前体，真正干活的是 RuO₄',
+  c: 'NaIO₄ 先把 Ru(III) 氧化成 Ru(VIII) 的 RuO₄（四面体，黄色，易溶于 CCl₄）。RuO₄ 在有机相里氧化底物、自己被还原；低价 Ru 回到水相 / 界面，再被 NaIO₄ 氧化回 RuO₄。MeCN 是 Sharpless 1981 年改进的关键：它与低价 Ru 配位，不让反应中生成的羧酸把 Ru 锁成不溶物而失活。',
+  d: () => {
+    L = 30; let s = '', m;
+    s += tx(62, 76, 'RuCl₃', 't') + tx(62, 98, 'Ru(III)', 'ts');
+    s += rx(96, 186, 86, ['NaIO₄'], ['H₂O']);
+    m = mol(); ruO4(m, P(238, 86), 0, 90); s += draw(m);
+    s += tx(238, 140, 'RuO₄', 't');
+    s += tx(178, 186, '2 RuCl₃ + 5 NaIO₄ + 3 H₂O → 2 RuO₄ + 5 NaIO₃ + 6 HCl', 'teq');
+    s += tx(178, 208, 'Ru(III) → Ru(VIII)：每个 Ru 失去 5 个电子', 'ts');
+    s += box(352, 30, 296, 62, false) + box(352, 120, 296, 62, false);
+    s += tx(368, 50, '水相 H₂O', 'th', 'start') + tx(368, 72, 'NaIO₄ → NaIO₃：把低价 Ru 氧化回 RuO₄', 'ts', 'start');
+    s += tx(368, 140, '有机相 CCl₄ + MeCN', 'th', 'start') + tx(368, 162, 'RuO₄ 氧化环己基苯，自身被还原', 'ts', 'start');
+    s += ln(P(470, 95), P(470, 112), INK, 1.2) + head(P(470, 117), 90, INK, 8, 3.6) + tx(478, 106, 'RuO₄', 'ts', 'start');
+    s += ln(P(560, 117), P(560, 100), INK, 1.2) + head(P(560, 95), -90, INK, 8, 3.6) + tx(568, 106, 'Ru(IV)/Ru(VI)', 'ts', 'start');
+    s += tx(500, 206, 'MeCN：配位低价 Ru，防止 Ru–羧酸盐沉淀失活', 'ts');
+    return s;
+  } });
+
+FRAMES.push({ st: 2, t: '① RuO₄ 对苯环的 C3=C4 做 [3+2] 环加成，芳香性被打破',
+  c: 'RuO₄ 是强亲电的氧化剂，可以像对普通烯烃那样，对苯环的一根 C=C 做 [3+2] 环加成（cycloaddition），生成五元环状钌(VI)酸酯。三根箭头：C3=C4 的 π 电子进攻一个 O；这个 O 原来与 Ru 之间的 π 电子回到 Ru 上；另一个 Ru=O 的 π 电子去和 C3 成键。Ru 从 VIII 价降到 VI 价，苯环变成环己二烯。这里画成进攻离环己基较远的一侧。',
+  d: () => {
+    L = 30; let s = '', m;
+    const B = P(180, 136);
+    m = mol(); arene(m, B, [0, 2, 4]); cyhex(m, 'c1', 180);
+    ruCycle(m, 'c3', 'c4', B, ['oa', 'ob', 'ru', 'oc', 'od'], 8, 1.3 * L);
+    s += draw(m);
+    const A = m.A;
+    s += arr(bm(m, 'c3', 'c4', -4), P(A.c4.x + (A.ob.x - A.c4.x) * 0.55, A.c4.y + (A.ob.y - A.c4.y) * 0.55), -12);
+    s += ruArr(m, 'ob', 1);
+    s += arr(bm(m, 'ru', 'oa', 4), P(A.oa.x + (A.c3.x - A.oa.x) * 0.45, A.oa.y + (A.c3.y - A.oa.y) * 0.45), 12);
+    s += rx(320, 382, 136, ['[3+2]'], ['去芳构化', '2 e⁻']);
+    const B2 = P(510, 136);
+    m = mol(); arene(m, B2, [0, 4]); cyhex(m, 'c1', 180);
+    ruCycle(m, 'c3', 'c4', B2, ['oa', 'ob', 'ru', 'oc', 'od'], 6);
+    s += draw(m);
+    s += tx(510, 206, '环状钌(VI)酸酯（cyclic ruthenate ester）', 'ts');
+    return s;
+  } });
+
+FRAMES.push({ st: 2, t: '① 钌酸酯碎裂：C3–C4 断开，苯环变成二烯二醛',
+  c: '同样的三根箭头再走一遍，只是这次流动的是 C3–C4 的 σ 键：C3–C4 键的电子变成 C4=O；O–Ru 键的电子回到 Ru 上；另一根 Ru–O 键的电子变成 C3=O。两端各成为一个醛基，Ru 再得 2 个电子降到 Ru(IV)（RuO₂）。环被打开，剩下的 C1=C2、C5=C6 仍保持原来的顺式。',
+  d: () => {
+    L = 30; let s = '', m;
+    const B = P(180, 136);
+    m = mol(); arene(m, B, [0, 4]); cyhex(m, 'c1', 180);
+    ruCycle(m, 'c3', 'c4', B, ['oa', 'ob', 'ru', 'oc', 'od'], 6);
+    s += draw(m);
+    const A = m.A;
+    s += arr(bm(m, 'c3', 'c4', 3), bm(m, 'c4', 'ob', 3.5), 12);
+    s += ruArr(m, 'ob', 1);
+    s += arr(bm(m, 'ru', 'oa', 3.5), bm(m, 'oa', 'c3', 3.5), 10);
+    s += rx(318, 376, 136, ['碎裂'], ['2 e⁻']);
+    const B2 = P(498, 136);
+    m = mol(); arene(m, B2, [0, 4], [2]); cyhex(m, 'c1', 180);
+    at(m, 'oa', pol(m.A.c3, -60, L), { lab: 'O' }); bd(m, 'c3', 'oa', 2);
+    at(m, 'ob', pol(m.A.c4, 0, L), { lab: 'O' }); bd(m, 'c4', 'ob', 2);
+    s += draw(m);
+    m = mol(); ruO2(m, P(616, 76)); s += draw(m);
+    s += tx(616, 104, 'RuO₂', 'ts');
+    s += tx(498, 206, '开环二烯二醛（两根 C=C 保持环内顺式）', 'ts');
+    return s;
+  } });
+
+FRAMES.push({ st: 2, t: '催化循环：RuO₂ 被 NaIO₄ 氧化回 RuO₄',
+  c: '断一根 C=C，一个 RuO₄ 共接受 4 个电子（VIII → VI → IV）。RuO₂ 再被 2 个 IO₄⁻ 氧化回 RuO₄，所以 Ru 只要催化量，NaIO₄ 才是按化学计量消耗的终端氧化剂（terminal oxidant）。后面醛氧化、脱羧这两类 2 电子步骤只把 Ru 降到 VI 价，1 个 IO₄⁻ 就能再生。',
+  d: () => {
+    let s = '';
+    const node = (x, y, w, t1, t2) => box(x, y, w, 54, false) + tx(x + w / 2, y + 19, t1, 'th') + tx(x + w / 2, y + 38, t2, 'ts');
+    s += node(40, 42, 150, 'RuO₄', 'Ru(VIII)') + node(265, 42, 150, '环状钌酸酯', 'Ru(VI)') + node(490, 42, 150, 'RuO₂', 'Ru(IV)');
+    s += rx(194, 261, 69, ['+ C=C'], ['[3+2]，2 e⁻']);
+    s += rx(419, 486, 69, ['C–C 断裂'], ['2 C=O，2 e⁻']);
+    s += `<path d="M565 100 V150 H115 V104" style="fill:none;stroke:${INK};stroke-width:1.3"/>` + head(P(115, 100), -90, INK, 9, 4);
+    s += tx(340, 136, '2 NaIO₄ → 2 NaIO₃（水相，回收 4 e⁻）', 'ts');
+    s += tx(340, 186, 'RuO₂ + 2 NaIO₄ → RuO₄ + 2 NaIO₃', 'teq');
+    s += tx(340, 210, '2 电子步骤（醛 → 酸、氧化脱羧）：Ru(VIII) → Ru(VI)，H₂RuO₄ + NaIO₄ → RuO₄ + NaIO₃ + H₂O', 'ts');
+    return s;
+  } });
+
+FRAMES.push({ st: 3, t: '② 第二根：C1=C2 被切断，C1 变成酮',
+  c: '剩下的两根 C=C 里，C1=C2 连着环己基（三取代、电子更富），更容易被亲电的 RuO₄ 进攻。先同样 [3+2] 成酯（这里直接画出酯；分子转了 60° 好放下 Ru），再碎裂：C1 变成酮羰基，C2–C3 作为乙二醛（glyoxal）离开。到这一步，C1 的命运已经定了：一边连环己基，一边是 C=O。',
+  d: () => {
+    L = 28; let s = '', m;
+    const B = P(214, 146);
+    m = mol(); arene(m, B, [4], [2], null, true, 240); cyhex(m, 'c1', 186);
+    at(m, 'oa', pol(m.A.c3, 0, L), { lab: 'O' }); bd(m, 'c3', 'oa', 2);
+    at(m, 'ob', pol(m.A.c4, 60, L), { lab: 'O' }); bd(m, 'c4', 'ob', 2);
+    ruCycle(m, 'c1', 'c2', B, ['o1', 'o2', 'ru', 'oc', 'od'], 6);
+    s += draw(m);
+    const A = m.A;
+    s += arr(bm(m, 'c1', 'c2', -3), bm(m, 'c2', 'o2', -3.5), -12);
+    s += ruArr(m, 'o2', -1);
+    s += arr(bm(m, 'ru', 'o1', -3.5), bm(m, 'o1', 'c1', -3.5), -10);
+    s += rx(310, 368, 136, ['碎裂'], ['[3+2] 同 ①', '共 4 e⁻']);
+    const B2 = P(500, 128);
+    m = mol(); arene(m, B2, [4], [], ['c1', null, null, 'c4', 'c5', 'c6']); cyhex(m, 'c1', 180);
+    at(m, 'o1', pol(m.A.c1, -60, L), { lab: 'O' }); bd(m, 'c1', 'o1', 2);
+    at(m, 'ob', pol(m.A.c4, 0, L), { lab: 'O' }); bd(m, 'c4', 'ob', 2);
+    s += draw(m);
+    m = mol(); c2(m, P(606, 150), ['c2', 'c3', 'o2', 'oa']); m.nums.push(['c2', 2, P(590, 124)], ['c3', 3, P(645, 160)]); s += draw(m);
+    s += tx(618, 204, '乙二醛', 'ts') + tx(470, 204, '+ RuO₂', 'ts');
+    return s;
+  } });
+
+FRAMES.push({ st: 3, t: '③ 第三根：C5=C6 被切断，得到 α-酮醛',
+  c: '最后一根 C=C 重复同样的两步：[3+2] 成酯、碎裂。C4–C5 也以乙二醛离开；剩下 环己基–C(=O)–CHO，一个 α-酮醛。原 C6（青）现在是醛基碳，仍连在 C1 上。',
+  d: () => {
+    L = 28; let s = '', m;
+    const B = P(206, 92);
+    m = mol(); arene(m, B, [], [], ['c1', null, null, 'c4', 'c5', 'c6']); cyhex(m, 'c1', 180);
+    at(m, 'o1', pol(m.A.c1, -60, L), { lab: 'O' }); bd(m, 'c1', 'o1', 2);
+    at(m, 'ob', pol(m.A.c4, 0, L), { lab: 'O' }); bd(m, 'c4', 'ob', 2);
+    ruCycle(m, 'c5', 'c6', B, ['o5', 'o6', 'ru', 'oc', 'od'], 6);
+    s += draw(m);
+    const A = m.A;
+    s += arr(bm(m, 'c5', 'c6', 3), bm(m, 'c6', 'o6', 3.5), 12);
+    s += ruArr(m, 'o6', 1);
+    s += arr(bm(m, 'ru', 'o5', 3.5), bm(m, 'o5', 'c5', 3.5), 10);
+    s += rx(300, 358, 112, ['碎裂'], ['[3+2] 同 ①', '共 4 e⁻']);
+    const B2 = P(480, 100);
+    m = mol(); arene(m, B2, [], [], ['c1', null, null, null, null, 'c6']); cyhex(m, 'c1', 180);
+    at(m, 'o1', pol(m.A.c1, -60, L), { lab: 'O' }); bd(m, 'c1', 'o1', 2);
+    at(m, 'o6', pol(m.A.c6, 0, L), { lab: 'O' }); bd(m, 'c6', 'o6', 2);
+    s += draw(m);
+    s += tx(466, 166, 'α-酮醛', 'ts');
+    m = mol(); c2(m, P(588, 128), ['c4', 'c5', 'ob', 'o5']); m.nums.push(['c4', 4, P(572, 102)], ['c5', 5, P(627, 138)]); s += draw(m);
+    s += tx(600, 182, '乙二醛', 'ts') + tx(329, 204, '+ RuO₂', 'ts');
+    return s;
+  } });
+
+FRAMES.push({ st: 4, t: '④ 醛被氧化成羧酸：得到 α-酮酸',
+  c: '醛在水里先形成水合物（hydrate，偕二醇），水合物的一个 O–H 加到 RuO₄ 的 Ru=O 上，成为钌(VIII)酸酯。接着经五元环：Ru=O 的 π 电子去夺取 C6 上的 H，C–H 键的电子形成 C=O，O–Ru 键的电子留给 Ru。醛变成羧酸，Ru(VIII) → Ru(VI)。',
+  d: () => {
+    L = 28; let s = '', m;
+    const S = 1.3 * L;
+    m = mol();
+    const c1 = at(m, 'c1', P(166, 152), { halo: 'purple' }); cyhex(m, 'c1', 180);
+    at(m, 'o1', pol(c1, 90, L), { lab: 'O' }); bd(m, 'c1', 'o1', 2);
+    const c6 = at(m, 'c6', pol(c1, -30, L), { halo: 'teal' }); bd(m, 'c1', 'c6');
+    const oe = at(m, 'oe', pol(c6, 18, S), { lab: 'O' });
+    const ru = at(m, 'ru', pol(oe, -54, S), { lab: 'Ru', ox: 8, oxs: false });
+    const ox = at(m, 'ox', pol(ru, -126, S), { lab: 'O' });
+    at(m, 'h6', pol(ox, 162, S), { lab: 'H', clip: 7.5 });
+    at(m, 'o6', pol(c6, 80, L), { lab: 'O', suf: 'H' });
+    at(m, 'rp', pol(ru, -60, RL()), { lab: 'O' });
+    at(m, 'rq', pol(ru, 5, RL()), { lab: 'O' });
+    at(m, 'rh', pol(ru, 65, RL()), { lab: 'O', suf: 'H' });
+    bd(m, 'c6', 'oe'); bd(m, 'oe', 'ru'); bd(m, 'ru', 'ox', 2); bd(m, 'c6', 'h6'); bd(m, 'c6', 'o6');
+    bd(m, 'ru', 'rp', 2); bd(m, 'ru', 'rq', 2); bd(m, 'ru', 'rh'); bd(m, 'h6', 'ox', 'h');
+    s += draw(m);
+    const A = m.A;
+    s += arr(bm(m, 'ru', 'ox', -3.5), pol(A.h6, 0, 9), -14);
+    s += arr(bm(m, 'c6', 'h6', 3), bm(m, 'c6', 'oe', -3), 10);
+    s += ruArr(m, 'oe', 1);
+    s += tx(190, 218, '醛水合物的钌(VIII)酸酯', 'ts');
+    s += rx(316, 374, 136, ['−H₂RuO₄'], ['2 e⁻']);
+    m = mol();
+    const d1 = at(m, 'c1', P(486, 146), { halo: 'purple' }); cyhex(m, 'c1', 180);
+    at(m, 'o1', pol(d1, 90, L), { lab: 'O' }); bd(m, 'c1', 'o1', 2);
+    const d6 = at(m, 'c6', pol(d1, -30, L), { halo: 'teal' }); bd(m, 'c1', 'c6');
+    at(m, 'oe', pol(d6, -90, L), { lab: 'O' }); bd(m, 'c6', 'oe', 2);
+    at(m, 'o6', pol(d6, 30, L), { lab: 'O', suf: 'H' }); bd(m, 'c6', 'o6');
+    s += draw(m);
+    s += tx(470, 218, 'α-酮酸', 'ts');
+    m = mol(); ruVI(m, P(620, 136)); s += draw(m);
+    s += tx(620, 190, 'H₂RuO₄', 'ts');
+    return s;
+  } });
+
+FRAMES.push({ st: 4, t: '⑤ α-酮酸氧化脱羧：C6 以 CO₂ 离开',
+  c: 'α-酮酸的酮羰基同样先水合，一个 OH 与 RuO₄ 成酯。羧酸根推电子放出 CO₂；C1–C6 键的电子转到 C1 上形成 C=O；O–Ru 键断裂，电子交给 Ru。C6（青）变成 CO₂，C1（紫）成为环己甲酸的羧基碳。',
+  d: () => {
+    L = 30; let s = '', m;
+    m = mol();
+    const c1 = at(m, 'c1', P(196, 156), { halo: 'purple' }); cyhex(m, 'c1', 180);
+    at(m, 'o1', pol(c1, 90, L), { lab: 'O', suf: 'H' }); bd(m, 'c1', 'o1');
+    const ow = at(m, 'ow', pol(c1, -90, L), { lab: 'O' }); bd(m, 'c1', 'ow');
+    const ru = at(m, 'ru', pol(ow, -90, RL()), { lab: 'Ru', ox: 8, oxs: false });
+    bd(m, 'ow', 'ru');
+    at(m, 'rp', pol(ru, 168, RL()), { lab: 'O' });
+    at(m, 'rq', pol(ru, 232, RL()), { lab: 'O' });
+    at(m, 'rr', pol(ru, 308, RL()), { lab: 'O' });
+    at(m, 'rh', pol(ru, 12, RL()), { lab: 'O', suf: 'H' });
+    bd(m, 'ru', 'rp', 2); bd(m, 'ru', 'rq', 2); bd(m, 'ru', 'rr', 2); bd(m, 'ru', 'rh');
+    const c6 = at(m, 'c6', pol(c1, 0, L), { halo: 'teal' }); bd(m, 'c1', 'c6');
+    at(m, 'oe', pol(c6, -60, L), { lab: 'O' }); bd(m, 'c6', 'oe', 2);
+    at(m, 'o6', pol(c6, 60, L), { lab: 'O', chg: '-', ca: 10, cd: 12, lp: [110] }); bd(m, 'c6', 'o6');
+    s += draw(m);
+    const A = m.A;
+    s += arr(pol(A.o6, 110, 13), bm(m, 'c6', 'o6', 3.5), -10);
+    s += arr(bm(m, 'c1', 'c6', 3), bm(m, 'c1', 'ow', -3), 12);
+    s += ruArr(m, 'ow', 1);
+    s += tx(190, 222, '酮水合物的钌(VIII)酸酯', 'ts');
+    s += rx(316, 376, 146, ['−CO₂'], ['2 e⁻']);
+    m = mol(); acid(m, P(476, 146)); s += draw(m);
+    s += tx(456, 204, '环己甲酸', 'ts');
+    m = mol(); co2(m, P(590, 86), ['c6', 'oe', 'o6']); m.A.c6.halo = 'teal'; s += draw(m);
+    m = mol(); ruVI(m, P(616, 164), true); s += draw(m);
+    return s;
+  } });
+
+FRAMES.push({ st: 5, t: '⑥ 两分子乙二醛的去向：草酸，再到 CO₂',
+  c: '乙二醛的两个醛基各按 ④ 的方式被氧化成羧酸，得到草酸；草酸再被 RuO₄ 氧化成两分子 CO₂。两分子乙二醛（C2/C3、C4/C5）给出 4 个 CO₂，加上 ⑤ 放出的 C6，5 个环碳全部变成 CO₂。',
+  d: () => {
+    L = 26; let s = '', m;
+    m = mol(); c2(m, P(70, 92), ['ga', 'gb', 'gc', 'gd']); s += draw(m);
+    s += tx(84, 140, '乙二醛 ×2', 'ts');
+    s += rx(140, 250, 98, ['2 RuO₄, 2 H₂O'], ['−2 H₂RuO₄', '4 e⁻（每分子）']);
+    m = mol(); c2(m, P(300, 92), ['ga', 'gb', 'gc', 'gd'], true); s += draw(m);
+    s += tx(313, 140, '草酸 ×2', 'ts');
+    s += rx(380, 476, 98, ['RuO₄'], ['−H₂RuO₄', '2 e⁻（每分子）']);
+    m = mol(); co2(m, P(530, 80), ['ga', 'gc', 'gch']); s += draw(m);
+    m = mol(); co2(m, P(530, 116), ['gb', 'gd', 'gbh']); s += draw(m);
+    s += tx(590, 98, '×2', 't', 'start');
+    s += tx(340, 186, 'OHC–CHO + 2 RuO₄ + 2 H₂O → HOOC–COOH + 2 H₂RuO₄；HOOC–COOH + RuO₄ → 2 CO₂ + H₂RuO₄', 'ts');
+    s += tx(340, 210, '所有 Ru(VI)、Ru(IV) 都由 NaIO₄ 重新氧化成 RuO₄', 'ts');
+    return s;
+  } });
+
+FRAMES.push({ st: 5, t: '回顾：原子与电子记账',
+  c: 'C1 自始至终连着环己基，从芳香碳（氧化态 0）变成羧基碳（+3）；C2–C6 依次断成乙二醛 / α-酮酸碎片，最后都是 CO₂（+4）。三次 C=C 断裂各 4 e⁻，醛 → 酸、脱羧、乙二醛 → 草酸、草酸 → CO₂ 合计 16 e⁻，总共 28 e⁻ = 14 NaIO₄。',
+  d: () => {
+    L = 26; let s = '', m;
+    m = mol(); arene(m, P(160, 84), [0, 2, 4]); cyhex(m, 'c1', 180); s += draw(m);
+    s += rx(214, 300, 84, ['RuO₄ / NaIO₄'], []);
+    m = mol(); acid(m, P(392, 84)); s += draw(m);
+    s += tx(430, 84, '+ 5 CO₂', 't', 'start') + tx(498, 84, '（C2–C6）', 'ts', 'start');
+    const rows = [['①②③ 三次 C=C 断裂', '3 × 4 e⁻ = 12 e⁻'], ['④ α-酮醛 → α-酮酸', '2 e⁻'], ['⑤ 氧化脱羧（C6 → CO₂）', '2 e⁻'], ['⑥ 2 乙二醛 → 2 草酸 → 4 CO₂', '8 e⁻ + 4 e⁻']];
+    rows.forEach((r, i) => { s += tx(150, 146 + i * 18, r[0], 'ts', 'start') + tx(470, 146 + i * 18, r[1], 'ts', 'end'); });
+    s += ln(P(150, 213), P(470, 213), MUT, 0.8);
+    s += tx(150, 226, '合计 28 e⁻ = 14 NaIO₄', 'th', 'start');
+    return s;
+  } });
+
+// 页面图例里的小弯箭头
+function legendArrow() { return arr(P(3, 12), P(25, 10), 9); }
+
+// 分步图交互：阶段标签、翻页、键盘、图例小箭头。
+// 用到 mech.js 的 FRAMES / STAGES / DY / legendArrow（build.mjs 把两段脚本放进同一个块作用域）。
+const $ = id => document.getElementById(id);
+const G = $('mxG'), T = $('mxT'), C = $('mxC');
+const strip = s => s.replace(/<[^>]+>/g, '');
+const pills = STAGES.map(p => {
+  const b = document.createElement('button');
+  b.type = 'button'; b.className = 'pill'; b.textContent = p[0];
+  b.onclick = () => show(p[1]);
+  $('mxPills').appendChild(b);
+  return b;
+});
+const dots = FRAMES.map((f, k) => {
+  const d = document.createElement('button');
+  d.type = 'button'; d.className = 'dot'; d.setAttribute('aria-label', '第 ' + (k + 1) + ' 帧：' + strip(f.t));
+  d.onclick = () => show(k);
+  $('mxDots').appendChild(d);
+  return d;
+});
+let cur = 0;
+function show(i) {
+  cur = (i + FRAMES.length) % FRAMES.length;
+  const f = FRAMES[cur];
+  G.setAttribute('transform', 'translate(0,' + (DY[cur] || 0) + ')');
+  G.innerHTML = f.d();
+  T.textContent = f.t;
+  C.innerHTML = f.c;
+  pills.forEach((b, k) => { b.classList.toggle('on', k === f.st); b.setAttribute('aria-pressed', String(k === f.st)); });
+  dots.forEach((d, k) => { d.classList.toggle('on', k === cur); d.setAttribute('aria-current', k === cur ? 'step' : 'false'); });
+  $('mxCount').textContent = (cur + 1) + ' / ' + FRAMES.length;
+}
+$('mxPrev').onclick = () => show(cur - 1);
+$('mxNext').onclick = () => show(cur + 1);
+document.addEventListener('keydown', e => {
+  const tg = e.target && e.target.tagName;
+  if (tg === 'INPUT' || tg === 'SELECT' || tg === 'TEXTAREA' || (e.target.closest && e.target.closest('#anim'))) return;
+  if (e.key === 'ArrowRight') show(cur + 1);
+  else if (e.key === 'ArrowLeft') show(cur - 1);
+});
+$('mxLeg').innerHTML = legendArrow();
+window.__mech = { show: show, get cur() { return cur; }, n: FRAMES.length };
+show(0);
+
+}
+{
+// 3D 动画的关键帧：每一幕只写拓扑（谁连谁、几重键、电荷、Ru 氧化态），
+// 坐标由下面的小型几何松弛（键长 / 键角 / sp² 平面 / 双键共面 / 非键排斥）从上一帧推出来。
+// 原子 id 全程不变；页面（app3d.js）与核验脚本（verify3d.mjs）共用这一份数据。
+
+// ───────── 向量 ─────────
+const add = (a, b) => [a[0] + b[0], a[1] + b[1], a[2] + b[2]];
+const sub = (a, b) => [a[0] - b[0], a[1] - b[1], a[2] - b[2]];
+const sc = (a, k) => [a[0] * k, a[1] * k, a[2] * k];
+const dot = (a, b) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
+const crs = (a, b) => [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
+const len = a => Math.hypot(a[0], a[1], a[2]);
+const nrm = a => { const l = len(a) || 1; return sc(a, 1 / l); };
+const DEG = Math.PI / 180;
+
+// ───────── 分子状态 ─────────
+const key = (a, b) => (a < b ? a + '|' + b : b + '|' + a);
+function St() { return { A: {}, B: {}, R: [], enter: {}, leave: {}, tags: [] }; }
+function atom(S, id, el, p, o) { S.A[id] = Object.assign({ el: el, p: p.slice() }, o || {}); return S.A[id]; }
+function bond(S, a, b, o) { const k = key(a, b); if (!o) delete S.B[k]; else S.B[k] = o; }
+function nbrs(S, id) { const r = []; for (const k in S.B) { const [a, b] = k.split('|'); if (S.B[k] === 'h') continue; if (a === id) r.push(b); else if (b === id) r.push(a); } return r; }
+function comp(S, id) { const seen = new Set([id]), st = [id]; while (st.length) { const u = st.pop(); for (const v of nbrs(S, u)) if (!seen.has(v)) { seen.add(v); st.push(v); } } return [...seen]; }
+function cen(S, ids) { let c = [0, 0, 0]; ids.forEach(id => { c = add(c, S.A[id].p); }); return sc(c, 1 / ids.length); }
+function move(S, ids, v) { ids.forEach(id => { S.A[id].p = add(S.A[id].p, v); }); }
+function drop(S, ids, v) { // 离场：从下一帧删掉，并记下飞走的方向
+  const out = {};
+  ids.forEach(id => { out[id] = v; delete S.A[id]; });
+  for (const k in S.B) { const [a, b] = k.split('|'); if (!S.A[a] || !S.A[b]) delete S.B[k]; }
+  return out;
+}
+function snap(S) {
+  const A = {};
+  for (const id in S.A) A[id] = Object.assign({}, S.A[id], { p: S.A[id].p.slice() });
+  return { A: A, B: Object.assign({}, S.B), enter: S.enter, leave: S.leave, tags: S.tags, R: S.R.slice() };
+}
+
+// ───────── 几何松弛（position-based：逐条约束投影） ─────────
+function blen(S, a, b, o, aro) {
+  const e = [S.A[a].el, S.A[b].el].sort().join('');
+  if (aro) return 1.39;
+  if (e === 'CC') return o === 2 ? 1.34 : 1.53;
+  if (e === 'CH') return 1.09;
+  if (e === 'CO') {
+    const c = S.A[a].el === 'C' ? a : b;
+    const nd = nbrs(S, c).filter(x => S.B[key(c, x)] === 2).length;
+    return o === 2 ? (nd === 2 ? 1.17 : 1.21) : 1.42;
+  }
+  if (e === 'HO') return 0.97;
+  if (e === 'ORu') return o === 2 ? 1.71 : 1.96;
+  return 1.5;
+}
+function theta(S, id, n) {
+  const el = S.A[id].el;
+  if (el === 'C') return n >= 4 ? 109.47 : n === 3 ? 120 : 180;
+  if (el === 'O') return nbrs(S, id).some(x => S.A[x].el === 'Ru') ? 118 : 108;
+  return null;
+}
+function relax(S, iters) {
+  const ids = Object.keys(S.A), I = {};
+  ids.forEach((id, i) => { I[id] = i; });
+  const P = ids.map(id => S.A[id].p.slice()), N = ids.map(id => nbrs(S, id));
+  const cons = [], pl = [], tor = [], near = new Set(), pk = (i, j) => (i < j ? i * 1000 + j : j * 1000 + i);
+  for (const k in S.B) {
+    const o = S.B[k]; if (o === 'h') continue;
+    const [a, b] = k.split('|');
+    cons.push([I[a], I[b], blen(S, a, b, o, S.aro && S.aro.has(k)), 1]);
+    near.add(pk(I[a], I[b]));
+  }
+  ids.forEach((id, i) => {
+    const nb = N[i];
+    for (let x = 0; x < nb.length; x++) for (let y = x + 1; y < nb.length; y++) {
+      const j = I[nb[x]], k = I[nb[y]];
+      near.add(pk(j, k));
+      if (S.A[id].el === 'Ru') { cons.push([j, k, 2.62, 0.5, 'min']); continue; }
+      const t = theta(S, id, nb.length);
+      if (t == null) continue;
+      const d1 = blen(S, id, nb[x], S.B[key(id, nb[x])], S.aro && S.aro.has(key(id, nb[x]))), d2 = blen(S, id, nb[y], S.B[key(id, nb[y])], S.aro && S.aro.has(key(id, nb[y])));
+      cons.push([j, k, Math.sqrt(d1 * d1 + d2 * d2 - 2 * d1 * d2 * Math.cos(t * DEG)), 0.45]);
+    }
+    if (S.A[id].el === 'C' && nb.length === 3) pl.push([i, I[nb[0]], I[nb[1]], I[nb[2]]]);
+  });
+  for (const k in S.B) {
+    if (S.B[k] !== 2) continue;
+    const [a, b] = k.split('|');
+    if (S.A[a].el !== 'C' || S.A[b].el !== 'C' || (S.aro && S.aro.has(k))) continue;
+    N[I[a]].filter(x => x !== b).forEach(x => N[I[b]].filter(y => y !== a).forEach(y => tor.push([I[x], I[a], I[b], I[y]])));
+  }
+  S.R.forEach(([a, b, d]) => { if (I[a] != null && I[b] != null) { cons.push([I[a], I[b], d, 0.6]); near.add(pk(I[a], I[b])); } });
+  const rep = [];
+  for (let i = 0; i < ids.length; i++) for (let j = i + 1; j < ids.length; j++) {
+    if (near.has(pk(i, j))) continue;
+    const hi = S.A[ids[i]].el === 'H', hj = S.A[ids[j]].el === 'H';
+    rep.push([i, j, hi && hj ? 1.95 : hi || hj ? 2.35 : 2.75]);
+  }
+  const fix = S.fix || new Set();
+  const mv = (i, v) => { if (!fix.has(ids[i])) P[i] = add(P[i], v); };
+  for (let it = 0; it < (iters || 500); it++) {
+    for (const [i, j, d0, k, mode] of cons) {
+      const v = sub(P[j], P[i]), d = len(v) || 1e-6;
+      if (mode === 'min' && d >= d0) continue;
+      const c = sc(v, ((d - d0) / d) * 0.5 * k);
+      mv(i, c); mv(j, sc(c, -1));
+    }
+    for (const [i, j, k, l] of pl) {
+      const n = nrm(crs(sub(P[k], P[j]), sub(P[l], P[j]))), dd = dot(sub(P[i], P[j]), n);
+      mv(i, sc(n, -dd * 0.6)); [j, k, l].forEach(q => mv(q, sc(n, dd * 0.2)));
+    }
+    for (const [x, a, b, y] of tor) {
+      const n = nrm(crs(sub(P[a], P[x]), sub(P[b], P[x]))), dd = dot(sub(P[y], P[a]), n);
+      mv(y, sc(n, -dd * 0.3)); [x, a, b].forEach(q => mv(q, sc(n, dd * 0.1)));
+    }
+    if (it % 2 === 0) for (const [i, j, d0] of rep) {
+      const v = sub(P[j], P[i]), d = len(v) || 1e-6;
+      if (d >= d0) continue;
+      const c = sc(v, ((d - d0) / d) * 0.25);
+      mv(i, c); mv(j, sc(c, -1));
+    }
+  }
+  ids.forEach((id, i) => { S.A[id].p = P[i]; });
+}
+
+// ───────── 起始结构：椅式环己基 + 平面苯环 + 四面体 RuO₄ ─────────
+function tetraPair(X, A, B) { // sp³ 原子 X（已有邻居 A、B）上另外两个方向
+  const b = nrm(add(nrm(sub(X, A)), nrm(sub(X, B)))), n = nrm(crs(sub(A, X), sub(B, X)));
+  const ca = Math.cos(54.75 * DEG), sa = Math.sin(54.75 * DEG);
+  return [nrm(add(sc(b, ca), sc(n, sa))), nrm(sub(sc(b, ca), sc(n, sa)))];
+}
+function start() {
+  const S = St();
+  // 环己基：局部坐标的椅式，再转到 y1 的平伏键沿 +x
+  const r = 1.446, h = 0.25, loc = [];
+  for (let k = 0; k < 6; k++) loc.push([r * Math.cos(k * 60 * DEG), r * Math.sin(k * 60 * DEG), k % 2 ? -h : h]);
+  const dirs = loc.map((X, k) => tetraPair(X, loc[(k + 5) % 6], loc[(k + 1) % 6]));
+  const ax = dirs.map((d, k) => (Math.abs(d[0][2]) > Math.abs(d[1][2]) ? [d[0], d[1]] : [d[1], d[0]])); // [轴向, 平伏]
+  const e = ax[0][1], Xs = e, Ws = nrm(sub([0, 0, 1], sc(e, e[2]))), Ys = crs(Ws, Xs);
+  const Xt = [1, 0, 0], Wt = [0, 0.94, 0.34], Yt = crs(Wt, Xt);
+  const map = p => add(add(sc(Xt, dot(p, Xs)), sc(Yt, dot(p, Ys))), sc(Wt, dot(p, Ws)));
+  const o0 = map(loc[0]);
+  const T = p => sub(map(p), o0);
+  for (let k = 0; k < 6; k++) {
+    const id = 'y' + (k + 1);
+    atom(S, id, 'C', T(loc[k]));
+    const [da, de] = ax[k].map(d => sub(map(d), map([0, 0, 0])));
+    if (k === 0) atom(S, 'hy1', 'H', add(S.A.y1.p, sc(nrm(da), 1.09)));
+    else { atom(S, 'hy' + (k + 1) + 'a', 'H', add(S.A[id].p, sc(nrm(da), 1.09))); atom(S, 'hy' + (k + 1) + 'b', 'H', add(S.A[id].p, sc(nrm(de), 1.09))); }
+  }
+  for (let k = 0; k < 6; k++) bond(S, 'y' + (k + 1), 'y' + ((k + 1) % 6 + 1), 1);
+  bond(S, 'y1', 'hy1', 1);
+  for (let k = 2; k <= 6; k++) { bond(S, 'y' + k, 'hy' + k + 'a', 1); bond(S, 'y' + k, 'hy' + k + 'b', 1); }
+  // 苯环：xy 平面，c1 连 y1
+  const B = [1.53 + 1.39, 0, 0], ang = [180, 120, 60, 0, -60, -120];
+  ang.forEach((g, k) => {
+    const u = [Math.cos(g * DEG), Math.sin(g * DEG), 0];
+    atom(S, 'c' + (k + 1), 'C', add(B, sc(u, 1.39)), k === 0 ? { halo: 'p', num: 1 } : k === 5 ? { halo: 't', num: 6 } : { num: k + 1 });
+    if (k > 0) atom(S, 'h' + (k + 1), 'H', add(B, sc(u, 1.39 + 1.08)));
+  });
+  const kek = [2, 1, 2, 1, 2, 1];
+  S.aro = new Set();
+  for (let k = 0; k < 6; k++) { const a = 'c' + (k + 1), b = 'c' + ((k + 1) % 6 + 1); bond(S, a, b, kek[k]); S.aro.add(key(a, b)); }
+  for (let k = 2; k <= 6; k++) bond(S, 'c' + k, 'h' + k, 1);
+  bond(S, 'c1', 'y1', 1);
+  relax(S, 2000);
+  // 摆正：c1→c4 沿 +x，苯环法线朝 +y（苯环平躺，RuO₄ 从上方或下方落到环面上）
+  const C1 = S.A.c1.p, u = nrm(sub(S.A.c4.p, C1));
+  let n = nrm(crs(sub(S.A.c2.p, C1), sub(S.A.c6.p, C1)));
+  n = nrm(sub(n, sc(u, dot(n, u))));
+  const w = crs(u, n), O0 = sc(add(S.A.c1.p, S.A.c4.p), 0.5);
+  for (const id in S.A) { const q = sub(S.A[id].p, O0); S.A[id].p = [dot(q, u), dot(q, n), dot(q, w)]; }
+  // RuO₄：Ru(VIII)，四个 Ru=O，先放在右上方远处
+  const R0 = [5.4, 4.2, -1.2];
+  atom(S, 'ru', 'Ru', R0, { ox: 8 });
+  [[1, 1, 1], [1, -1, -1], [-1, 1, -1], [-1, -1, 1]].forEach((d, k) => { const id = ['q1', 'q2', 'q3', 'q4'][k]; atom(S, id, 'O', add(R0, sc(nrm(d), 1.71))); bond(S, 'ru', id, 2); });
+  relax(S, 200);
+  return S;
+}
+
+// 把 RuO₄（ru + 四个 O）整体搬到 a=b 键的一侧，并用两条“预备”约束让两个 O 分别对准 a、b
+function present(S, oa, ob, a, b, side) {
+  const g = ['ru', ...nbrs(S, 'ru')], M = sc(add(S.A[a].p, S.A[b].p), 0.5);
+  const others = nbrs(S, a).filter(x => x !== b && S.A[x].el === 'C');
+  let n = nrm(crs(sub(S.A[b].p, S.A[a].p), sub(S.A[others[0]].p, S.A[a].p)));
+  if (dot(n, side) < 0) n = sc(n, -1);
+  move(S, g, sub(add(M, sc(n, 3.0)), S.A.ru.p));
+  S.R = [[oa, a, 2.75], [ob, b, 2.75]];
+  relax(S, 700);
+}
+// [3+2]：a=b + Ru(=Oa)(=Ob) → 环状钌(VI)酸酯
+function cyclo(S, oa, ob, a, b) {
+  S.R = []; S.aro = null;
+  bond(S, a, b, 1); bond(S, a, oa, 1); bond(S, b, ob, 1); bond(S, 'ru', oa, 1); bond(S, 'ru', ob, 1);
+  S.A.ru.ox = 6;
+  relax(S, 700);
+}
+// 碎裂：C–C σ 键断开，两端各得 C=O，Ru(VI) → Ru(IV)
+function frag(S, oa, ob, a, b, away) {
+  bond(S, a, b, 0); bond(S, a, oa, 2); bond(S, b, ob, 2); bond(S, 'ru', oa, 0); bond(S, 'ru', ob, 0);
+  S.A.ru.ox = 4;
+  move(S, ['ru', ...nbrs(S, 'ru')], away);
+  relax(S, 600);
+}
+function enterO(S, ids, from) { // 来自 IO₄⁻ 的氧原子加到 Ru 上
+  const R0 = S.A.ru.p;
+  ids.forEach((id, k) => { atom(S, id, 'O', add(R0, [0.8 * (k ? 1 : -1), 1.2, 0.6])); bond(S, 'ru', id, 2); S.enter[id] = from; });
+}
+
+const SCENES = [];
+const KF = [];
+function build() {
+  const S = start();
+  const scene = (o) => { SCENES.push(Object.assign({ k0: SCENES.length ? SCENES[SCENES.length - 1].k2 : 0 }, o)); };
+  S.enter = {}; S.leave = {}; S.tags = [];
+  KF.push(snap(S));
+
+  // 幕 1：RuO₄ 登场，[3+2] 加到 C3=C4
+  S.enter = {}; S.leave = {};
+  present(S, 'q1', 'q2', 'c3', 'c4', [0, 1, 0]);
+  S.tags = [];
+  KF.push(snap(S));
+  cyclo(S, 'q1', 'q2', 'c3', 'c4'); S.enter = {}; S.leave = {};
+  KF.push(snap(S));
+  scene({ k1: 1, k2: 2, st: 0, e: 2,
+    t: '① RuO₄ 从苯环平面上方靠近 C3=C4，[3+2] 环加成',
+    c: 'RuO₄ 是四面体分子（Ru 为 +8 价）。它从苯环的一个面靠近 C3=C4，两个 O 分别对准 C3 和 C4。三对电子同时流动：C=C 的 π 电子进攻 O，这个 O 原来与 Ru 之间的 π 电子回到 Ru，另一个 Ru=O 的 π 电子去连 C3。两个 C–O 键在同一面形成（顺式），C3、C4 上的 H 被推到另一面，苯环失去芳香性。',
+    arrows: [[['b', 'c3', 'c4'], ['m', 'c4', 'q2'], -0.35], [['b', 'ru', 'q2'], ['a', 'ru'], 0.5], [['b', 'ru', 'q1'], ['m', 'q1', 'c3'], 0.4]] });
+
+  // 幕 2：钌酸酯碎裂，开环成二烯二醛 + RuO₂
+  frag(S, 'q1', 'q2', 'c3', 'c4', [0.6, 0.4, 1.6]);
+  KF.push(snap(S));
+  scene({ k1: 2, k2: 3, st: 0, e: 2,
+    t: '① 钌酸酯碎裂：C3–C4 断开，环被打开',
+    c: '同样的三根箭头再走一遍，这次流动的是 C3–C4 的 σ 键：两端各成为醛基（C=O），Ru 再得 2 个电子成为 Ru(IV) 的 RuO₂。原来的苯环变成一条两端带醛基的共轭二烯链，C1=C2、C5=C6 保持原来的顺式。',
+    arrows: [[['b', 'c3', 'c4'], ['b', 'c4', 'q2'], 0.4], [['b', 'q2', 'ru'], ['a', 'ru'], 0.5], [['b', 'ru', 'q1'], ['b', 'q1', 'c3'], 0.4]] });
+
+  // 幕 3：RuO₂ 被 2 IO₄⁻ 氧化回 RuO₄，从下方靠近 C1=C2，[3+2]
+  S.enter = {}; S.leave = {};
+  enterO(S, ['p1', 'p2'], [2, 3, 2]); S.A.ru.ox = 8;
+  present(S, 'q3', 'q4', 'c1', 'c2', [0, -1, 0]);
+  S.tags = [['ru', '+2 O（2 IO₄⁻ → 2 IO₃⁻）']];
+  KF.push(snap(S));
+  S.tags = [];
+  cyclo(S, 'q3', 'q4', 'c1', 'c2'); S.enter = {}; S.leave = {};
+  KF.push(snap(S));
+  scene({ k1: 4, k2: 5, st: 1, e: 2,
+    t: '② RuO₂ 被 NaIO₄ 再氧化，从下方进攻 C1=C2',
+    c: 'RuO₂ 从两个 IO₄⁻ 各拿一个 O，回到 RuO₄（Ru IV → VIII）。剩下两根 C=C 里 C1=C2 连着环己基、电子更富，RuO₄ 这次从分子平面下方靠近，同样 [3+2] 成环状钌酸酯。',
+    arrows: [[['b', 'c1', 'c2'], ['m', 'c2', 'q4'], 0.35], [['b', 'ru', 'q4'], ['a', 'ru'], -0.5], [['b', 'ru', 'q3'], ['m', 'q3', 'c1'], -0.4]] });
+
+  // 幕 4：碎裂，C1 成为酮，C2–C3 以乙二醛离开
+  frag(S, 'q3', 'q4', 'c1', 'c2', [0.2, -0.6, -1.6]);
+  const gly1 = comp(S, 'c2');
+  move(S, gly1, sc(nrm(sub(cen(S, gly1), S.A.c1.p)), 1.6));
+  relax(S, 300);
+  KF.push(snap(S));
+  scene({ k1: 5, k2: 6, st: 1, e: 2,
+    t: '② 碎裂：C1 变成酮，C2–C3 作为乙二醛离开',
+    c: 'C1–C2 键的电子变成 C2=O，O–Ru 键的电子回到 Ru，另一根 Ru–O 的电子变成 C1=O。C1（紫）从此一边连环己基、一边是 C=O；C2、C3 带着各自的 O 和 H 成为乙二醛（OHC–CHO）。',
+    arrows: [[['b', 'c1', 'c2'], ['b', 'c2', 'q4'], -0.4], [['b', 'q4', 'ru'], ['a', 'ru'], -0.5], [['b', 'ru', 'q3'], ['b', 'q3', 'c1'], -0.4]] });
+
+  // 幕 5：乙二醛离场；RuO₂ 再氧化；从上方进攻 C5=C6
+  S.enter = {}; S.leave = {};
+  S.leave = drop(S, gly1, sc(nrm(sub(cen(S, gly1), S.A.c1.p)), 7));
+  enterO(S, ['p3', 'p4'], [2, 3, 2]); S.A.ru.ox = 8;
+  present(S, 'p1', 'p2', 'c5', 'c6', [0, 1, 0]);
+  S.tags = [['ru', '+2 O（2 IO₄⁻ → 2 IO₃⁻）']];
+  KF.push(snap(S));
+  S.tags = [];
+  cyclo(S, 'p1', 'p2', 'c5', 'c6'); S.enter = {}; S.leave = {};
+  KF.push(snap(S));
+  scene({ k1: 7, k2: 8, st: 2, e: 2,
+    t: '③ 第三根 C=C：RuO₄ 进攻 C5=C6',
+    c: '乙二醛离开（后面会被氧化成草酸、再到 CO₂）。Ru 再被 NaIO₄ 氧化回 RuO₄，对最后一根 C5=C6 做 [3+2]。',
+    arrows: [[['b', 'c5', 'c6'], ['m', 'c6', 'p2'], -0.35], [['b', 'ru', 'p2'], ['a', 'ru'], 0.5], [['b', 'ru', 'p1'], ['m', 'p1', 'c5'], 0.4]] });
+
+  // 幕 6：碎裂，得到 α-酮醛，C4–C5 以乙二醛离开
+  frag(S, 'p1', 'p2', 'c5', 'c6', [0.4, 0.8, 1.6]);
+  const gly2 = comp(S, 'c5');
+  move(S, gly2, sc(nrm(sub(cen(S, gly2), S.A.c1.p)), 1.6));
+  relax(S, 300);
+  KF.push(snap(S));
+  scene({ k1: 8, k2: 9, st: 2, e: 2,
+    t: '③ 碎裂：剩下 α-酮醛，C4–C5 也成为乙二醛',
+    c: 'C5–C6 断开：C6（青）成为醛基碳，仍连在 C1 上，得到 环己基–C(=O)–CHO（α-酮醛）；C4、C5 成为第二分子乙二醛。到这里，原苯环只剩 C1 和 C6 还连在环己基上。',
+    arrows: [[['b', 'c5', 'c6'], ['b', 'c6', 'p2'], 0.4], [['b', 'p2', 'ru'], ['a', 'ru'], 0.5], [['b', 'ru', 'p1'], ['b', 'p1', 'c5'], 0.4]] });
+
+  // 幕 7：乙二醛离场；Ru 再氧化；醛水合并与 RuO₄ 成酯；五元环内夺氢 → α-酮酸
+  S.enter = {}; S.leave = {};
+  S.leave = drop(S, gly2, sc(nrm(sub(cen(S, gly2), S.A.c1.p)), 7));
+  enterO(S, ['p5', 'p6'], [2, 3, 2]);
+  const c6 = S.A.c6.p, out6 = nrm(sub(c6, S.A.c1.p));
+  atom(S, 'ow', 'O', add(c6, sc(out6, 1.3))); atom(S, 'hw1', 'H', add(S.A.p2.p, [0, 0.9, 0.3])); atom(S, 'hw2', 'H', add(S.A.ru.p, [0.5, 1.2, 0]));
+  ['ow', 'hw1', 'hw2'].forEach(id => { S.enter[id] = [0, -3, 2]; });
+  bond(S, 'c6', 'p2', 1); bond(S, 'p2', 'hw1', 1); bond(S, 'c6', 'ow', 1); bond(S, 'ow', 'ru', 1);
+  bond(S, 'ru', 'p3', 1); bond(S, 'p3', 'hw2', 1); S.A.ru.ox = 8;
+  move(S, ['ru', 'p3', 'p4', 'p5', 'p6', 'hw2'], sub(add(S.A.ow.p, sc(out6, 1.6)), S.A.ru.p));
+  bond(S, 'h6', 'p4', 'h');
+  S.R = [['h6', 'p4', 2.3]];
+  relax(S, 900);
+  S.tags = [['ru', '+2 O（IO₄⁻）、+ H₂O']];
+  KF.push(snap(S));
+  S.tags = []; S.R = [];
+  bond(S, 'h6', 'p4', 0); bond(S, 'c6', 'h6', 0); bond(S, 'p4', 'h6', 1); bond(S, 'ru', 'p4', 1); bond(S, 'c6', 'ow', 2); bond(S, 'ow', 'ru', 0);
+  S.A.ru.ox = 6; S.enter = {}; S.leave = {};
+  move(S, ['ru', 'p3', 'p4', 'p5', 'p6', 'hw2', 'h6'], [0.6, 1.2, 0.8]);
+  relax(S, 700);
+  KF.push(snap(S));
+  scene({ k1: 10, k2: 11, st: 3, e: 2,
+    t: '④ 醛水合、与 RuO₄ 成酯，再经五元环夺氢：醛 → 羧酸',
+    c: '醛基先加一分子水成为水合物（偕二醇），其中一个 O–H 加到 RuO₄ 上，得到钌(VIII)酸酯；C6 上的 H 正对着 Ru 的一个氧代（虚线）。三根箭头：Ru=O 的 π 电子夺取这个 H，C–H 键的电子形成 C=O，O–Ru 键的电子留给 Ru。得到 α-酮酸和 H₂RuO₄（Ru VI）。',
+    arrows: [[['b', 'ru', 'p4'], ['a', 'h6'], 0.45], [['b', 'c6', 'h6'], ['b', 'c6', 'ow'], -0.45], [['b', 'ow', 'ru'], ['a', 'ru'], 0.5]] });
+
+  // 幕 8：H₂RuO₄ 再氧化；酮水合、成酯；羧酸根推电子脱羧
+  S.enter = {}; S.leave = {};
+  const lw = sc(nrm(sub(S.A.p4.p, S.A.c1.p)), 6);
+  S.leave = Object.assign(drop(S, ['p4', 'h6', 'hw2'], lw), drop(S, ['hw1'], [0, -5, 1]));
+  atom(S, 'p7', 'O', add(S.A.ru.p, [0.9, 1.0, 0.4])); S.enter.p7 = [2, 3, 2];
+  bond(S, 'ru', 'p3', 2); bond(S, 'ru', 'p7', 2);
+  S.A.p2.chg = -1;
+  const c1 = S.A.c1.p, up1 = nrm(crs(sub(S.A.c6.p, c1), sub(S.A.y1.p, c1)));
+  atom(S, 'ow2', 'O', add(c1, sc(up1, 1.4))); atom(S, 'hw3', 'H', add(S.A.q3.p, [0, -0.9, 0.3])); atom(S, 'hw4', 'H', add(S.A.p3.p, [0.4, 0.8, 0]));
+  ['ow2', 'hw3', 'hw4'].forEach(id => { S.enter[id] = [0, -3, 2]; });
+  bond(S, 'c1', 'q3', 1); bond(S, 'q3', 'hw3', 1); bond(S, 'c1', 'ow2', 1); bond(S, 'ow2', 'ru', 1); bond(S, 'ru', 'p3', 1); bond(S, 'p3', 'hw4', 1);
+  S.A.ru.ox = 8;
+  move(S, ['ru', 'p3', 'p5', 'p6', 'p7', 'hw4'], sub(add(S.A.ow2.p, sc(up1, 1.9)), S.A.ru.p));
+  relax(S, 900);
+  S.tags = [['ru', '+ O（IO₄⁻）、+ H₂O；−H₂O、−H⁺']];
+  KF.push(snap(S));
+  S.tags = [];
+  bond(S, 'c1', 'c6', 0); bond(S, 'c6', 'p2', 2); S.A.p2.chg = 0; bond(S, 'c1', 'ow2', 2); bond(S, 'ow2', 'ru', 0);
+  bond(S, 'ru', 'p7', 1); S.A.p7.chg = -1; S.A.ru.ox = 6; S.enter = {}; S.leave = {};
+  move(S, ['c6', 'ow', 'p2'], sc(nrm(sub(S.A.c6.p, S.A.c1.p)), 1.4));
+  move(S, ['ru', 'p3', 'p5', 'p6', 'p7', 'hw4'], sc(up1, 1.2));
+  relax(S, 700);
+  KF.push(snap(S));
+  scene({ k1: 12, k2: 13, st: 4, e: 2,
+    t: '⑤ 酮水合、成酯，羧酸根推电子：C6 以 CO₂ 离开',
+    c: 'Ru(VI) 被 NaIO₄ 氧化回 RuO₄；C1 的酮羰基加水成水合物，一个 OH 与 RuO₄ 成酯；羧基失去 H⁺ 成为羧酸根。三根箭头：O⁻ 的电子推向 C6 形成 CO₂，C1–C6 键的电子转到 C1 形成 C=O，O–Ru 键断开、电子交给 Ru。C6（青）变成 CO₂，C1（紫）成为羧基碳。',
+    arrows: [[['a', 'p2'], ['b', 'c6', 'p2'], 0.6], [['b', 'c1', 'c6'], ['b', 'c1', 'ow2'], 0.45], [['b', 'ow2', 'ru'], ['a', 'ru'], -0.5]] });
+
+  // 幕 9：CO₂ 与 Ru 物种离场，只剩环己甲酸
+  S.enter = {}; S.leave = {};
+  S.leave = Object.assign(drop(S, ['c6', 'ow', 'p2'], sc(nrm(sub(S.A.c6.p, S.A.c1.p)), 7)), drop(S, ['ru', 'p3', 'p5', 'p6', 'p7', 'hw4'], sc(up1, 7)));
+  relax(S, 400);
+  KF.push(snap(S));
+  KF.push(snap(S));
+  scene({ k1: 14, k2: 15, st: 4, e: 0,
+    t: '产物：环己甲酸（94%）',
+    c: '苯环的 6 个碳里，只有连着环己基的 C1 留了下来，成为羧基碳；C6 在上一步变成 CO₂，另外 4 个碳先成为两分子乙二醛，再经草酸变成 CO₂。环己基的椅式构象全程没有被碰过。拖动可以旋转分子。',
+    arrows: [] });
+}
+build();
+
+// 3D 动画的时间轴与逐帧渲染：frame(τ, cam) → SVG 片段。纯函数，页面与核验脚本共用。
+
+const EL3 = {
+  C: { r: 0.34, f: '#8d9197', s: '#5f6369' },
+  H: { r: 0.21, f: '#f3f3f0', s: '#9b9b96' },
+  O: { r: 0.34, f: '#e5484d', s: '#a32d2d' },
+  Ru: { r: 0.5, f: '#248f8f', s: '#16605f' },
+};
+const HALO = { p: '#7f77dd', t: '#1d9e75' };
+const ROM = { 4: 'IV', 6: 'VI', 8: 'VIII' };
+const R1 = v => Math.round(v * 10) / 10;
+const ease = t => t * t * (3 - 2 * t);
+const lerp = (a, b, t) => a + (b - a) * t;
+const lerp3 = (a, b, t) => [lerp(a[0], b[0], t), lerp(a[1], b[1], t), lerp(a[2], b[2], t)];
+
+// ───────── 时间轴：每一幕 = 准备（K0→K1）+ 弯箭头 + 变形（K1→K2）+ 停留 ─────────
+const TL = [];
+let T0 = 0;
+SCENES.forEach((s, i) => {
+  const prep = s.k0 === s.k1 ? 0.3 : 1.6, arr = s.arrows.length ? 2.0 : 0, morph = s.k1 === s.k2 ? 0 : 1.7, hold = i === SCENES.length - 1 ? 3.5 : 1.1;
+  TL.push({ i: i, t0: T0, prep: prep, arr: arr, morph: morph, hold: hold, t1: T0 + prep + arr + morph + hold });
+  T0 += prep + arr + morph + hold;
+});
+const TOTAL = T0;
+function sceneAt(tau) { for (const s of TL) if (tau < s.t1) return s; return TL[TL.length - 1]; }
+
+// 某一时刻的“插值分子”：原子位置 / 不透明度、键的每一条线的不透明度
+function mix(A, B, t, tParam) {
+  const atoms = {};
+  for (const id in A.A) {
+    const a = A.A[id], b = B.A[id];
+    if (b) atoms[id] = { el: a.el, p: lerp3(a.p, b.p, t), o: 1, halo: a.halo || b.halo, num: a.num || b.num, ox: t < 0.5 ? a.ox : b.ox, chg: t < 0.5 ? a.chg : b.chg };
+    else { const v = (B.leave && B.leave[id]) || [0, 0, 0]; atoms[id] = { el: a.el, p: [a.p[0] + v[0] * t, a.p[1] + v[1] * t, a.p[2] + v[2] * t], o: 1 - t, halo: a.halo, num: a.num, ox: a.ox, chg: a.chg }; }
+  }
+  for (const id in B.A) {
+    if (A.A[id]) continue;
+    const b = B.A[id], v = (B.enter && B.enter[id]) || [0, 0, 0];
+    atoms[id] = { el: b.el, p: [b.p[0] + v[0] * (1 - t), b.p[1] + v[1] * (1 - t), b.p[2] + v[2] * (1 - t)], o: t, halo: b.halo, num: b.num, ox: b.ox, chg: b.chg };
+  }
+  const keys = new Set([...Object.keys(A.B), ...Object.keys(B.B)]), bonds = [];
+  for (const k of keys) {
+    const [a, b] = k.split('|');
+    if (!atoms[a] || !atoms[b]) continue;
+    const oa = A.B[k] || 0, ob = B.B[k] || 0, w = Math.min(atoms[a].o, atoms[b].o);
+    const one = lerp(oa && oa !== 'h' ? 1 : 0, ob && ob !== 'h' ? 1 : 0, tParam) * w;
+    const two = lerp(oa === 2 ? 1 : 0, ob === 2 ? 1 : 0, tParam) * w;
+    const hb = lerp(oa === 'h' ? 1 : 0, ob === 'h' ? 1 : 0, tParam) * w;
+    bonds.push({ a: a, b: b, one: one, two: two, hb: hb });
+  }
+  return { atoms: atoms, bonds: bonds };
+}
+function mainCentre(K) {
+  const ids = Object.keys(K.A).filter(id => K.A[id].el !== 'Ru' && !/^(q|p|r)/.test(id) || id === 'c1');
+  const seen = new Set(['c1']), st = ['c1'];
+  while (st.length) { const u = st.pop(); for (const k in K.B) { if (K.B[k] === 'h') continue; const [a, b] = k.split('|'); const v = a === u ? b : b === u ? a : null; if (v && !seen.has(v) && K.A[v] && K.A[v].el !== 'Ru') { seen.add(v); st.push(v); } } }
+  let c = [0, 0, 0], n = 0;
+  seen.forEach(id => { if (K.A[id] && K.A[id].el !== 'H') { c = [c[0] + K.A[id].p[0], c[1] + K.A[id].p[1], c[2] + K.A[id].p[2]]; n++; } });
+  return ids.length ? [c[0] / n, c[1] / n, c[2] / n] : [0, 0, 0];
+}
+
+// 某一时刻的完整状态：用于渲染，也给核验脚本 / 浏览器验收检查
+function stateAt(tau) {
+  tau = Math.max(0, Math.min(TOTAL - 1e-6, tau));
+  const seg = sceneAt(tau), sc = SCENES[seg.i];
+  let u = tau - seg.t0, A, B, t, arrowP = 0, arrowFade = 1, phase;
+  if (u < seg.prep) { A = KF[sc.k0]; B = KF[sc.k1]; t = ease(u / seg.prep); phase = 'prep'; }
+  else if ((u -= seg.prep) < seg.arr) { A = B = KF[sc.k1]; t = 1; arrowP = u / seg.arr; phase = 'arrows'; }
+  else if ((u -= seg.arr) < seg.morph) { A = KF[sc.k1]; B = KF[sc.k2]; t = ease(u / seg.morph); arrowP = 1; arrowFade = 1 - Math.min(1, u / seg.morph * 1.6); phase = 'morph'; }
+  else { A = B = KF[sc.k2]; t = 1; arrowP = 1; arrowFade = 0; phase = 'hold'; }
+  const m = mix(A, B, t, phase === 'morph' ? Math.min(1, t * 1.15) : t);
+  let cs = [0, 0, 0], cw = 0;
+  for (const id in m.atoms) { const a = m.atoms[id]; if (a.el === 'H') continue; const k = a.o * a.o; cs = [cs[0] + a.p[0] * k, cs[1] + a.p[1] * k, cs[2] + a.p[2] * k]; cw += k; }
+  const centre = cw ? [cs[0] / cw, cs[1] / cw, cs[2] / cw] : [0, 0, 0];
+  const tagO = phase === 'prep' ? Math.sin(Math.PI * Math.min(1, (tau - seg.t0) / seg.prep)) : phase === 'arrows' && seg.prep ? Math.max(0, 1 - (tau - seg.t0 - seg.prep) / 0.6) : 0;
+  return { seg: seg, sc: sc, phase: phase, m: m, centre: centre, arrowP: sc.arrows.length ? arrowP : 0, arrowFade: arrowFade, tags: (KF[sc.k1].tags || []).map(x => [x[0], x[1], tagO]) };
+}
+
+// ───────── 投影与绘制 ─────────
+function makeCam(yaw, pitch, S, cx, cy) { return { yaw: yaw, pitch: pitch, S: S || 34, cx: cx || 340, cy: cy || 175, D: 24 }; }
+function proj(cam, p, c) {
+  const x = p[0] - c[0], y = p[1] - c[1], z = p[2] - c[2];
+  const cyw = Math.cos(cam.yaw), syw = Math.sin(cam.yaw), cp = Math.cos(cam.pitch), sp = Math.sin(cam.pitch);
+  const x1 = x * cyw + z * syw, z1 = -x * syw + z * cyw;
+  const y2 = y * cp - z1 * sp, z2 = y * sp + z1 * cp;
+  const f = cam.D / (cam.D - z2);
+  return [cam.cx + x1 * cam.S * f, cam.cy - y2 * cam.S * f, z2, f];
+}
+function refPoint(m, r) {
+  const A = m.atoms;
+  if (r[0] === 'a') return A[r[1]] && A[r[1]].p;
+  if (!A[r[1]] || !A[r[2]]) return null;
+  return lerp3(A[r[1]].p, A[r[2]].p, 0.5);
+}
+function arrowSVG(cam, c, m, spec, prog, fade) {
+  const p0r = refPoint(m, spec[0]), p2r = refPoint(m, spec[1]);
+  if (!p0r || !p2r || prog <= 0 || fade <= 0) return '';
+  let p0 = proj(cam, p0r, c), p2 = proj(cam, p2r, c);
+  if (spec[1][0] === 'a') { const a = m.atoms[spec[1][1]], rr = EL3[a.el].r * cam.S * p2[3] + 4, dx = p0[0] - p2[0], dy = p0[1] - p2[1], d = Math.hypot(dx, dy) || 1; p2 = [p2[0] + dx / d * rr, p2[1] + dy / d * rr]; }
+  if (spec[0][0] === 'a') { const a = m.atoms[spec[0][1]], rr = EL3[a.el].r * cam.S * p0[3] + 7, dx = p2[0] - p0[0], dy = p2[1] - p0[1], d = Math.hypot(dx, dy) || 1; p0 = [p0[0] + dx / d * rr, p0[1] + dy / d * rr]; }
+  const dx = p2[0] - p0[0], dy = p2[1] - p0[1], d = Math.max(Math.hypot(dx, dy), 18);
+  const k = spec[2] * Math.max(d, 30);
+  const ctl = [(p0[0] + p2[0]) / 2 + dy / d * k, (p0[1] + p2[1]) / 2 - dx / d * k];
+  const pt = s => [(1 - s) * (1 - s) * p0[0] + 2 * (1 - s) * s * ctl[0] + s * s * p2[0], (1 - s) * (1 - s) * p0[1] + 2 * (1 - s) * s * ctl[1] + s * s * p2[1]];
+  const n = Math.max(2, Math.round(16 * prog)), pts = [];
+  for (let i = 0; i <= n; i++) pts.push(pt(prog * i / n));
+  let s = `<polyline class="ar3" points="${pts.map(q => R1(q[0]) + ',' + R1(q[1])).join(' ')}" style="fill:none;stroke:#e24b4a;stroke-width:2;opacity:${R1(fade * 10) / 10}" stroke-linecap="round" stroke-linejoin="round"/>`;
+  if (prog > 0.97) {
+    const e = pts[pts.length - 1], b = pt(prog * 0.9), g = Math.atan2(e[1] - b[1], e[0] - b[0]);
+    const hl = 9, hw = 4.2, l = [e[0] - Math.cos(g) * hl - Math.sin(g) * hw, e[1] - Math.sin(g) * hl + Math.cos(g) * hw], r = [e[0] - Math.cos(g) * hl + Math.sin(g) * hw, e[1] - Math.sin(g) * hl - Math.cos(g) * hw];
+    s += `<polygon points="${R1(e[0])},${R1(e[1])} ${R1(l[0])},${R1(l[1])} ${R1(r[0])},${R1(r[1])}" style="fill:#e24b4a;opacity:${R1(fade * 10) / 10}"/>`;
+  }
+  return s;
+}
+function frame(tau, cam) {
+  const st = stateAt(tau), m = st.m, c = st.centre, P = {}, items = [];
+  for (const id in m.atoms) P[id] = proj(cam, m.atoms[id].p, c);
+  const bw = 0.13 * cam.S;
+  for (const b of m.bonds) {
+    const A = P[b.a], B = P[b.b], ea = m.atoms[b.a].el, eb = m.atoms[b.b].el;
+    const f = (A[3] + B[3]) / 2, w = bw * f, dx = B[0] - A[0], dy = B[1] - A[1], d = Math.hypot(dx, dy) || 1, nx = -dy / d, ny = dx / d;
+    const M = [(A[0] + B[0]) / 2, (A[1] + B[1]) / 2], z = (A[2] + B[2]) / 2 - 0.02;
+    const line = (o, off, op, wd) => {
+      if (op < 0.02) return '';
+      const a = [A[0] + nx * off, A[1] + ny * off], mm = [M[0] + nx * off, M[1] + ny * off], bb = [B[0] + nx * off, B[1] + ny * off];
+      return `<line x1="${R1(a[0])}" y1="${R1(a[1])}" x2="${R1(mm[0])}" y2="${R1(mm[1])}" style="stroke:${EL3[ea].s};stroke-width:${R1(wd)};opacity:${R1(op * 10) / 10}" stroke-linecap="round"/>` +
+        `<line x1="${R1(mm[0])}" y1="${R1(mm[1])}" x2="${R1(bb[0])}" y2="${R1(bb[1])}" style="stroke:${EL3[eb].s};stroke-width:${R1(wd)};opacity:${R1(op * 10) / 10}" stroke-linecap="round"/>`;
+    };
+    let s = '';
+    if (b.two > 0.02) { s += line(1, -w * 0.75, b.one, w * 0.62) + line(2, w * 0.75, b.two, w * 0.62); if (b.one - b.two > 0.02) s += line(1, 0, (b.one - b.two), w * 0.62); }
+    else s += line(1, 0, b.one, w);
+    if (b.hb > 0.02) s += `<line x1="${R1(A[0])}" y1="${R1(A[1])}" x2="${R1(B[0])}" y2="${R1(B[1])}" style="stroke:#8a8a86;stroke-width:1.3;opacity:${R1(b.hb * 10) / 10}" stroke-dasharray="3 3"/>`;
+    if (s) items.push([z, s]);
+  }
+  for (const id in m.atoms) {
+    const a = m.atoms[id], p = P[id], e = EL3[a.el], r = e.r * cam.S * p[3];
+    if (a.o < 0.02) continue;
+    let s = `<g style="opacity:${R1(a.o * 10) / 10}">`;
+    if (a.halo) s += `<circle cx="${R1(p[0])}" cy="${R1(p[1])}" r="${R1(r + 4)}" style="fill:none;stroke:${HALO[a.halo]};stroke-width:2.2"/>`;
+    s += `<circle cx="${R1(p[0])}" cy="${R1(p[1])}" r="${R1(r)}" style="fill:${e.f};stroke:${e.s};stroke-width:0.8"/>`;
+    s += `<circle cx="${R1(p[0] - r * 0.33)}" cy="${R1(p[1] - r * 0.36)}" r="${R1(r * 0.3)}" style="fill:#ffffff;opacity:0.45"/>`;
+    if (a.el === 'Ru') s += `<text x="${R1(p[0])}" y="${R1(p[1])}" text-anchor="middle" dominant-baseline="central" style="font-size:11px;fill:#ffffff;font-weight:500">Ru</text>`;
+    s += '</g>';
+    items.push([p[2], s]);
+  }
+  items.sort((x, y) => x[0] - y[0]);
+  let over = '';
+  for (const id in m.atoms) {
+    const a = m.atoms[id], p = P[id], r = EL3[a.el].r * cam.S * p[3];
+    if (a.o < 0.3) continue;
+    if (a.num) over += `<text class="ts" x="${R1(p[0] + r + 3)}" y="${R1(p[1] - r - 3)}" style="opacity:${R1(a.o * 10) / 10}">${a.num}</text>`;
+    if (a.ox) over += `<text class="ts" x="${R1(p[0] + r + 2)}" y="${R1(p[1] + r + 6)}" style="opacity:${R1(a.o * 10) / 10}">${ROM[a.ox]}</text>`;
+    if (a.chg) { const q = [p[0] + r + 6, p[1] - r - 2]; over += `<g style="opacity:${R1(a.o * 10) / 10}"><circle cx="${R1(q[0])}" cy="${R1(q[1])}" r="5.5" style="fill:none;stroke:#e24b4a;stroke-width:1.1"/><line x1="${R1(q[0] - 2.8)}" y1="${R1(q[1])}" x2="${R1(q[0] + 2.8)}" y2="${R1(q[1])}" style="stroke:#e24b4a;stroke-width:1.2"/></g>`; }
+  }
+  st.sc.arrows.forEach((spec, i) => {
+    const n = st.sc.arrows.length, s0 = i / (n + 1), prog = Math.max(0, Math.min(1, (st.arrowP - s0) / (1.6 / (n + 1))));
+    over += arrowSVG(cam, c, m, spec, prog, st.arrowFade);
+  });
+  for (const [id, text, o] of st.tags) {
+    if (o < 0.03 || !m.atoms[id]) continue;
+    const p = P[id];
+    over += `<text class="ts" x="${R1(p[0])}" y="${R1(p[1] - 34)}" text-anchor="middle" style="opacity:${R1(o * 10) / 10}">${text}</text>`;
+  }
+  return { svg: items.map(x => x[1]).join('') + over, st: st };
+}
+
+// 3D 动画播放器：播放 / 暂停、逐幕、时间轴、速度、拖动旋转、复位视角。
+// 用到 mech3d.js 的 SCENES 和 render3d.js 的 frame / TL / TOTAL / makeCam（build.mjs 放进同一个块作用域）。
+const q3 = id => document.getElementById(id);
+const G3 = q3('s3G'), T3 = q3('s3T'), C3 = q3('s3C'), RG = q3('s3R'), SV = q3('s3S');
+const ICON_PLAY = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11l9-5.5z" fill="currentColor"/></svg>';
+const ICON_PAUSE = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5h3v11H4zM9 2.5h3v11H9z" fill="currentColor"/></svg>';
+const V0 = [-0.6, 0.42];
+let tau = 0, playing = false, speed = 1, stopAt = null, yaw = V0[0], pitch = V0[1], last = null, cur = -1;
+RG.max = TOTAL.toFixed(2);
+const dots3 = SCENES.map((s, i) => {
+  const d = document.createElement('button');
+  d.type = 'button'; d.className = 'dot'; d.setAttribute('aria-label', '第 ' + (i + 1) + ' 幕：' + s.t);
+  d.onclick = () => go(i, true);
+  q3('s3D').appendChild(d);
+  return d;
+});
+function setIcon() { q3('s3P').innerHTML = playing ? ICON_PAUSE + '暂停' : ICON_PLAY + '播放'; }
+function draw3() {
+  const f = frame(tau, makeCam(yaw, pitch, 36, 340, 180));
+  G3.innerHTML = f.svg;
+  const i = f.st.seg.i;
+  if (i !== cur) {
+    cur = i; T3.textContent = SCENES[i].t; C3.textContent = SCENES[i].c;
+    dots3.forEach((d, k) => { d.classList.toggle('on', k === i); d.setAttribute('aria-current', k === i ? 'step' : 'false'); });
+    q3('s3N').textContent = (i + 1) + ' / ' + SCENES.length;
+  }
+  RG.value = tau.toFixed(2);
+}
+function tick(ts) {
+  if (playing) {
+    const dt = last == null ? 0 : Math.min(0.1, (ts - last) / 1000);
+    tau += dt * speed;
+    if (stopAt != null && tau >= stopAt) { tau = stopAt; playing = false; stopAt = null; setIcon(); }
+    if (tau >= TOTAL) { tau = TOTAL - 0.001; playing = false; setIcon(); }
+    draw3();
+  }
+  last = ts;
+  requestAnimationFrame(tick);
+}
+// 跳到第 i 幕开头；play = true 时播完这一幕自动停下
+function go(i, play) {
+  i = Math.max(0, Math.min(SCENES.length - 1, i));
+  tau = TL[i].t0 + 0.001; stopAt = TL[i].t1 - 0.02; playing = play;
+  setIcon(); draw3();
+}
+function toggle() {
+  if (playing) playing = false;
+  else { if (tau >= TOTAL - 0.01) tau = 0; stopAt = null; playing = true; }
+  setIcon();
+}
+q3('s3P').onclick = toggle;
+q3('s3F').onclick = () => go(cur + 1, true);
+q3('s3B').onclick = () => go(tau - TL[cur].t0 > 1 ? cur : cur - 1, true);
+RG.oninput = () => { tau = +RG.value; playing = false; stopAt = null; setIcon(); draw3(); };
+document.querySelectorAll('[data-sp]').forEach(b => {
+  b.onclick = () => { speed = +b.dataset.sp; document.querySelectorAll('[data-sp]').forEach(x => { x.classList.toggle('on', x === b); x.setAttribute('aria-pressed', String(x === b)); }); };
+});
+q3('s3V').onclick = () => { yaw = V0[0]; pitch = V0[1]; draw3(); };
+let drag = null;
+SV.addEventListener('pointerdown', e => { drag = [e.clientX, e.clientY, yaw, pitch]; SV.setPointerCapture(e.pointerId); SV.style.cursor = 'grabbing'; });
+SV.addEventListener('pointermove', e => {
+  if (!drag) return;
+  const k = 680 / (SV.getBoundingClientRect().width || 680) * 0.01;
+  yaw = drag[2] + (e.clientX - drag[0]) * k;
+  pitch = Math.max(-1.45, Math.min(1.45, drag[3] + (e.clientY - drag[1]) * k));
+  draw3();
+});
+const endDrag = () => { drag = null; SV.style.cursor = 'grab'; };
+SV.addEventListener('pointerup', endDrag);
+SV.addEventListener('pointercancel', endDrag);
+SV.addEventListener('keydown', e => {
+  if (e.key === ' ') { e.preventDefault(); toggle(); }
+  else if (e.key === 'ArrowRight') { e.preventDefault(); go(cur + 1, true); }
+  else if (e.key === 'ArrowLeft') { e.preventDefault(); go(cur - 1, true); }
+});
+setIcon(); draw3(); requestAnimationFrame(tick);
+// 第一次滚到动画区时自动播放一遍；系统开启“减少动态效果”时不自动播放
+const reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (!reduce && 'IntersectionObserver' in window) {
+  const io = new IntersectionObserver(es => {
+    if (es.some(x => x.isIntersecting)) { io.disconnect(); if (!playing && tau < 0.01) { playing = true; setIcon(); } }
+  }, { threshold: 0.5 });
+  io.observe(SV);
+}
+window.__anim3 = { go: go, get tau() { return tau; }, set tau(v) { tau = v; draw3(); }, get playing() { return playing; }, get scene() { return cur; }, get view() { return [yaw, pitch]; }, TOTAL: TOTAL, n: SCENES.length };
+
+}
+</script>
+</body>
+</html>

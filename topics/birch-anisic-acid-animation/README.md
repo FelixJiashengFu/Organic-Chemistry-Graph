@@ -1,6 +1,6 @@
 # 邻甲氧基苯甲酸 → 2-丁基环己-2-烯酮：2D 机理动画
 
-> [打开页面](./index.html) · 在线：<https://uugyfgyb.github.io/Organic-Chemistry-Graph/topics/birch-anisic-acid-animation/>
+> [打开页面](./index.html) · 在线：<https://felixjiashengfu.github.io/Organic-Chemistry-Graph/topics/birch-anisic-acid-animation/>
 
 与 [`birch-anisic-acid-steps`](../birch-anisic-acid-steps/)（11 帧分步机理）同一道题、同一条路线：Birch 还原–烷基化 → 烯醇醚水解 → β-酮酸脱羧与双键异构化。这一页把机理连成 13 幕动画：试剂从场外进来，弯箭头一笔一笔画出（箭身上一对红点代表电子对），键断开与生成，副产物飘走。每个原子从头到尾是同一个对象，可以看清 H 和 O 的去向。原题截图见 [`source/problem.png`](./source/problem.png)。
 

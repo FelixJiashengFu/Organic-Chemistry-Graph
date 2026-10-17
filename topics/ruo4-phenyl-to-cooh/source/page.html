@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="description" content="RuCl₃/NaIO₄（Sharpless 条件）把环己基苯的苯环拆成羧基，得到环己甲酸（94%）。11 帧 2D 分步机理把每根弯箭头画全，9 幕 3D 球棍动画演示 RuO₄ 从环面上下方进攻；结构、守恒、Ru 价态与电子数由脚本核验。离线单文件。">
+<title>RuO₄ 把苯环拆成羧基：环己基苯 → 环己甲酸｜Organic Chemistry Graph</title>
+<style>
+:root{
+  --paper:#f6f5f1; --surface:#ffffff; --surface-2:#efede7;
+  --ink:#1c1e22; --ink-soft:#5c6068; --ink-faint:#8b8f96; --rule:#dbd7cc;
+  --accent:#c23b28; --wash:#f6e3de; --link:#2a66ad; --arrow:#e24b4a;
+  --p-fill:#eeedfe; --p-line:#534ab7; --p-text:#534ab7; --t-fill:#e1f5ee; --t-line:#0f6e56; --t-text:#0f6e56;
+  --display:"Songti SC","Noto Serif CJK SC","Source Han Serif SC",Georgia,"Times New Roman","STSong","SimSun",serif;
+  --body:"PingFang SC","Microsoft YaHei","Noto Sans CJK SC","Hiragino Sans GB",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:ui-monospace,SFMono-Regular,"Cascadia Mono",Consolas,"Liberation Mono",Menlo,monospace;
+  --math:"Cambria Math","STIX Two Math","STIX Two Text",Cambria,"Times New Roman",serif;
+}
+@media (prefers-color-scheme:dark){:root{
+  --paper:#111316; --surface:#181b20; --surface-2:#1f2329;
+  --ink:#e9e7e2; --ink-soft:#9ca1a9; --ink-faint:#6f747c; --rule:#2c3138;
+  --accent:#ff7b62; --wash:#2f1a16; --link:#6ea8ff; --arrow:#ff6b66;
+  --p-fill:#3c3489; --p-line:#afa9ec; --p-text:#cecbf6; --t-fill:#085041; --t-line:#5dcaa5; --t-text:#9fe1cb;
+  color-scheme:dark;
+}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.78;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1000px;margin:0 auto;padding-inline:20px}
+.read{max-width:780px}
+a{color:var(--link);text-underline-offset:3px}
+i{font-family:var(--math);font-style:italic}
+sub,sup{line-height:0}
+b,strong{font-weight:650}
+code{font-family:var(--mono);font-size:.9em;background:var(--surface-2);padding:1px 5px;border-radius:4px}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--link);outline-offset:2px}
+.hero{border-bottom:1px solid var(--rule);padding-block:52px 34px}
+.brand{font-family:var(--mono);font-size:11.5px;letter-spacing:.15em;color:var(--accent);margin:0 0 26px}
+.brand a{color:inherit;text-decoration:none}
+h1{font-family:var(--display);font-weight:600;font-size:clamp(28px,5.2vw,48px);line-height:1.18;letter-spacing:-.01em;margin:0 0 18px;text-wrap:balance}
+.lede{color:var(--ink-soft);max-width:70ch;font-size:16px;margin:0}
+.route{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:12px;margin:28px 0 0;padding:0;list-style:none}
+.route li{background:var(--surface);border:1px solid var(--rule);border-top:3px solid var(--accent);border-radius:8px;padding:14px 16px;font-size:13.5px;color:var(--ink-soft)}
+.route b{display:block;color:var(--ink);font-size:15px;margin-bottom:4px}
+.toc{display:flex;flex-wrap:wrap;gap:8px 18px;margin:26px 0 0;padding:0;list-style:none;font-size:13.5px}
+.toc a{color:var(--ink-soft);text-decoration:none;border-bottom:1px solid var(--rule)}
+.toc a:hover{color:var(--ink)}
+section{padding-block:46px 10px}
+.kicker{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;color:var(--accent);margin:0 0 8px}
+h2{font-family:var(--display);font-weight:600;font-size:clamp(22px,3.6vw,30px);line-height:1.3;margin:0 0 12px}
+h3{font-size:16px;margin:26px 0 8px}
+.sec-lede{color:var(--ink-soft);max-width:72ch;margin:0 0 20px}
+.lab{background:var(--surface);border:1px solid var(--rule);border-radius:12px;padding:18px 18px 16px;max-width:820px}
+.pills{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 14px}
+.pill{font-size:12px;padding:4px 11px;border-radius:999px;border:1px solid var(--rule);background:transparent;color:var(--ink-soft);cursor:pointer}
+.pill.on{background:var(--wash);color:var(--accent);border-color:color-mix(in srgb,var(--accent) 45%,transparent)}
+.lab-t{font-size:16px;font-weight:600;margin:0 0 4px}
+.lab-c{font-size:14px;line-height:1.65;color:var(--ink-soft);margin:0 0 6px;min-height:92px}
+.svgwrap{overflow-x:auto;margin:0 -6px}
+.svgwrap svg{display:block;width:100%;min-width:560px;height:auto}
+.t{font-size:14px;fill:var(--ink)}
+.ts{font-size:12px;fill:var(--ink-soft)}
+.th{font-size:13px;font-weight:600;fill:var(--ink)}
+.teq{font-size:13.5px;fill:var(--ink);font-family:var(--math)}
+.tox{font-size:11px;fill:var(--ink-soft)}
+.c-purple{fill:var(--p-fill);stroke:var(--p-line)}
+.c-teal{fill:var(--t-fill);stroke:var(--t-line)}
+.c-purple>.ts{fill:var(--p-text);stroke:none}
+.c-teal>.ts{fill:var(--t-text);stroke:none}
+.leg{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:12px;color:var(--ink-soft);margin:6px 0 14px}
+.leg span{display:inline-flex;align-items:center;gap:6px}
+.sw{width:13px;height:13px;border-radius:50%;display:inline-block}
+.sw-p{background:var(--p-fill);border:1px solid var(--p-line)}
+.sw-t{background:var(--t-fill);border:1px solid var(--t-line)}
+.ring-p{border:2px solid #7f77dd}
+.ring-t{border:2px solid #1d9e75}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.btn{background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:6px 14px;font-size:14px;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.btn:hover{background:var(--surface-2)}
+.btn svg{width:15px;height:15px}
+.btn.sm{padding:4px 10px;font-size:12.5px}
+.btn.on{background:var(--wash);color:var(--accent);border-color:color-mix(in srgb,var(--accent) 45%,transparent)}
+.dots{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;flex:1;align-items:center}
+.dot{width:8px;height:8px;border-radius:4px;background:var(--rule);border:0;padding:0;cursor:pointer;transition:width .2s}
+.dot.on{width:22px;background:var(--accent)}
+@media (prefers-reduced-motion:reduce){.dot{transition:none}}
+.count{font-family:var(--mono);font-size:12px;color:var(--ink-soft);min-width:44px;text-align:center}
+.stage3{display:block;width:100%;height:auto;touch-action:none;cursor:grab;user-select:none;-webkit-user-select:none;border-radius:8px;background:var(--surface)}
+.stage3:focus-visible{outline:2px solid var(--link);outline-offset:2px}
+.ctl{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:8px}
+.ctl input[type=range]{flex:1;min-width:150px;accent-color:var(--accent)}
+.cards3{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:14px}
+.card{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:16px 18px}
+.card h3{margin:0 0 6px;font-size:15.5px}
+.card .cond{font-family:var(--mono);font-size:12px;color:var(--accent);margin:0 0 8px}
+.card ul{margin:0;padding-left:18px;font-size:14px}
+.card li{margin:3px 0}
+.note{background:var(--surface-2);border-left:3px solid var(--rule);padding:12px 16px;margin:16px 0 0;font-size:13.5px;color:var(--ink-soft)}
+.tbl-wrap{overflow-x:auto;border:1px solid var(--rule);border-radius:8px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th,td{text-align:left;padding:8px 12px;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-weight:600;background:var(--surface-2);white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td.f{font-family:var(--math);white-space:nowrap}
+td.n{font-family:var(--mono);white-space:nowrap;text-align:right}
+.eq{font-family:var(--math);font-size:15px;background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:10px 14px;margin:8px 0;overflow-x:auto;white-space:nowrap}
+.eq small{font-family:var(--body);color:var(--ink-soft);font-size:12.5px;margin-left:10px}
+.pit{padding-left:20px}
+.pit li{margin:8px 0}
+.layers{list-style:none;padding:0;margin:0}
+.layers li{display:grid;grid-template-columns:92px minmax(0,1fr);gap:12px;padding:10px 0;border-bottom:1px solid var(--rule);font-size:14px}
+.lk{font-size:12px;font-weight:600;border-radius:4px;padding:2px 8px;height:fit-content;text-align:center}
+.lk-orig{background:var(--surface-2);color:var(--ink)}
+.lk-exact{background:color-mix(in srgb,var(--t-line) 18%,transparent);color:var(--t-line)}
+.lk-lit{background:color-mix(in srgb,var(--link) 16%,transparent);color:var(--link)}
+.lk-schem{background:var(--wash);color:var(--accent)}
+.refs{padding-left:20px;font-size:14px}
+.refs li{margin:6px 0}
+.orig{max-width:100%;height:auto;border:1px solid var(--rule);border-radius:6px;background:#fff;margin:4px 0 0}
+footer{border-top:1px solid var(--rule);margin-top:50px;padding-block:22px 48px;font-size:12.5px;color:var(--ink-soft)}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+</style>
+</head>
+<body>
+<header class="hero"><div class="wrap">
+  <p class="brand"><a href="../../index.html">ORGANIC CHEMISTRY GRAPH</a> · 有机化学图解 · 氧化反应</p>
+  <h1>把苯环拆成羧基：<br>RuO₄ 氧化环己基苯</h1>
+  <p class="lede">题目：环己基苯（cyclohexylbenzene）在 RuCl₃、NaIO₄、MeCN/CCl₄ 中反应 24 h，得到环己甲酸（cyclohexanecarboxylic acid），收率 94%。这就是 Sharpless 等 1981 年改进的四氧化钌催化氧化（RuO₄-catalyzed oxidation）。苯环的 6 个碳里，连着环己基的那个碳留下来成为羧基碳，其余 5 个全部变成 CO₂。下面先用 11 帧 2D 结构式把每一根弯箭头画全，再用 3D 球棍模型把同一过程演一遍：RuO₄ 从苯环平面的上方、下方落到 C=C 上。</p>
+  <ol class="route">
+    <li><b>① 生成 RuO₄</b>RuCl₃（催化量）被 NaIO₄ 氧化成 Ru(VIII) 的 RuO₄。RuO₄ 每被还原一次，就由水相里的 NaIO₄ 重新氧化。</li>
+    <li><b>② 一根一根切断 C=C</b>[3+2] 环加成生成环状钌酸酯，碎裂成两个 C=O。切三次后，苯环变成一个 α-酮醛和两分子乙二醛。</li>
+    <li><b>③ 收尾成 COOH</b>醛氧化成羧酸，α-酮酸氧化脱羧放出 CO₂，C1 成为羧基碳。乙二醛经草酸也变成 CO₂。</li>
+  </ol>
+  <nav aria-label="本页目录"><ul class="toc">
+    <li><a href="#lab-sec">01 分步机理</a></li>
+    <li><a href="#anim-sec">02 3D 动画</a></li>
+    <li><a href="#stages">03 各步做了什么</a></li>
+    <li><a href="#ledger">04 原子与电子记账</a></li>
+    <li><a href="#pitfalls">05 常见错误</a></li>
+    <li><a href="#glossary">06 术语表</a></li>
+    <li><a href="#sources">07 来源与核验</a></li>
+  </ul></nav>
+</div></header>
+
+<main>
+<section id="lab-sec"><div class="wrap">
+  <p class="kicker">01 / 分步机理</p>
+  <h2>11 帧，把每一根弯箭头画全</h2>
+  <p class="sec-lede">用 ← → 键或下方按钮翻页，标签可以直接跳到某一阶段。环内的小数字是原苯环的编号：C1 连环己基（紫），C6 在它旁边（青）。罗马数字是 Ru 的氧化态。</p>
+  <div class="lab" id="lab">
+    <h3 class="sr-only">分步机理图</h3>
+    <div class="pills" id="mxPills" role="group" aria-label="跳到阶段"></div>
+    <p class="lab-t" id="mxT" aria-live="polite">总览</p>
+    <p class="lab-c" id="mxC"></p>
+    <div class="svgwrap"><svg viewBox="0 0 680 240" role="img" aria-labelledby="mxST"><title id="mxST">当前步骤的结构式、试剂与电子流向弯箭头</title><g id="mxG"></g></svg></div>
+    <div class="leg">
+      <span><i class="sw sw-p"></i>原 C1（ipso，最后成为 COOH 碳）</span>
+      <span><i class="sw sw-t"></i>原 C6（最后变成 CO₂）</span>
+      <span><svg width="28" height="16" aria-hidden="true" id="mxLeg"></svg>弯箭头：一对电子的流向</span>
+      <span>⊖：形式电荷　VIII / VI / IV：Ru 氧化态</span>
+    </div>
+    <div class="nav">
+      <button class="btn" id="mxPrev" type="button"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>上一步</button>
+      <div class="dots" id="mxDots"></div>
+      <span class="count" id="mxCount">1 / 11</span>
+      <button class="btn" id="mxNext" type="button">下一步<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </div>
+  </div>
+</div></section>
+
+<section id="anim-sec"><div class="wrap">
+  <p class="kicker">02 / 3D 动画</p>
+  <h2>同一个过程，放进三维空间</h2>
+  <p class="sec-lede">球棍模型，H 原子全部画出。每一幕先让试剂就位，再逐笔画出弯箭头，然后原子移动、键断开或生成。原子编号全程不变：你可以盯着紫圈的 C1，看它怎样从苯环上的一个碳变成羧基碳。拖动画面可以旋转；聚焦画面后，空格键播放或暂停，← → 键切换幕。坐标由页内的小型几何松弛算出（键长、键角、sp² 平面、椅式），属于示意几何，不是量子化学结构。</p>
+  <div class="lab" id="anim">
+    <h3 class="sr-only">3D 机理动画</h3>
+    <p class="lab-t" id="s3T" aria-live="polite">3D 动画</p>
+    <p class="lab-c" id="s3C"></p>
+    <svg class="stage3" id="s3S" viewBox="0 0 680 360" role="img" tabindex="0" aria-labelledby="s3ST"><title id="s3ST">球棍模型 3D 动画：灰色碳、白色氢、红色氧、青色钌；红色弯箭头表示一对电子的流向；可拖动旋转</title><g id="s3G"></g></svg>
+    <div class="leg">
+      <span><i class="sw" style="background:#8d9197"></i>C</span><span><i class="sw" style="background:#f3f3f0;border:1px solid #9b9b96"></i>H</span><span><i class="sw" style="background:#e5484d"></i>O</span><span><i class="sw" style="background:#248f8f"></i>Ru（旁注罗马数字 = 氧化态）</span>
+      <span><i class="sw ring-p"></i>C1 → COOH 碳</span><span><i class="sw ring-t"></i>C6 → CO₂</span>
+    </div>
+    <div class="ctl">
+      <button class="btn sm" id="s3B" type="button" aria-label="上一幕"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 3v10M12 3 6 8l6 5z" fill="currentColor" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg></button>
+      <button class="btn sm" id="s3P" type="button"></button>
+      <button class="btn sm" id="s3F" type="button" aria-label="下一幕"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M12 3v10M4 3l6 5-6 5z" fill="currentColor" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg></button>
+      <input type="range" id="s3R" min="0" step="0.01" value="0" aria-label="时间轴">
+      <span class="count" id="s3N">1 / 9</span>
+    </div>
+    <div class="ctl">
+      <div class="dots" id="s3D" style="justify-content:flex-start"></div>
+      <button class="btn sm" type="button" data-sp="0.5">0.5×</button><button class="btn sm on" type="button" data-sp="1">1×</button><button class="btn sm" type="button" data-sp="2">2×</button>
+      <button class="btn sm" type="button" id="s3V">复位视角</button>
+    </div>
+  </div>
+</div></section>
+
+<section id="stages"><div class="wrap">
+  <p class="kicker">03 / 各步做了什么</p>
+  <h2>两种“招式”反复使用</h2>
+  <p class="sec-lede">整个反应只用到 RuO₄ 的两类本领。第一类是切断 C=C：先 [3+2] 环加成，再让环状钌酸酯碎裂。第二类是把与 Ru 成酯的 C–O 再氧化一级：醛氧化成酸，α-酮酸脱羧也属于这一类。每用一次，Ru 就被还原；NaIO₄ 负责把它氧化回去。</p>
+  <div class="cards3">
+    <article class="card">
+      <h3>催化剂与溶剂</h3>
+      <p class="cond">RuCl₃（催化量），NaIO₄（≥ 14 当量），CCl₄ / MeCN / H₂O</p>
+      <ul>
+        <li>RuCl₃ 只是前体（precatalyst）。NaIO₄ 先把它氧化成 RuO₄（Ru VIII），真正的氧化剂是 RuO₄。</li>
+        <li>NaIO₄ 是按化学计量消耗的终端氧化剂（terminal oxidant）。按电子数算，每转化 1 分子底物至少要 14 个 IO₄⁻。</li>
+        <li>体系是两相：NaIO₄ 在水里，RuO₄ 和底物在 CCl₄ 里，Ru 在两相之间往返。题图只写了 MeCN、CCl₄，但 Sharpless 条件里还有水。</li>
+        <li>Sharpless 等发现加入 MeCN 后效果大为改善。通常的解释是：MeCN 与低价钌配位，防止它被反应中生成的羧酸络合、沉淀而失活。</li>
+      </ul>
+    </article>
+    <article class="card">
+      <h3>切断 C=C：[3+2] + 碎裂</h3>
+      <p class="cond">每根 C=C：RuO₄ → 环状 Ru(VI) 酸酯 → RuO₂，共 4 e⁻</p>
+      <ul>
+        <li>第一次进攻最难，它要破坏芳香性（去芳构化，dearomatization）。RuO₄ 是强亲电试剂，能做到这一步；OsO₄ 一般只能加到多环芳烃（如菲的 9,10 位）上。</li>
+        <li>两个新 C–O 键在同一面形成（顺式），这和 OsO₄ 双羟基化相同。</li>
+        <li>碎裂时的三根箭头与环加成同形，只是这次流动的是 C–C σ 键。两端各得一个 C=O，Ru 再降两价。</li>
+        <li>三根 C=C 依次切断后，苯环变成两分子乙二醛（C2–C3、C4–C5）和一个仍连在环己基上的 α-酮醛（C1–C6）。</li>
+      </ul>
+    </article>
+    <article class="card">
+      <h3>收尾：醛 → 酸，α-酮酸脱羧</h3>
+      <p class="cond">每步 2 e⁻：Ru(VIII) → Ru(VI)</p>
+      <ul>
+        <li>醛先水合成偕二醇。其中一个 OH 与 RuO₄ 成酯，然后经五元环夺氢，醛氧化成羧酸。这一步和铬酸酯氧化醇的思路相同。</li>
+        <li>α-酮酸的酮羰基同样先水合、成酯。接着羧酸根推电子放出 CO₂，C1 得到第二个 C=O。C1 就这样从芳香碳变成了羧基碳。</li>
+        <li>乙二醛的两个醛基按同样方式氧化成草酸，草酸再被氧化成 2 个 CO₂。</li>
+        <li>RuO₄ 也能氧化饱和 C–H，叔 C–H 尤其容易，但苯环的 π 电子反应快得多。COOH 生成以后，相邻的 C–H 又被吸电子基钝化。94% 的收率说明环己基基本没被碰到。</li>
+      </ul>
+    </article>
+  </div>
+  <div class="note"><b>文献做法</b>（Carlsen, Katsuki, Martín, Sharpless 1981）：在 CCl₄–H₂O 两相 RuO₄ 催化体系中加入 MeCN，烯烃切断、醇氧化、醚氧化和芳环降解都大为改善。原文摘要提到这一体系也适用于芳环的氧化；题图的条件正是这一改进体系（94% 取自题图）。合成上常把苯基当作“隐藏的羧基”：先用苯基参与构建骨架，最后用 RuO₄ 把它拆成 COOH（例如 Núñez & Martín 1990）。</div>
+</div></section>
+
+<section id="ledger"><div class="wrap read">
+  <p class="kicker">04 / 原子与电子记账</p>
+  <h2>每一步的分子式和电子数都对得上</h2>
+  <p class="sec-lede">下表的分子式不是手抄的。<code>source/verify.mjs</code> 直接读取页面上画出的每个结构（每个原子、每根键、每个电荷），补齐隐含氢后算出分子式；3D 动画的每个关键帧由 <code>source/verify3d.mjs</code> 用显式氢再算一遍，两边逐一对照。</p>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>物种</th><th>分子式</th><th>名称 / 说明</th></tr></thead>
+    <tbody>
+      <tr><td>原料</td><td class="f">C₁₂H₁₆</td><td>环己基苯 cyclohexylbenzene</td></tr>
+      <tr><td>① 环加成产物</td><td class="f">C₁₂H₁₆O₄Ru</td><td>环状钌(VI)酸酯 cyclic ruthenate(VI) ester（C3、C4 上）</td></tr>
+      <tr><td>① 开环产物</td><td class="f">C₁₂H₁₆O₂</td><td>3-环己基己-2,4-二烯二醛 3-cyclohexylhexa-2,4-dienedial（两根 C=C 保持环内的顺式几何）</td></tr>
+      <tr><td>② 产物</td><td class="f">C₁₀H₁₄O₂</td><td>4-环己基-4-氧代丁-2-烯醛 4-cyclohexyl-4-oxobut-2-enal ＋ 乙二醛 glyoxal（C₂H₂O₂）</td></tr>
+      <tr><td>③ 产物</td><td class="f">C₈H₁₂O₂</td><td>2-环己基-2-氧代乙醛（α-酮醛）2-cyclohexyl-2-oxoacetaldehyde ＋ 乙二醛</td></tr>
+      <tr><td>④ 产物</td><td class="f">C₈H₁₂O₃</td><td>2-环己基-2-氧代乙酸（α-酮酸）2-cyclohexyl-2-oxoacetic acid</td></tr>
+      <tr><td>⑤ 产物</td><td class="f">C₇H₁₂O₂</td><td>环己甲酸 cyclohexanecarboxylic acid ＋ CO₂</td></tr>
+      <tr><td>⑥ 小分子</td><td class="f">C₂H₂O₂ → C₂H₂O₄ → CO₂</td><td>乙二醛 → 草酸 oxalic acid → 二氧化碳</td></tr>
+    </tbody>
+  </table></div>
+  <h3>配平的方程式</h3>
+  <p class="eq">C₁₂H₁₆ + 14 NaIO₄ → C₇H₁₂O₂ + 5 CO₂ + 2 H₂O + 14 NaIO₃<small>总式</small></p>
+  <p class="eq">2 RuCl₃ + 5 NaIO₄ + 3 H₂O → 2 RuO₄ + 5 NaIO₃ + 6 HCl<small>生成催化剂：Ru(III) → Ru(VIII)</small></p>
+  <p class="eq">RuO₂ + 2 NaIO₄ → RuO₄ + 2 NaIO₃　　H₂RuO₄ + NaIO₄ → RuO₄ + NaIO₃ + H₂O<small>再生</small></p>
+  <h3>28 个电子从哪里来</h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>步骤</th><th>碳氧化态的变化</th><th>电子数</th></tr></thead>
+    <tbody>
+      <tr><td>①②③ 三次 C=C 断裂（每次 [3+2] 2 e⁻ + 碎裂 2 e⁻）</td><td>每次两个碳各多两根 C–O 键</td><td class="n">3 × 4 = 12</td></tr>
+      <tr><td>④ α-酮醛 → α-酮酸</td><td>C6：+1 → +3</td><td class="n">2</td></tr>
+      <tr><td>⑤ 氧化脱羧</td><td>C1：+2 → +3；C6：+3 → +4（CO₂）</td><td class="n">2</td></tr>
+      <tr><td>⑥ 2 乙二醛 → 2 草酸 → 4 CO₂</td><td>每个碳 +1 → +3 → +4</td><td class="n">8 + 4</td></tr>
+      <tr><td><b>合计</b></td><td>环上 6 个碳：C1 0 → +3，C2–C6 各 −1 → +4</td><td class="n"><b>28 = 14 × 2</b></td></tr>
+    </tbody>
+  </table></div>
+  <h3>原子去哪了</h3>
+  <ul class="pit">
+    <li>C1（紫）自始至终连着环己基，从不带 H：芳香碳（0）→ 酮羰基碳 → 羧基碳（+3）。</li>
+    <li>C6（青）先成为 α-酮醛的醛基碳，再成为 α-酮酸的羧基碳，最后以 CO₂ 离开。</li>
+    <li>C2–C3、C4–C5 各以一分子乙二醛离开，再经草酸变成 CO₂。</li>
+    <li>产物 COOH 上的两个氧，一个来自 RuO₄（C1=O 生成时），一个来自水（酮水合）；至于成酯后哪个成为 C=O，两种可能等价。氧最终都来自 IO₄⁻ 和水。</li>
+  </ul>
+</div></section>
+
+<section id="pitfalls"><div class="wrap read">
+  <p class="kicker">05 / 常见错误</p>
+  <h2>这道题容易错在哪</h2>
+  <ul class="pit">
+    <li><b>和 KMnO₄ 侧链氧化混为一谈。</b>热 KMnO₄ 氧化烷基苯时，苯环留下、带苄位 H 的侧链被氧化，得到苯甲酸。RuO₄ 正好相反：苯环被拆掉，侧链留下，得到环己甲酸。</li>
+    <li><b>以为羧基碳是新引入的。</b>COOH 的碳就是原苯环上连环己基的 C1（ipso 碳），碳链没有增长；环己基加上这一个碳，正好是 C₇。</li>
+    <li><b>把 RuCl₃ 当作化学计量氧化剂。</b>Ru 只需催化量。真正按计量消耗的是 NaIO₄，按电子数算至少 14 当量。</li>
+    <li><b>以为一个 RuO₄ 切一根 C=C 只给出 2 个电子。</b>环加成（VIII → VI）和碎裂（VI → IV）各 2 e⁻，一共 4 e⁻；所以 RuO₂ 要 2 个 IO₄⁻ 才能复原。</li>
+    <li><b>把 [3+2] 写成分步。</b>三对电子是同时流动的，两个新 C–O 键在同一面形成，所以是顺式加成。</li>
+    <li><b>以为饱和环一定不会被碰。</b>RuO₄ 能氧化饱和 C–H。这里环己基没被氧化，是因为苯环反应快得多，后来生成的 COOH 又钝化了相邻 C–H；这是竞争的结果，不是不可能。</li>
+    <li><b>把示意的进攻顺序当成定论。</b>先切哪根 C=C、中间体是否真以 α-酮醛形式存在，文献没有逐步确证。无论顺序如何，原子去向和 28 个电子的总账都一样。</li>
+  </ul>
+</div></section>
+
+<section id="glossary"><div class="wrap read">
+  <p class="kicker">06 / 术语表</p>
+  <h2>中英对照</h2>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>中文</th><th>English</th><th>在本题中</th></tr></thead>
+    <tbody>
+      <tr><td>环己基苯</td><td>cyclohexylbenzene (phenylcyclohexane)</td><td>原料</td></tr>
+      <tr><td>环己甲酸</td><td>cyclohexanecarboxylic acid</td><td>产物</td></tr>
+      <tr><td>四氧化钌</td><td>ruthenium tetroxide (RuO₄)</td><td>真正的氧化剂，Ru(VIII)</td></tr>
+      <tr><td>三氯化钌</td><td>ruthenium(III) chloride (RuCl₃)</td><td>催化剂前体</td></tr>
+      <tr><td>高碘酸钠 / 碘酸钠</td><td>sodium periodate (NaIO₄) / sodium iodate (NaIO₃)</td><td>终端氧化剂及其还原产物</td></tr>
+      <tr><td>催化剂前体</td><td>precatalyst</td><td>RuCl₃</td></tr>
+      <tr><td>终端氧化剂</td><td>terminal oxidant</td><td>NaIO₄，按化学计量消耗</td></tr>
+      <tr><td>催化循环</td><td>catalytic cycle</td><td>Ru(VIII) → Ru(VI) / Ru(IV) → Ru(VIII)</td></tr>
+      <tr><td>氧化态</td><td>oxidation state</td><td>Ru 的 VIII、VI、IV；碳的 −1 到 +4</td></tr>
+      <tr><td>两相体系</td><td>biphasic system</td><td>CCl₄ / H₂O（加 MeCN）</td></tr>
+      <tr><td>乙腈</td><td>acetonitrile (MeCN)</td><td>与低价钌配位，防止失活</td></tr>
+      <tr><td>[3+2] 环加成</td><td>[3+2] cycloaddition</td><td>RuO₄ 加到 C=C 上</td></tr>
+      <tr><td>环状钌酸酯</td><td>cyclic ruthenate ester</td><td>五元环 C–O–Ru–O–C</td></tr>
+      <tr><td>去芳构化</td><td>dearomatization</td><td>第一次进攻苯环</td></tr>
+      <tr><td>顺式加成</td><td>syn (cis) addition</td><td>两个 C–O 键在同一面</td></tr>
+      <tr><td>碎裂（环逆转）</td><td>fragmentation (cycloreversion)</td><td>C–C σ 键断开成两个 C=O</td></tr>
+      <tr><td>氧化断裂</td><td>oxidative cleavage</td><td>C=C → 2 C=O</td></tr>
+      <tr><td>芳环降解</td><td>aromatic ring degradation</td><td>苯基 → COOH</td></tr>
+      <tr><td>本位碳</td><td>ipso carbon</td><td>C1，连环己基</td></tr>
+      <tr><td>乙二醛</td><td>glyoxal</td><td>OHC–CHO</td></tr>
+      <tr><td>草酸</td><td>oxalic acid</td><td>HOOC–COOH</td></tr>
+      <tr><td>α-酮醛 / α-酮酸</td><td>α-keto aldehyde / α-keto acid</td><td>C1–C6 片段</td></tr>
+      <tr><td>水合物（偕二醇）</td><td>hydrate (gem-diol)</td><td>醛、酮加水</td></tr>
+      <tr><td>氧化脱羧</td><td>oxidative decarboxylation</td><td>α-酮酸 → 羧酸 + CO₂</td></tr>
+      <tr><td>羧酸根</td><td>carboxylate</td><td>推电子放出 CO₂</td></tr>
+      <tr><td>氧代（金属氧双键）</td><td>oxo ligand (M=O)</td><td>Ru=O</td></tr>
+      <tr><td>椅式构象</td><td>chair conformation</td><td>环己基全程保持</td></tr>
+      <tr><td>球棍模型</td><td>ball-and-stick model</td><td>3D 动画</td></tr>
+      <tr><td>弯箭头</td><td>curved arrow (electron-pushing arrow)</td><td>每根代表一对电子的流向</td></tr>
+      <tr><td>形式电荷</td><td>formal charge</td><td>⊖</td></tr>
+      <tr><td>氧化</td><td>to oxidize</td><td>动词：失去电子</td></tr>
+      <tr><td>再氧化（再生）</td><td>to reoxidize (to regenerate)</td><td>动词：NaIO₄ 把低价 Ru 变回 RuO₄</td></tr>
+      <tr><td>切断</td><td>to cleave</td><td>动词：断开 C=C 或 C–C</td></tr>
+      <tr><td>进攻</td><td>to attack</td><td>动词：RuO₄ 进攻 C=C</td></tr>
+      <tr><td>水合</td><td>to hydrate</td><td>动词：羰基加水</td></tr>
+      <tr><td>成酯</td><td>to esterify</td><td>动词：O–H 与 RuO₄ 成钌酸酯</td></tr>
+      <tr><td>脱羧</td><td>to decarboxylate</td><td>动词：放出 CO₂</td></tr>
+      <tr><td>夺取（氢）</td><td>to abstract (a hydrogen)</td><td>动词：Ru=O 拿走 C–H 上的氢</td></tr>
+      <tr><td>离去</td><td>to leave (leaving group)</td><td>乙二醛、CO₂、Ru 物种离场</td></tr>
+    </tbody>
+  </table></div>
+</div></section>
+
+<section id="sources"><div class="wrap read">
+  <p class="kicker">07 / 来源与核验</p>
+  <h2>哪些是精确的，哪些是示意</h2>
+  <ul class="layers">
+    <li><span class="lk lk-orig">用户原图</span><span>题目截图：环己基苯 → 环己甲酸（RuCl₃, NaIO₄；MeCN, CCl₄, 24 h；94%），保存为 <code>source/problem.png</code>。（<a href="./source/problem.png">查看原图</a>）</span></li>
+    <li><span class="lk lk-exact">精确</span><span>2D：页面画出的每个结构都由 <code>source/verify.mjs</code> 重新读取，逐原子检查价键与形式电荷，核对 Ru 氧化态与图上的罗马数字是否一致，算分子式，核对每一步的元素与电荷守恒、页面上的配平式，并逐步验证碳氧化态的变化等于标注的电子数（全程 28 e⁻）。3D：<code>source/verify3d.mjs</code> 在显式氢下检查每个关键帧，与 2D 的分子式逐一对照；还检查进出场原子的组成、弯箭头引用的键，以及几何质量（键长、非键碰撞、苯环平面、椅式、顺式加成）。</span></li>
+    <li><span class="lk lk-lit">文献</span><span>改进的 RuO₄ 催化体系（加 MeCN）：Carlsen 等 1981（文献 1；本页只核对了题目、作者与摘要，94% 取自题图）。苯基作为羧基等价物：Núñez & Martín 1990（文献 2）及综述（文献 3）。烯烃被 RuO₄ 切断而不像 OsO₄ 停在二醇，有量子化学研究讨论（文献 4）。</span></li>
+    <li><span class="lk lk-schem">教学示意</span><span>先切哪根 C=C（这里依次是 C3=C4、C1=C2、C5=C6）是教学上的选择；苯环降解的逐步顺序文献没有确证。“环状 Ru(VI) 酸酯直接碎裂成 2 C=O + RuO₂”是最简画法，实际也可能先被 IO₄⁻ 氧化成 Ru(VIII) 酯再碎裂，或先水解成二醇再由高碘酸切断。醛 → 酸、氧化脱羧的成酯–消除机理借用了铬酸酯与 H₂O₂ / 高碘酸氧化的常见写法。2D 结构式是理想几何；3D 坐标由页内的简单松弛算出，不是计算化学结构；RuO₂ 画成分子，实际是固体。动画的时长和路径也只是示意。</span></li>
+  </ul>
+  <h3>参考文献</h3>
+  <ol class="refs">
+    <li>P. H. J. Carlsen, T. Katsuki, V. S. Martin, K. B. Sharpless, “A greatly improved procedure for ruthenium tetroxide catalyzed oxidations of organic compounds”, <i>J. Org. Chem.</i> <b>46</b>, 3936–3938 (1981). <a href="https://doi.org/10.1021/jo00332a045">doi:10.1021/jo00332a045</a></li>
+    <li>M. T. Núñez, V. S. Martín, “Efficient oxidation of phenyl groups to carboxylic acids with ruthenium tetraoxide. A simple synthesis of (<i>R</i>)-γ-caprolactone, the pheromone of <i>Trogoderma granarium</i>”, <i>J. Org. Chem.</i> <b>55</b>, 1928–1932 (1990). <a href="https://doi.org/10.1021/jo00293a044">doi:10.1021/jo00293a044</a></li>
+    <li>V. Piccialli, “Ruthenium tetroxide and perruthenate chemistry. Recent advances and related transformations mediated by other transition metal oxo-species”, <i>Molecules</i> <b>19</b>, 6534 (2014). <a href="https://doi.org/10.3390/molecules19056534">doi:10.3390/molecules19056534</a></li>
+    <li>J. Frunzke, C. Loschen, G. Frenking, “Why are olefins oxidized by RuO₄ under cleavage of the carbon–carbon bond whereas oxidation by OsO₄ yields <i>cis</i>-diols?”, <i>J. Am. Chem. Soc.</i> <b>126</b>, 3642–3652 (2004). <a href="https://doi.org/10.1021/ja039921a">doi:10.1021/ja039921a</a></li>
+  </ol>
+  <h3>技术</h3>
+  <p style="font-size:14px">单文件 HTML。2D 结构式、3D 球棍模型和弯箭头都由页内脚本现画成 SVG，不用位图、不引用 CDN 或在线字体，下载后可离线打开。浅色 / 深色随系统切换。页面与核验脚本读的是同一份数据（<code>source/mech.js</code>、<code>source/mech3d.js</code>）。</p>
+</div></section>
+</main>
+
+<footer><div class="wrap">Organic Chemistry Graph · <a href="../../index.html">返回目录</a> · 环己基苯 → 环己甲酸（RuO₄ 芳环降解）</div></footer>
+
+<script type="module">
+{
+/*@@MECH@@*/
+/*@@APP@@*/
+}
+{
+/*@@MECH3D@@*/
+/*@@RENDER3D@@*/
+/*@@APP3D@@*/
+}
+</script>
+</body>
+</html>

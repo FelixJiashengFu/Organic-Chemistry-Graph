@@ -1,6 +1,6 @@
 # 邻甲氧基苯甲酸 → 2-丁基环己-2-烯酮：分步机理
 
-> [打开页面](./index.html) · 在线：<https://uugyfgyb.github.io/Organic-Chemistry-Graph/topics/birch-anisic-acid-steps/>
+> [打开页面](./index.html) · 在线：<https://felixjiashengfu.github.io/Organic-Chemistry-Graph/topics/birch-anisic-acid-steps/>
 
 题目（II. Reactions of Carbon–Carbon π-Bonds）：由 2-methoxybenzoic acid（邻甲氧基苯甲酸）合成 2-butylcyclohex-2-en-1-one（2-丁基环己-2-烯酮）。题目给出的三条提示是：tandem Birch reduction–alkylation；enol ether hydrolysis；β-keto acid decarboxylation and alkene isomerization。原题截图见 [`source/problem.png`](./source/problem.png)。
 
